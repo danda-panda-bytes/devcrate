@@ -1,0 +1,20 @@
+{
+  "name": "@devcrate/ngx-dc-file-viewer",
+  "version": "17.0.2",
+  "peerDependencies": {
+    "@angular/common": ">=14",
+    "@angular/core": ">=14",
+    "ng2-pdf-viewer": "^10.2.2",
+    "@devcrate/ngx-dc-utils": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "include": [
+    "../ngx-dc-utils"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

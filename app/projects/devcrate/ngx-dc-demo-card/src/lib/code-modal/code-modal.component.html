@@ -1,0 +1,19 @@
+<div mat-dialog-title class="w-100">
+  @if (data.previousTitles.length) {
+    <button mat-raised-button (click)="showPreviousModal()">Previous</button>
+  }
+  <div class="flex align-items-center w-100">
+    <span>Documentation</span>
+    <span class="fill"></span>
+    <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
+  </div>
+</div>
+<div mat-dialog-content>
+  <markdown
+    (ngxMarkdownOnLinkClick)="showModal($event.name, $event.path)"
+    [src]="data.path"
+  ></markdown>
+
+  {{ data.previousTitles }}
+  {{ data.previousPaths }}
+</div>

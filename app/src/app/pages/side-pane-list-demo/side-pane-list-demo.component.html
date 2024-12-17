@@ -1,0 +1,113 @@
+<div class="flex align-items-center">
+  <h1 class="demo-title">Side Pane List</h1>
+  <button mat-raised-button (click)="showModal()">Documentation</button>
+</div>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Basic Side Pane List</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>Get data from server and display it</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="Data Source">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/basic-side-pane-list/basic-side-pane-list.data-source.ts"
+        language="jsx"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Component">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/basic-side-pane-list/basic-side-pane-list.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="HTML">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/basic-side-pane-list/basic-side-pane-list.component.html"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Styles">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/basic-side-pane-list/basic-side-pane-list.component.scss"
+        language="scss"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <basic-side-pane-list></basic-side-pane-list>
+  </ng-container>
+</ngx-dc-demo-card>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Infinite Scroll Side Pane List</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>Get data from server and display a paged amount as they scroll</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="Data Source">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/infinite-scroll-side-pane-list/infinite-scroll-side-pane-list.data-source.ts"
+        language="jsx"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Component">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/infinite-scroll-side-pane-list/infinite-scroll-side-pane-list.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="HTML">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/infinite-scroll-side-pane-list/infinite-scroll-side-pane-list.component.html"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Styles">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/infinite-scroll-side-pane-list/infinite-scroll-side-pane-list.component.scss"
+        language="scss"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <infinite-scroll-side-pane-list></infinite-scroll-side-pane-list>
+  </ng-container>
+</ngx-dc-demo-card>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Sortable Infinite Scroller</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>Be able to sort an infinite scrolling table</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="Data Source">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/sortable-infinite-scroll-side-pane-list/sortable-infinite-scroll-side-pane-list.data-source.ts"
+        language="jsx"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Component">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/sortable-infinite-scroll-side-pane-list/sortable-infinite-scroll-side-pane-list.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="HTML">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/sortable-infinite-scroll-side-pane-list/sortable-infinite-scroll-side-pane-list.component.html"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Styles">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/side-pane-list-demo/sortable-infinite-scroll-side-pane-list/sortable-infinite-scroll-side-pane-list.component.scss"
+        language="scss"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <sortable-infinite-scroll-side-pane-list></sortable-infinite-scroll-side-pane-list>
+  </ng-container>
+</ngx-dc-demo-card>
+

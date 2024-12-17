@@ -1,0 +1,19 @@
+:host {
+  ngx-dc-side-pane-list {
+    height: 400px;
+    .content-container {
+      height: 100%;
+      padding: 16px;
+    }
+
+    .total-items {
+      padding: 4px 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+// Made from here:
+// https://angular-material.dev/articles/angular-material-theme-builder
+// 1. Go here: https://themes.angular-material.dev/
+// 2. Click icon on bottom left to copy to material design 3 colors
+// 3. Replace the select with "@mixin dark-system-vars()"
+
+@mixin dark-system-vars() {
+  --sys-background:#0e1415;
+  --sys-on-background:#dee3e4;
+  --sys-surface:#0e1415;
+  --sys-surface-dim:#0e1415;
+  --sys-surface-bright:#343a3b;
+  --sys-surface-container-lowest:#090f10;
+  --sys-surface-container-low:#171d1e;
+  --sys-surface-container:#1b2122;
+  --sys-surface-container-high:#252b2c;
+  --sys-surface-container-highest:#303637;
+  --sys-on-surface:#dee3e4;
+  --sys-surface-variant:#3f4849;
+  --sys-on-surface-variant:#bec8c9;
+  --sys-inverse-surface:#dee3e4;
+  --sys-inverse-on-surface:#2b3132;
+  --sys-outline:#899393;
+  --sys-outline-variant:#3f4849;
+  --sys-shadow:#000000;
+  --sys-scrim:#000000;
+  --sys-surface-tint:#81d3df;
+  --sys-primary:#81d3df;
+  --sys-on-primary:#00363c;
+  --sys-primary-container:#004f57;
+  --sys-on-primary-container:#9ef0fc;
+  --sys-inverse-primary:#006973;
+  --sys-secondary:#81d3df;
+  --sys-on-secondary:#00363c;
+  --sys-secondary-container:#004f57;
+  --sys-on-secondary-container:#9df0fb;
+  --sys-tertiary:#afc6ff;
+  --sys-on-tertiary:#132f60;
+  --sys-tertiary-container:#2d4678;
+  --sys-on-tertiary-container:#d9e2ff;
+  --sys-error:#ffb4ab;
+  --sys-on-error:#561e19;
+  --sys-error-container:#73342d;
+  --sys-on-error-container:#ffdad5;
+  --sys-neutral:#727879;
+  --sys-neutral-variant:#6f797a;
+  --sys-primary-fixed:#9ef0fc;
+  --sys-primary-fixed-dim:#81d3df;
+  --sys-on-primary-fixed:#001f23;
+  --sys-on-primary-fixed-variant:#004f57;
+  --sys-secondary-fixed:#9df0fb;
+  --sys-secondary-fixed-dim:#81d3df;
+  --sys-on-secondary-fixed:#001f23;
+  --sys-on-secondary-fixed-variant:#004f57;
+  --sys-tertiary-fixed:#d9e2ff;
+  --sys-tertiary-fixed-dim:#afc6ff;
+  --sys-on-tertiary-fixed:#001943;
+  --sys-on-tertiary-fixed-variant:#2d4678;
+  --sys-inverse-secondary:#006973;
+  --sys-inverse-tertiary:#465d91;
+  --sys-inverse-error:#904a43;
+  --sys-error-fixed:#ffdad5;
+  --sys-error-fixed-dim:#ffb4ab;
+  --sys-on-error-fixed:#3b0907;
+  --sys-on-error-fixed-variant:#73342d;
+}

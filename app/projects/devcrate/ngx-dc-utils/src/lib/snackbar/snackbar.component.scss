@@ -1,0 +1,36 @@
+app-snackbar{
+    .flex-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    button.app-snackbar-button{
+        margin-left: 1rem;
+    }
+
+    .see-more, .see-less {
+        -webkit-appearance: button;
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        color:white;
+        font-size: 0.75em;
+        text-decoration: underline;
+    }
+
+    .app-snackbar-message {
+        font-size: 0.85em;
+    }
+
+    .truncate .app-snackbar-message {
+        display: -webkit-box;
+        max-width: 200px;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 0.85em;
+    }
+    .truncate .see-less{
+        display: none;
+    }
+}

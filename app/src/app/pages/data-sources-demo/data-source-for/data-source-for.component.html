@@ -1,0 +1,9 @@
+@if (dataSource.loading | async) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<ul>
+  @for (item of (dataSource.filteredData$ | async).slice(0,10); track dataSource.trackItems(item); let i = $index) {
+    <li>{{ item.title }}</li>
+  }
+</ul>

@@ -1,0 +1,21 @@
+{
+  "name": "@devcrate/utils",
+  "version": "0.1.0",
+  "description": "utils for shared code",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "Daniel Hair <danielmhair@gmail.com>",
+  "dependencies": {
+    "cpx": "1.5.0",
+    "glob": "7.2.0",
+    "jsonwebtoken": "9.0.2",
+    "mkdirp": "0.5.5",
+    "jsonc-parser": "3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "**/*"
+  ]
+}

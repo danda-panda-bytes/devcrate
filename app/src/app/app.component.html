@@ -1,0 +1,15 @@
+<ngx-dc-navbar
+  mainTitle="DevCrate"
+  appLogo="assets/images/devcrate.png"
+  collapseButtonText="Collapse"
+>
+  <ng-container *ngxDcNavbarRightTopBarContent>
+    <button mat-icon-button color="accent" (click)="changeTheme()">
+      <mat-icon>{{ darkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-container *ngxDcNavbarMainContent>
+    <router-outlet />
+  </ng-container>
+</ngx-dc-navbar>

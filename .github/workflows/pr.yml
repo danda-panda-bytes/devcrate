@@ -1,0 +1,77 @@
+name: PR CI
+
+on:
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ (github.event.pull_request && github.event.pull_request.number) || github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install App Dependencies
+        run: |
+          cd app
+          npm audit signatures
+          npm ci
+
+      - name: Build App
+        run: |
+          cd app
+          npm run build:libs
+
+      - name: Install Node Libraries
+        run: |
+          cd packages
+          npm audit signatures
+          npm ci
+
+      - name: Build Node Libraries
+        run: |
+          cd packages
+          npm run build
+
+      - name: Release all packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm i
+          npx semantic-release
+
+      # - name: Verify Dependencies
+      #   run: npm run verify-dependencies -- --ci true
+
+      # - name: Lint
+      #   run: npm run lint
+
+      # - name: Run unit tests
+      #   run: npm run test:unit
+
+      # - name: Run integration tests
+      #   run: npm run test:integration
+
+      # - name: Run e2e tests
+      #   run: npm run test:e2e
+
+      # - name: Cover
+      #   run: npm run coverage
+

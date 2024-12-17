@@ -1,0 +1,91 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    // npm start
+    // "paths": {
+    //   "@devcrate/ngx-dc-data-sources": [
+    //     "./projects/devcrate/ngx-dc-data-sources/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-demo-card": [
+    //     "./projects/devcrate/ngx-dc-demo-card/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-file-viewer": [
+    //     "./projects/devcrate/ngx-dc-file-viewer/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-mat-select-data-source": [
+    //     "./projects/devcrate/ngx-dc-mat-select-data-source/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-navbar": [
+    //     "./projects/devcrate/ngx-dc-navbar/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-side-pane-list": [
+    //     "./projects/devcrate/ngx-dc-side-pane-list/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-styles": [
+    //     "./dist/devcrate/ngx-dc-styles"
+    //   ],
+    //   "@devcrate/ngx-dc-dropdown": [
+    //     "./projects/devcrate/ngx-dc-dropdown/src/public-api.ts"
+    //   ],
+    //   "@devcrate/ngx-dc-utils": [
+    //     "./projects/devcrate/ngx-dc-utils/src/public-api.ts"
+    //   ]
+    // },
+    // npm build
+    "paths": {
+      "@devcrate/ngx-dc-data-sources": [
+        "./dist/devcrate/ngx-dc-data-sources"
+      ],
+      "@devcrate/ngx-dc-demo-card": [
+        "./dist/devcrate/ngx-dc-demo-card"
+      ],
+      "@devcrate/ngx-dc-file-viewer": [
+        "./dist/devcrate/ngx-dc-file-viewer"
+      ],
+      "@devcrate/ngx-dc-mat-select-data-source": [
+        "./dist/devcrate/ngx-dc-mat-select-data-source"
+      ],
+      "@devcrate/ngx-dc-navbar": [
+        "./dist/devcrate/ngx-dc-navbar"
+      ],
+      "@devcrate/ngx-dc-side-pane-list": [
+        "./dist/devcrate/ngx-dc-side-pane-list"
+      ],
+      "@devcrate/ngx-dc-dropdown": [
+        "./dist/devcrate/ngx-dc-dropdown"
+      ],
+      "@devcrate/ngx-dc-styles": [
+        "./dist/devcrate/ngx-dc-styles"
+      ],
+      "@devcrate/ngx-dc-utils": [
+        "./dist/devcrate/ngx-dc-utils"
+      ]
+    },
+    "outDir": "./dist/out-tsc",
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": [
+      "ES2022",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

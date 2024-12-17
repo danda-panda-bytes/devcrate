@@ -1,0 +1,25 @@
+{
+  "name": "devcrate",
+  "version": "0.1.0",
+  "description": "devcrate monorepo for angular, playwright, and node packages",
+  "dependencies": {
+    "@types/node": "^22.7.7",
+    "argparse": "^2.0.1",
+    "ts-node": "^10.9.2"
+  },
+  "scripts": {
+    "verify-dependencies": "ts-node -p tsconfig.json tools/verify-dependencies.ts",
+    "build:apps": "cd app && npm run build:prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^6.0.1",
+    "sass": "^1.80.6",
+    "semantic-release": "^24.2.0",
+    "ts-jest": "^29.2.5"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@devcrate/ngx-dc-mat-select-data-source",
+  "version": "17.0.2",
+  "peerDependencies": {
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "@devcrate/ngx-dc-utils": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "include": [
+    "../ngx-dc-utils"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

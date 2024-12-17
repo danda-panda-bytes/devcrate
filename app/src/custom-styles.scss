@@ -1,0 +1,34 @@
+.demo-title {
+  margin-right: 24px;
+}
+
+markdown {
+  blockquote {
+    border: 2px solid rgba(0, 255, 255, 0.2);
+    padding-left: 12px;
+    margin: 0;
+    background-color: rgba(0, 255, 255, 0.15);
+  }
+
+  table th,
+  table td {
+    text-align: left;
+  }
+
+  table {
+    tbody {
+      tr{
+        &:nth-of-type(even) {
+          background-color: rgba(211, 211, 211, 0.2);
+          color: white;
+        }
+
+        &:nth-of-type(odd) {
+          background-color: rgba(0, 0, 0, 0.2);
+          background-color: black;
+        }
+      }
+    }
+  }
+
+}

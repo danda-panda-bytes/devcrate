@@ -1,0 +1,99 @@
+<div class="top-bar mat-elevation-z2" [ngStyle]="topBarBackgroundImage ? {'background-image': 'url(' + topBarBackgroundImage + ')'} : {}">
+  <div class="main-title flex flex-row">
+    <img class="ngx-dc-navbar-icon" [src]="appLogo" [alt]="mainTitle + ' Icon'" />
+    <span class="ngx-dc-navbar-title">{{mainTitle}}</span>
+  </div>
+  <span class="fill"></span>
+  <ng-container *ngTemplateOutlet="rightTopBarContentTemplate?.templateRef"></ng-container>
+</div>
+<div class="main-container">
+  @if (sideBarContentTemplate?.templateRef) {
+    <div class="side-bar mat-elevation-z2" [class.collapsed]="navbarService.collapsed$ | async">
+      <ng-container *ngTemplateOutlet="sideBarContentTemplate?.templateRef; context: {
+        $implicit: navbarService.collapsed$ | async
+      }"></ng-container>
+    </div>
+  } @else {
+    <div class="side-bar mat-elevation-z2" [class.collapsed]="navbarService.collapsed$ | async">
+      @if (sidebarLinksTemplate?.templateRef) {
+        <ng-container *ngTemplateOutlet="sidebarLinksTemplate?.templateRef; context: {
+          $implicit: navbarService.collapsed$ | async
+        }"></ng-container>
+      } @else {
+        <mat-nav-list class="menu-navigation">
+          @for (menuItem of links; track menuItem.title) {
+            @if (navbarService.isAllowed(menuItem.allowedList)) {
+              @if (menuItem.type === 'heading') {
+                <mat-list-item disabled class="menu-title heading"
+                               [class.align-items-center]="navbarService.collapsed$ | async">
+                  @if (!(navbarService.collapsed$ | async)) {
+                    {{ menuItem.title }}
+                  } @else {
+                    <hr/>
+                  }
+                </mat-list-item>
+              }
+
+              @if (menuItem.type === 'link') {
+                <a
+                  [matTooltip]="menuItem.title"
+                  [matTooltipDisabled]="!opened"
+                  matTooltipPosition="right"
+                  routerLinkActive="link-active"
+                  [routerLink]="menuItem.path"
+                  data-testid="menu-link-link"
+                >
+                  <mat-list-item [matTooltip]="menuItem.title" [matTooltipDisabled]="!(navbarService.collapsed$ | async)"
+                                 matTooltipPosition="right">
+                    <div class="flex align-items-center nav-item">
+                      @if (menuItem.icon?.includes('svg:')) {
+                        <mat-icon class="" [svgIcon]="menuItem.icon.replace('svg:', '')"></mat-icon>
+                      } @else {
+                        <mat-icon>{{ menuItem.icon }}</mat-icon>
+                      }
+                      <span class="menu-item-title">{{ menuItem.title }}</span>
+                    </div>
+                  </mat-list-item>
+                </a>
+              }
+
+              @if (menuItem.hasDivider) {
+                <hr class="ngx-dc-navbar-divider" />
+              }
+            }
+          }
+        </mat-nav-list>
+      }
+      <span class="fill"></span>
+      <hr class="end-sidebar-separator"/>
+      <mat-nav-list class="no-padding">
+        <mat-list-item class="collapse-version-group heading" data-testid="menu-collapse-button" matRipple
+                       (click)="navbarService.collapsed$.next(!navbarService.collapsed$.value)">
+          <div class="flex align-items-center justify-content-center">
+          <span class="version-info">
+            @if (collapseButtonText) {
+              {{ collapseButtonText }}
+            } @else {
+              {{ mainTitle }} {{ version || '' }}
+            }
+          </span>
+            <span class="fill collapse-fill"></span>
+            <mat-icon class="double-arrow">double_arrow</mat-icon>
+          </div>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  }
+  <div class="main-content">
+    @if (modalService.showGlobalLoadingBar | async) {
+      <mat-progress-bar
+        color="primary"
+        [class.collapsed]="navbarService.collapsed$ | async"
+        mode="indeterminate"
+        class="global-progress-bar"
+        data-testid="app-global-loader"
+      ></mat-progress-bar>
+    }
+    <ng-container *ngTemplateOutlet="mainContentTemplate?.templateRef"></ng-container>
+  </div>
+</div>

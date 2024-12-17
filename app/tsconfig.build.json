@@ -1,0 +1,34 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "@devcrate/ngx-dc-data-sources": [
+        "./dist/devcrate/ngx-dc-data-sources"
+      ],
+      "@devcrate/ngx-dc-demo-card": [
+        "./dist/devcrate/ngx-dc-demo-card"
+      ],
+      "@devcrate/ngx-dc-file-viewer": [
+        "./dist/devcrate/ngx-dc-file-viewer"
+      ],
+      "@devcrate/ngx-dc-mat-select-data-source": [
+        "./dist/devcrate/ngx-dc-mat-select-data-source"
+      ],
+      "@devcrate/ngx-dc-navbar": [
+        "./dist/devcrate/ngx-dc-navbar"
+      ],
+      "@devcrate/ngx-dc-side-pane-list": [
+        "./dist/devcrate/ngx-dc-side-pane-list"
+      ],
+      "@devcrate/ngx-dc-dropdown": [
+        "./dist/devcrate/ngx-dc-dropdown"
+      ],
+      "@devcrate/ngx-dc-styles": [
+        "./dist/devcrate/ngx-dc-styles"
+      ],
+      "@devcrate/ngx-dc-utils": [
+        "./dist/devcrate/ngx-dc-utils"
+      ]
+    }
+  }
+} 

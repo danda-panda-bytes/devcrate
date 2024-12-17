@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2020"],
+    "target": "es2019",
+    "types": ["node"],
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "removeComments": false,
+    "incremental": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "../../dist/playwright"
+  },
+  "include": ["**/*.ts"],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.mock.ts"
+  ]
+}

@@ -1,0 +1,21 @@
+name: Documentation
+description: Suggest an improvement to our documentation at danielmhair.github.io/devcrate
+title: 'docs-bug(COMPONENT): TITLE'
+labels: ['docs', 'needs triage']
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Documentation Feedback
+      description: |
+        Provide a brief summary of what you would like to see changed in our documentation at the [demo docs](danielmhair.github.io/devcrate).
+        Feel free to provide any suggestions of content or examples you'd like us to include.
+    validations:
+      required: true
+  - type: input
+    id: affected-documentation-page
+    attributes:
+      label: Affected documentation page
+      description: Insert a link to the affected page on [demo docs](danielmhair.github.io/devcrate).
+    validations:
+      required: true

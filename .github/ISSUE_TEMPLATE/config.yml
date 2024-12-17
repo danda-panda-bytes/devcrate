@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: DevCrate
+    url: https://github.com/danielmhair/devcrate/issues/new
+    about: Issues, feature requests, and documentation feedback for DevCrate

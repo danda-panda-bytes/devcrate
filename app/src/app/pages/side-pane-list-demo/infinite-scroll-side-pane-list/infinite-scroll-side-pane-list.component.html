@@ -1,0 +1,12 @@
+<ngx-dc-side-pane-list [dataSource]="dataSource" [useInfiniteScrolling]="true">
+  <ng-container *ngxDcPanePageInfo="let selectedItem; let currentCount = currentCount; let totalCount = totalCount;">
+    <span class="total-items">{{ currentCount || 0 }} / {{ totalCount || 0 }}</span>
+  </ng-container>
+  <ng-container *ngxDcSidePaneItem="let item; let index = index">{{ item.name }}</ng-container>
+  <ng-container *ngxDcPaneContent="let retrievedItem; let selectedItem = selectedItem">
+    <mat-card class="content-container">
+      <h4 mat-card-title>Retrieved Item</h4>
+      {{ retrievedItem | json }}
+    </mat-card>
+  </ng-container>
+</ngx-dc-side-pane-list>

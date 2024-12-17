@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline">
+  <mat-label>Select an option</mat-label>
+  <mat-select [ngxDcMatSelectDataSource]="dataSource">
+    <mat-select-trigger>{{ dataSource?.selectedItem?.value?.name || 'No item selected' }}</mat-select-trigger>
+    <ng-container *ngxDcMatSelectOption="let item">
+      <mat-option [value]="item">{{ item.name }}</mat-option>
+    </ng-container>
+  </mat-select>
+</mat-form-field>
+<br/>
+<div>
+{{ dataSource?.selectedItem?.value | json }}
+</div>
