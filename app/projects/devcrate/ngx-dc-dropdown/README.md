@@ -145,7 +145,7 @@ export class MyInfiniteScrollDataSource extends NgxDcInfiniteSidePaneListDataSou
   sortDir: 'asc' | 'desc'
   sortField: keyof MyModel
 }> {
-  public relativePath = "http://localhost:3000/api/people"
+  public relativePath = "https://devcrate.onrender.com/api/people"
   public rowHeight: number = 80
   public pageSize = 10
   public maxTotalCount = 1000

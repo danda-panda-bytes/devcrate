@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  publish_deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -48,6 +48,10 @@ jobs:
           cd packages
           npm run build
 
+  publish_deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Prepare Git
         run: |
           git config user.name "DevCrate"
