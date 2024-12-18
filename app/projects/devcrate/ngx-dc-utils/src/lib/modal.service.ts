@@ -9,7 +9,7 @@ import {SnackbarComponent} from "./snackbar/snackbar.component";
 
 export const SECOND_IN_MS = 1000
 
-export const NgxDcModalServiceToken = new InjectionToken<NgxDcModalService>("NgxDcModalServiceToken")
+export const NgxDcModalServiceToken = new InjectionToken<NgxDcModalService>("NGX_DC_MODAL_SERVICE_TOKEN")
 
 /**
  * Provides a custom implementation of the `NgxDcModalService`.
