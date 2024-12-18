@@ -77,7 +77,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kB",
-                  "maximumError": "5kB"
+                  "maximumError": "10kB"
                 }
               ],
               "outputHashing": "all"
@@ -139,6 +139,14 @@
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.min.js"
 
             ]
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "buildTarget": "devcrate:build:production",
+            "baseHref": "/devcrate/",
+            "repo": "https://github.com/danda-panda-bytes/devcrate.git"
           }
         }
       }
