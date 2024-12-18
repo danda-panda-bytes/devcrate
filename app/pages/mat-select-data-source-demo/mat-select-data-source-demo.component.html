@@ -1,0 +1,42 @@
+
+<div class="flex align-items-center">
+  <h1 class="demo-title">Mat Select Data Source</h1>
+  <button mat-raised-button (click)="showModal()">Documentation</button>
+</div>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Using a data source with a Mat Select</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>Have the power of data sources with mat selects</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="Data Source">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/mat-select-data-source-demo/basic-select-data-source/basic-select-data-source.data-source.ts"
+        language="jsx"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Component">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/mat-select-data-source-demo/basic-select-data-source/basic-select-data-source.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="HTML">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/mat-select-data-source-demo/basic-select-data-source/basic-select-data-source.component.html"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Styles">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/mat-select-data-source-demo/basic-select-data-source/basic-select-data-source.component.scss"
+        language="scss"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <basic-select-data-source></basic-select-data-source>
+  </ng-container>
+</ngx-dc-demo-card>
+

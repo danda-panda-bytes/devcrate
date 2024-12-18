@@ -1,0 +1,160 @@
+/**
+*  material-custom.scss
+*   This custom scss supports Material v17 and below
+*
+*  Helpful Resources:
+*    - Theming Angular Material: https://material.angular.io/guide/theming
+*    - Customizing Typography: https://material.angular.io/guide/typography
+*    - General Guides: https://material.angular.io/guides
+*/
+
+// mixin that enables css variables in dark mode
+@mixin dark() {
+  // Material issue fixes for dark theme
+  --mdc-icon-button-icon-color: var(--sys-on-background);
+}
+
+@mixin devCrateStyles() {
+  // Handle buttons appropriately, with respect to line-height
+  .mat-raised-button, .mat-stroked-button, .mat-flat-button {
+    padding: 0 1.15em;
+    margin: 0 0.65em;
+    min-width: 3em;
+    line-height: 36.4px
+  }
+
+  .mat-standard-chip {
+    padding: .5em .85em;
+    min-height: 2.5em;
+  }
+
+  // Increase size of Mat Badge to accommodate 3 digit numbers
+  .mat-badge-content {
+    width: auto;
+    display: grid;
+    min-width: 30px;
+    min-height: 30px;
+    text-align: center;
+    align-items: center;
+    padding: 5px 3px;
+    top: -20px;
+    right: -22px;
+  }
+  // System Variables for theme
+  @include dark();
+
+  // Mat Checkbox
+  --mdc-checkbox-state-layer-size: 36px;
+
+  .mat-mdc-checkbox {
+    --mdc-form-field-label-text-size: 13px !important;
+  }
+
+  // Mat Form Fields
+  --mat-form-field-filled-with-label-container-padding-top: 12px;
+  --mat-form-field-filled-with-label-container-padding-bottom: 8px;
+  --mat-form-field-container-text-size: 14px;
+  --mdc-form-field-label-text-size: 12px;
+  --mdc-list-list-item-label-text-size: 14px !important;
+  --mat-form-field-container-vertical-padding: 8px;
+  --mat-form-field-container-height: 36px;
+  --mdc-filled-text-field-label-text-size: 12px;
+  --mat-form-field-outlined-label-text-populated-size: 12px;
+  --mdc-outlined-text-field-label-text-size: 12px;
+  --mdc-outlined-text-field-label-text-weight: 400;
+  --mdc-outlined-text-field-input-text-placeholder-color: rgba(0, 0, 0, 0.4);
+  --mat-form-field-subscript-text-line-height: 8px;
+  --mat-form-field-subscript-text-size: 10px;
+  --mdc-filled-text-field-container-color: var(--sys-background);
+
+  // Buttons
+  --mdc-icon-button-icon-size: 20px;
+  --mdc-protected-button-label-text-size: 12px;
+  --mdc-text-button-container-height: 28px;
+  --mdc-filled-button-container-height: 28px;
+  --mdc-outlined-button-container-height: 28px;
+  --mdc-protected-button-container-height: 28px;
+  --mat-protected-button-horizontal-padding: 10px;
+
+  // Modals
+  --mdc-dialog-container-shape: 4px;
+  --mat-dialog-container-max-width: 65vw;
+  --mat-dialog-actions-padding: 8px 12px;
+  --mat-dialog-content-padding: 10px 12px;
+  --mat-dialog-with-actions-content-padding: 10px 12px 0;
+  --mat-dialog-headline-padding: 4px 12px 8px;
+
+  .mat-mdc-dialog-title::before {
+    height: initial;
+  }
+
+  // Mat icon button
+  mat-form-field:has(input) {
+    :not(mat-datepicker-toggle) {
+      > [mat-icon-button] {
+        left: -8px;
+      }
+    }
+  }
+
+  // Input form field icons
+  mat-form-field:has(input) {
+    .mat-mdc-icon-button.mat-mdc-button-base {
+      --mdc-icon-button-state-layer-size: 30px;
+      .mat-icon {
+        font-size: 22px;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+
+  // Mat table
+  .mat-mdc-header-row {
+    --mat-table-header-container-height: 40px;
+    --mat-table-row-container-height: 40px;
+  }
+
+  .mat-mdc-row {
+    --mat-table-row-item-container-height: 40px;
+  }
+}
+
+/**
+ * Usage:
+ * ```scss
+ * @include themed-colored-classes(
+ *   'no-barcode',
+ *   var(--no-barcode-text-color),
+ *   var(--no-barcode-bg-active-color),
+ *   var(--no-barcode-bg-color),
+ *   var(--no-barcode-text-active-color),
+ *   var(--no-barcode-icon-color),
+ *   var(--no-barcode-icon-active-color)
+ * );
+ * ```
+ */
+@mixin themed-colored-classes($name, $text-color, $bg-active-color, $bg-color, $text-active-color, $icon-color, $icon-active-color) {
+  .#{$name}-bg-color {
+    @include bg-color(
+        $text-color,
+        $bg-active-color,
+        $bg-color,
+        $text-active-color
+    );
+  }
+
+  .#{$name}-text-color {
+    @include text-color(
+        $text-color,
+        $text-active-color
+    )
+  }
+
+  .#{$name}-icon-color {
+    @include icon-color(
+        $icon-color,
+        $icon-active-color
+    )
+  }
+}

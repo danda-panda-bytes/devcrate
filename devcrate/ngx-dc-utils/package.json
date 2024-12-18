@@ -1,0 +1,16 @@
+{
+  "name": "@devcrate/ngx-dc-utils",
+  "version": "17.0.2",
+  "peerDependencies": {
+    "@angular/common": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "rxjs": ">=7"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

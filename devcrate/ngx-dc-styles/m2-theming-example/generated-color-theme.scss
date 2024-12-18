@@ -1,0 +1,120 @@
+// Made from here:
+// https://angular-material.dev/articles/angular-material-theme-builder
+// 1. Go here: https://themes.angular-material.dev/
+// 2. Click icon on bottom left to copy to material design 3 colors
+// 3. Replace the select with "@mixin dark-system-vars()"
+
+$m2-primary: (
+  50 : #e6f8ed,
+  100 : #c1eed2,
+  200 : #98e3b5,
+  300 : #6fd797,
+  400 : #50cf80,
+  500 : #31c66a,
+  600 : #2cc062,
+  700 : #25b957,
+  800 : #1fb14d,
+  900 : #13a43c,
+  A100 : #ffffff,
+  A200 : #dcffde,
+  A400 : #a9ffae,
+  A700 : #8fff96,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$m2-accent: (
+  50 : #e7edee,
+  100 : #c4d1d4,
+  200 : #9db2b7,
+  300 : #75939a,
+  400 : #587c84,
+  500 : #3a656e,
+  600 : #345d66,
+  700 : #2d535b,
+  800 : #254951,
+  900 : #18373f,
+  A100 : #95fff8,
+  A200 : #62fff5,
+  A400 : #2ffff1,
+  A700 : #16fff0,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+$m2-error: (
+  50 : #f7e4e4,
+  100 : #eababa,
+  200 : #dd8d8d,
+  300 : #cf5f5f,
+  400 : #c43c3c,
+  500 : #ba1a1a,
+  600 : #b31717,
+  700 : #ab1313,
+  800 : #a30f0f,
+  900 : #940808,
+  A100 : #ffd5dd,
+  A200 : #ffa2b4,
+  A400 : #ff6f8a,
+  A700 : #ff5576,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$theme-config: (
+  color: (
+    primary: mat.define-palette(mat.$m2-primary),
+    accent: mat.define-palette(mat.$m2-accent),
+    warn: mat.define-palette(mat.$m2-error),
+  ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: mat.define-typography-config(),
+  density: 0,
+);
+
+$dark-theme: mat.define-dark-theme($theme-config);
+$light-theme: mat.define-light-theme($theme-config);

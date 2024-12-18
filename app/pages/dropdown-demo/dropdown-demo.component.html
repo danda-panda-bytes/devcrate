@@ -1,0 +1,41 @@
+<div class="flex align-items-center">
+  <h1 class="demo-title">Dropdown</h1>
+  <button mat-raised-button (click)="showModal()">Documentation</button>
+</div>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Basic Dropdown</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>Get data from server and display it</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="Data Source">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/dropdown-demo/basic-dropdown/basic-dropdown.data-source.ts"
+        language="jsx"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Component">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/dropdown-demo/basic-dropdown/basic-dropdown.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="HTML">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/dropdown-demo/basic-dropdown/basic-dropdown.component.html"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+    <mat-tab label="Styles">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/dropdown-demo/basic-dropdown/basic-dropdown.component.scss"
+        language="scss"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <basic-dropdown></basic-dropdown>
+  </ng-container>
+</ngx-dc-demo-card>
+

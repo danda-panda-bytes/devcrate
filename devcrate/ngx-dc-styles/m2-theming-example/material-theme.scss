@@ -1,0 +1,30 @@
+/**
+ * This custom scss supports Material v17 and above
+ * For Material 3 apps
+ *
+ *
+ * https://angular-material.dev/articles/angular-material-theme-builder
+ * https://themes.angular-material.dev/
+ */
+
+@use '../../../../node_modules/@angular/material/index' as mat;
+@use 'app/projects/devcrate/ngx-dc-styles/m2-theming-exampleeme' as generatedTheme;
+
+@include mat.core();
+
+// Apply the light theme by default
+@include mat.core-theme(generatedTheme.$light-theme);
+@include mat.button-theme(generatedTheme.$light-theme);
+
+// Apply the dark theme only when the user prefers dark themes.
+@media (prefers-color-scheme: dark) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.core-color(generatedTheme.$dark-theme);
+  @include mat.button-color(generatedTheme.$dark-theme);
+}
+
+.dark-theme {
+  @include mat.core-color(generatedTheme.$dark-theme);
+  @include mat.button-color(generatedTheme.$dark-theme);
+}

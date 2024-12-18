@@ -1,0 +1,13 @@
+<div class="flex-container">
+  <div class="w-100" [class.truncate]="data.message.length > 150 && truncate_flag">
+    <span class="app-snackbar-message flex align-items-center">{{ data.message }}</span>
+    @if (data.message.length > 150) {
+      @if (truncate_flag) {
+        <button class="see-more" (click)="seeMore()">See more...</button>
+      } @else {
+        <button class="see-less" (click)="seeLess()">See less...</button>
+      }
+    }
+  </div>
+  <button class="app-snackbar-button failed-bg-color" mat-button (click)="dismiss()">{{data.actionButton}}</button>
+</div>

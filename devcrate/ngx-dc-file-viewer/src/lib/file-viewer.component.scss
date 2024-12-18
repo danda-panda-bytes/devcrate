@@ -1,0 +1,44 @@
+ngx-dc-file-viewer {
+  height: 100%;
+  display: block;
+
+  &.image {
+    display: block;
+    height: 100%;
+
+    .mat-mdc-dialog-content {
+      display: block;
+      overflow: visible;
+    }
+  }
+
+  &.pdf {
+    .mat-mdc-dialog-content {
+      display: contents;
+
+      pdf-viewer {
+        height: 100%;
+      }
+    }
+  }
+
+  .view-error {
+    padding: 18px;
+  }
+
+  .file-image {
+    height: 100%;
+  }
+
+  pdf-viewer {
+    height: 100%;
+  }
+
+  .mdc-dialog__content {
+    padding: 0 !important;
+  }
+
+  .close-button {
+    z-index: 10000;
+  }
+}

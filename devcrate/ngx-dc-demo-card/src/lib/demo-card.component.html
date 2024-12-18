@@ -1,0 +1,35 @@
+<mat-card>
+  <div class="heading-container">
+    <div class="fill">
+      <div mat-card-title>
+        <ng-container *ngTemplateOutlet="titleTemplate?.templateRef"></ng-container>
+      </div>
+      <div mat-card-subtitle>
+        <ng-container *ngTemplateOutlet="subtitleTemplate?.templateRef"></ng-container>
+      </div>
+    </div>
+    <div class="button-actions">
+      @if (showCodeIcon) {
+        <button mat-icon-button (click)="demoTabsTemplate && (demoTabsTemplate.showCode = !demoTabsTemplate.showCode)"><mat-icon>code</mat-icon></button>
+      }
+      @if (showLinkIcon) {
+        <button mat-icon-button><mat-icon>link</mat-icon></button>
+      }
+      @if (buttonsTemplate?.templateRef) {
+        <ng-container *ngTemplateOutlet="buttonsTemplate?.templateRef"></ng-container>
+      }
+    </div>
+  </div>
+
+  <ng-content select="[ngx-dc-demo-tabs]"></ng-content>
+
+  @if (exampleTitleTemplate?.templateRef) {
+    <h3 class="example-title">
+      <ng-container *ngTemplateOutlet="exampleTitleTemplate?.templateRef"></ng-container>
+    </h3>
+  }
+  <div class="example-container">
+    <ng-container *ngTemplateOutlet="exampleTemplate?.templateRef"></ng-container>
+  </div>
+
+</mat-card>

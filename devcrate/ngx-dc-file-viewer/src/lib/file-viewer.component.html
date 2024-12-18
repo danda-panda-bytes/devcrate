@@ -1,0 +1,63 @@
+@if (isPdf) {
+  @if (!pdfSrc?.error && (pdfSrc?.loading | async)) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+
+  @if (pdfSrc?.error) {
+    @if (errorContent) {
+      <ng-container *ngTemplateOutlet="errorContent.templateRef; context: { $implicit: pdfSrc?.error }"></ng-container>
+    } @else {
+      <h4 class="view-error">{{ pdfSrc?.error }}</h4>
+    }
+  }
+
+  <ng-container
+    #pdfSrc="pdfSrc"
+    ngxDcAuthPdfSrc
+    [file]="file"
+    [fileUrl]="fileUrl"
+  >
+    @if (pdfSrc.src) {
+      <pdf-viewer
+        [render-text]="true"
+        [original-size]="false"
+        [fit-to-page]="true"
+        [autoresize]="false"
+        [src]="pdfSrc.src"
+        (error)="onError($event)"
+        (page-rendered)="pdfSrc.loading.next(false)"
+        [style.width]="width"
+        [style.height]="height"
+        style="width: 400px; height: 500px"
+      ></pdf-viewer>
+    }
+  </ng-container>
+} @else if (isImage) {
+  @if (!imageSrc?.error && imageSrc?.loading | async) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+
+  @if (imageSrc?.error) {
+    @if (errorContent) {
+      <ng-container *ngTemplateOutlet="errorContent.templateRef; context: { $implicit: imageSrc?.error }"></ng-container>
+    } @else {
+      <h4 class="view-error">{{ imageSrc?.error }}</h4>
+    }
+  }
+
+  <img
+    class="file-image"
+    ngxDcAuthImgSrc
+    [fileUrl]="fileUrl"
+    [file]="file"
+    [alt]="fileName"
+    [style.width]="width"
+    [style.height]="height"
+  />
+} @else {
+  @if (notSupportedFileContent) {
+    <ng-container *ngTemplateOutlet="notSupportedFileContent.templateRef"></ng-container>
+  } @else {
+    File not supported (only pdf, jpeg, gif, svg, png file types)
+  }
+}

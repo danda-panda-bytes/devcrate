@@ -1,0 +1,40 @@
+<div class="flex align-items-center">
+  <h1 class="demo-title">File Viewer</h1>
+  <button mat-raised-button (click)="showModal()">Documentation</button>
+</div>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Authenticated PDFs</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>View a PDF inline</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="file-viewer-pdf.component.ts">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/file-viewer-demo/file-viewer-pdf.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <app-file-viewer-pdf></app-file-viewer-pdf>
+  </ng-container>
+</ngx-dc-demo-card>
+
+<ngx-dc-demo-card [showCodeIcon]="true" [showLinkIcon]="false">
+  <ng-container *ngxDcDemoCardTitle>Authenticated Images</ng-container>
+  <ng-container *ngxDcDemoCardSubtitle>View a image inline</ng-container>
+  <mat-tab-group ngx-dc-demo-tabs>
+    <mat-tab label="file-viewer-img.component.ts">
+      <ngx-dc-demo-file-viewer
+        filePath="app/pages/file-viewer-demo/file-viewer-img.component.ts"
+        language="ts"
+      ></ngx-dc-demo-file-viewer>
+    </mat-tab>
+  </mat-tab-group>
+
+  <ng-container *ngxDcDemoCardExampleTitle>Live Demo</ng-container>
+  <ng-container *ngxDcDemoCardExample>
+    <app-file-viewer-img></app-file-viewer-img>
+  </ng-container>
+</ngx-dc-demo-card>
