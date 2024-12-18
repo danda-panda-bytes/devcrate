@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc -p tsconfig.json && node dist/server"
+    "build": "npx tsc -p tsconfig.json",
+    "start": "npm run build && node dist/server"
   },
   "author": "",
   "license": "ISC",
