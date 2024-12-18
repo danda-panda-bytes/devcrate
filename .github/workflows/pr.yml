@@ -49,6 +49,8 @@ jobs:
           npm run build
 
       - name: Deploy App to Github Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd app
           npm run deploy
