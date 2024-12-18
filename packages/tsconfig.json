@@ -3,6 +3,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
 //      "@devcrate/utils": [
 //        "./dist/utils/index.js"

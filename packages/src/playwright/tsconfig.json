@@ -1,19 +1,12 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": ["ES2020"],
-    "target": "es2019",
-    "types": ["node"],
-    "module": "commonjs",
-    "noImplicitReturns": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "removeComments": false,
-    "incremental": true,
-    "moduleResolution": "node",
+    "outDir": "../../dist/playwright",
     "declaration": true,
-    "outDir": "../../dist/playwright"
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": []
   },
-  "include": ["**/*.ts"],
   "exclude": [
     "**/*.spec.ts",
     "**/*.mock.ts"

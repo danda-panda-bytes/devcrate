@@ -10,7 +10,7 @@ main()
  * This is a tool to create a new package. It will create the necessary files and folders, and set up the package.json and tsconfig.json files.
  */
 async function main() {
-  const allPackages = readdirSync(join('src'))
+  const allPackages = readdirSync(join(__dirname, '..', 'packages', 'src'))
   let validation = null
   let nameOfPackage = ''
   do {
@@ -21,24 +21,18 @@ async function main() {
 
   await mkdirpSync(join('src', nameOfPackage))
   writeFile(nameOfPackage, 'tsconfig.json', JSON.stringify({
-    compilerOptions: {
-      lib: ['ES2020'],
-      target: 'es2019',
-      types: ['node'],
-      module: 'commonjs',
-      noImplicitReturns: true,
-      allowSyntheticDefaultImports: true,
-      skipLibCheck: true,
-      incremental: true,
-      moduleResolution: 'node',
-      declaration: true,
-      outDir: './dist',
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+      "outDir": `../../dist/${nameOfPackage}`,
+      "declaration": true,
+      "declarationMap": true,
+      "inlineSources": true,
+      "types": []
     },
-    include: ['**/*.ts'],
-    exclude: [
-      '**/*.spec.ts',
-      '**/*.mock.ts',
-    ],
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.mock.ts"
+    ]
   }, null, 2))
 
   const packageJson = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), { encoding: 'utf-8' }) || 'null')
@@ -46,29 +40,32 @@ async function main() {
 
   writeFile(nameOfPackage, 'package.json', JSON.stringify({
     name: `@devcrate/${nameOfPackage}`,
-    version: '0.0.0',
-    description: '',
-    main: 'index.js',
-    types: 'index.d.ts',
+    version: "0.0.0",
+    description: "",
+    main: "index.js",
+    types: "index.d.ts",
     author: "DevCrate",
-    license: 'MIT',
+    peerDependencies: {},
+    publishConfig: {
+      access: "public"
+    },
     files: [
-      '**/*',
+      "**/*"
     ]
   }, null, 2))
 
   writeFile(nameOfPackage, 'index.ts', `export * from './${nameOfPackage}'\n`)
   writeFile(nameOfPackage, `${nameOfPackage}.ts`, 'export const value = true\n')
   writeFile(nameOfPackage, '.eslintrc.js', `module.exports = ${JSON.stringify({
-    extends: '../../.eslintrc.js',
+    extends: "../../.eslintrc.js",
     parserOptions: {
       project: `./src/${nameOfPackage}/tsconfig.json`,
-      sourceType: 'module',
+      sourceType: "module"
     },
     rules: {
-      'no-console': 'off',
-      'import/no-extraneous-dependencies': 'off',
-    },
+      "no-console": "off",
+      "import/no-extraneous-dependencies": "off"
+    }
   }, null, 2)}\n`)
   writeFile(nameOfPackage, '.versionrc.js', [
     "const versionStandardShared = require('../eslint-config/.versionrc.shared.js')",

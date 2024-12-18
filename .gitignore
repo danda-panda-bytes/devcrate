@@ -46,7 +46,6 @@ application-log-*.gz
 node_modules/*
 node_modules/npm/
 public/ngapp
-gitflow-release/
 
 # Visual Studio Code
 .vscode/*
