@@ -30,7 +30,6 @@ jobs:
       - name: Install App Dependencies
         run: |
           cd app
-          npm audit signatures
           npm ci
 
       - name: Build App
@@ -41,7 +40,6 @@ jobs:
       - name: Install Node Libraries
         run: |
           cd packages
-          npm audit signatures
           npm ci
 
       - name: Build Node Libraries
