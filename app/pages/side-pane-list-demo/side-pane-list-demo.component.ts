@@ -36,7 +36,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class SidePaneListDemoComponent {
-  constructor(@Inject(NgxDcModalServiceToken) private modalService: NgxDcModalService) {}
+  constructor(private modalService: NgxDcModalService) {}
 
   public async showModal() {
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {

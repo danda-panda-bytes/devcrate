@@ -1,8 +1,7 @@
-import {NgxDcNavbarLinksConfig, provideNgxDcNavbarLinksConfig} from "@devcrate/ngx-dc-navbar";
-import {AppComponent} from "./app.component";
-import {Routes} from "@angular/router";
-import {COMPONENTS_LINKS, PACKAGE_LINKS, TRAINING_LINKS} from "./links";
-import { TRAINING_ROUTES } from "./training.routes";
+import { Routes } from "@angular/router";
+import { provideNgxDcNavbarLinksConfig } from "@devcrate/ngx-dc-navbar";
+import { AppComponent } from "./app.component";
+import { COMPONENTS_LINKS, PACKAGE_LINKS, TRAINING_LINKS } from "./links";
 
 
 export const APP_ROUTES: Routes = [
