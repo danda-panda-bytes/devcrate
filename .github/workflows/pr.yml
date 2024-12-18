@@ -51,7 +51,7 @@ jobs:
       - name: Deploy App to Github Pages
         run: |
           cd app
-          npm run deploy -- --dry-run
+          npm run deploy
 
       - name: Release all packages
         env:
@@ -59,7 +59,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm i
-          npx semantic-release --dry-run
+          npx semantic-release
 
       # - name: Verify Dependencies
       #   run: npm run verify-dependencies -- --ci true
