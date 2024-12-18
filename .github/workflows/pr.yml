@@ -1,10 +1,10 @@
 name: PR CI
 
 on:
-#   pull_request:
-#     branches: [main]
-#   push:
-#       branches: [main]
+  pull_request:
+    branches: [main]
+  # push:
+  #     branches: [main]
 
   workflow_dispatch:
 
@@ -64,13 +64,14 @@ jobs:
           cd app
           npm run deploy
 
-      - name: Release all packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm i
-          npx semantic-release
+      # TODO: this is deploying every package
+      # - name: Release all packages
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: |
+      #     npm i
+      #     npx semantic-release
 
       # - name: Verify Dependencies
       #   run: npm run verify-dependencies -- --ci true
