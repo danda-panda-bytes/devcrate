@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import * as glob from 'glob'
+import {glob} from 'glob'
 import { green } from './color.utils'
 import { join } from 'path'
 import { parse } from 'jsonc-parser'

@@ -8,6 +8,8 @@
     "types": []
   },
   "exclude": [
+    "../../tests/**/*.spec.ts",
+    "../../tests/**/*.mock.ts",
     "**/*.spec.ts",
     "**/*.mock.ts"
   ]

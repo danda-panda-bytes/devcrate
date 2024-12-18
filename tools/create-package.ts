@@ -30,10 +30,14 @@ async function main() {
       "types": []
     },
     "exclude": [
+      "../../tests/**/*.spec.ts",
+      "../../tests/**/*.mock.ts",
       "**/*.spec.ts",
       "**/*.mock.ts"
     ]
   }, null, 2))
+
+
 
   const packageJson = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), { encoding: 'utf-8' }) || 'null')
   if (!packageJson) { throw new Error('No package.json was found') }

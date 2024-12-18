@@ -3,14 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
     "paths": {
-//      "@devcrate/utils": [
-//        "./dist/utils/index.js"
-//      ],
-//      "@devcrate/utils/*": [
-//        "./dist/utils/*"
-//      ],
       "@devcrate/utils": [
         "./src/utils/index.ts"
       ],
