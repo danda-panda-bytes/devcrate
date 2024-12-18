@@ -40,7 +40,7 @@ export abstract class NgxDcInfiniteScrollDataSource<
   private subscription: Subscription
 
   /** The current page the user is on (based on the scroll position on the list pane) */
-  private lastPageAccessed: number = null
+  private lastPageAccessed: number
 
   protected constructor(httpClient: HttpClient) {
     super(httpClient)
@@ -59,7 +59,7 @@ export abstract class NgxDcInfiniteScrollDataSource<
       observe: 'response',
     }))
 
-    const count = response.headers.get("X-Total-Count") ? parseInt(response.headers.get("X-Total-Count"),10) : null
+    const count = response.headers.get("X-Total-Count") ? parseInt(response.headers.get("X-Total-Count")!,10) : null
     return <PageableResult<GetDataItemsT>>{ count, results: response.body }
   }
 
