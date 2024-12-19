@@ -1,14 +1,24 @@
 {
   "name": "@devcrate/ngx-dc-file-viewer",
-  "version": "17.0.2",
+  "version": "17.1.0",
   "peerDependencies": {
     "@angular/common": ">=14",
     "@angular/core": ">=14",
-    "ng2-pdf-viewer": "^10.2.2",
-    "@devcrate/ngx-dc-utils": "*"
+    "@devcrate/ngx-dc-utils": ">=17.0.0",
+    "ng2-pdf-viewer": "^10.2.2"
+  },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../../dist/devcrate/ngx-dc-file-viewer"
+      }
+    }
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "scripts": {
+    "build": "npx ng build @devcrate/ngx-dc-file-viewer --configuration production"
   },
   "include": [
     "../ngx-dc-utils"

@@ -1,10 +1,17 @@
 {
   "name": "@devcrate/ngx-dc-styles",
-  "version": "17.0.2",
+  "version": "17.1.0",
   "description": "Styles with Angular Material",
   "main": "index.scss",
   "publishConfig": {
     "access": "public"
+  },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../../dist/devcrate/ngx-dc-styles"
+      }
+    }
   },
   "scripts": {
     "build": "sass index.scss ../../../dist/devcrate/ngx-dc-styles/index.css --style=compressed"

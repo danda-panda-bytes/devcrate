@@ -1,13 +1,23 @@
 {
   "name": "@devcrate/ngx-dc-navbar",
-  "version": "17.0.2",
+  "version": "17.1.0",
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
-    "@devcrate/ngx-dc-utils": "*"
+    "@devcrate/ngx-dc-utils": ">=17.0.0"
+  },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../../dist/devcrate/ngx-dc-navbar"
+      }
+    }
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "scripts": {
+    "build": "npx ng build @devcrate/ngx-dc-navbar --configuration production"
   },
   "include": [
     "../ngx-dc-utils"
