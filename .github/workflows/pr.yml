@@ -138,7 +138,9 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run:
+        run: |
+          cd app/dist/devcrate/ngx-dc-navbar
+          npm publish --access public
 
       - name: Publish @devcrate/ngx-dc-side-pane-list
         env:
