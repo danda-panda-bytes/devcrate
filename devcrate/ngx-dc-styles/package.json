@@ -7,7 +7,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "sass index.scss ../../dist/devcrate/ngx-dc-styles/index.css --style=compressed"
+    "build": "sass index.scss ../../../dist/devcrate/ngx-dc-styles/index.css --style=compressed"
   },
   "sideEffects": false,
   "license": "ISC"
