@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/ngx-dc-file-viewer",
-  "version": "17.1.1",
+  "version": "17.1.2",
   "peerDependencies": {
     "@angular/common": ">=14",
     "@angular/core": ">=14",
