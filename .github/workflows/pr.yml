@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +32,24 @@ jobs:
         run: |
           cd app
           npm ci
+
+      # - name: Verify Dependencies
+      #   run: npm run verify-dependencies -- --ci true
+
+      # - name: Lint
+      #   run: npm run lint
+
+      # - name: Run unit tests
+      #   run: npm run test:unit
+
+      # - name: Run integration tests
+      #   run: npm run test:integration
+
+      # - name: Run e2e tests
+      #   run: npm run test:e2e
+
+      # - name: Cover
+      #   run: npm run coverage
 
       - name: Build App
         run: |
@@ -57,30 +75,71 @@ jobs:
           cd app
           npm run deploy
 
-      # TODO: this is deploying every package
-      # - name: Release all packages
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   run: |
-      #     npm i
-      #     npx semantic-release
+      # TODO: this is deploying every package into one
+      - name: Prepare for Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm i
+          npx semantic-release
+          cd app
+          npm run build:libs
 
-      # - name: Verify Dependencies
-      #   run: npm run verify-dependencies -- --ci true
+      - name: Publish @devcrate/ngx-dc-utils
+        run: |
+          cd app/dist/devcrate/ngx-dc-utils
+          npm publish --access public
 
-      # - name: Lint
-      #   run: npm run lint
+      - name: Publish @devcrate/ngx-dc-data-sources
+        run: |
+          cd app/dist/devcrate/ngx-dc-data-sources
+          npm publish --access public
 
-      # - name: Run unit tests
-      #   run: npm run test:unit
+      - name: Publish @devcrate/ngx-dc-demo-card
+        run: |
+          cd app/dist/devcrate/ngx-dc-demo-card
+          npm publish --access public
 
-      # - name: Run integration tests
-      #   run: npm run test:integration
+      - name: Publish @devcrate/ngx-dc-dropdown
+        run: |
+          cd app/dist/devcrate/ngx-dc-dropdown
+          npm publish --access public
 
-      # - name: Run e2e tests
-      #   run: npm run test:e2e
+      - name: Publish @devcrate/ngx-dc-file-viewer
+        run: |
+          cd app/dist/devcrate/ngx-dc-file-viewer
+          npm publish --access public
 
-      # - name: Cover
-      #   run: npm run coverage
+      - name: Publish @devcrate/ngx-dc-mat-select-data-source
+        run: |
+          cd app/dist/devcrate/ngx-dc-mat-select-data-source
+          npm publish --access public
 
+      - name: Publish @devcrate/ngx-dc-navbar
+        run:
+
+      - name: Publish @devcrate/ngx-dc-side-pane-list
+        run: |
+          cd app/dist/devcrate/ngx-dc-side-pane-list
+          npm publish --access public
+
+      - name: Publish @devcrate/ngx-dc-styles
+        run: |
+          cd app/dist/devcrate/ngx-dc-styles
+          npm publish --access public
+
+      - name: Public @devcrate/utils
+        run: |
+          cd packages/dist/utils
+          npm publish --access public
+
+      - name: Public @devcrate/playwright
+        run: |
+          cd packages/dist/playwright
+          npm publish --access public
+
+      - name: Public @devcrate/eslint-config
+        run: |
+          cd packages/dist/eslint-config
+          npm publish --access public

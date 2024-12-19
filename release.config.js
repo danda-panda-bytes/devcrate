@@ -8,7 +8,7 @@ const libraries = fs.readdirSync(projectsPath).filter((dir) => {
 
 // Generate npm plugin configurations dynamically
 const angularLibraryPlugins = libraries.map((lib) => {
-  return ["@semantic-release/npm", { pkgRoot: `app/dist/devcrate/${lib}` }];
+  return ["@semantic-release/npm", { npmPublish: false, pkgRoot: `app/dist/devcrate/${lib}` }];
 });
 
 const packagesPath = "packages";
@@ -18,7 +18,7 @@ const packages = fs.readdirSync(packagesPath).filter((dir) => {
 
 // Generate npm plugin configurations dynamically
 const nodeLibraryPlugins = packages.map((lib) => {
-  return ["@semantic-release/npm", { pkgRoot: `packages/dist/${lib}` }];
+  return ["@semantic-release/npm", { npmPublish: false, pkgRoot: `packages/dist/${lib}` }];
 });
 
 module.exports = {
