@@ -76,6 +76,9 @@ jobs:
           ls -la packages/dist/playwright
           ls -la packages/dist/eslint-config
 
+          git config user.name "DevCrate"
+          git config user.email "danielmhair@gmail.com"
+
           npm run publish
 
       - name: Deploy App to Github Pages

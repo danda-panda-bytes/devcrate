@@ -9,6 +9,12 @@
       ],
       "@devcrate/utils/*": [
         "./src/utils/*"
+      ],
+      "@devcrate/playwright": [
+        "./src/playwright/index.ts"
+      ],
+      "@devcrate/playwright/*": [
+        "./src/playwright/*"
       ]
     },
     "types": ["node", "jest"],

@@ -1,5 +1,5 @@
 import { copyGlob, mkdirpSync } from '@packages/utils/file.utils'
-import {join, resolve} from 'node:path'
+import { join } from 'node:path'
 
 const appPath = join(__dirname, '..', 'app')
 const node_modules = join(appPath, 'node_modules')
