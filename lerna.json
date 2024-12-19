@@ -5,6 +5,12 @@
   "command": {
     "publish": {
       "conventionalCommits": true
+    },
+    "version": {
+      "createRelease": "github",
+      "conventionalCommits": true,
+      "allowBranch": ["main"],
+      "message": "chore(release): publish"
     }
-  }
+	}
 }
