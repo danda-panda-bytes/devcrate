@@ -66,8 +66,15 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm run build
+
+          ls -la app/dist/devcrate/ngx-dc-data-sources
+          ls -la app/dist/devcrate/ngx-dc-styles
+
           ls -la app/dist/devcrate
-          ls -la packages/dist/devcrate
+          ls -la packages/dist
+          ls -la packages/dist/utils
+          ls -la packages/dist/playwright
+          ls -la packages/dist/eslint-config
 
           npm run publish
 
