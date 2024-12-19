@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "npx lerna run build",
-    "prepublish": "lerna run build --since HEAD~1",
+    "prepublish": "lerna run build --since main",
     "publish": "lerna publish",
     "verify-dependencies": "ts-node -p tsconfig.json tools/verify-dependencies.ts",
     "build:apps": "cd app && npm run build:prod"
