@@ -33,6 +33,11 @@ jobs:
           cd app
           npm ci
 
+      - name: Build App
+        run: |
+          cd app
+          npm run build:libs
+
       - name: Install Node Libraries
         run: |
           cd packages
@@ -70,4 +75,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm run publish -- --yes
+          npm run publish
