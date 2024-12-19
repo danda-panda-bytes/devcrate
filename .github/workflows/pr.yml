@@ -3,8 +3,8 @@ name: Deploy Packages and App
 on:
   pull_request:
     branches: [main]
-  # push:
-  #     branches: [main]
+  push:
+      branches: [main]
 
   workflow_dispatch:
 
@@ -28,15 +28,14 @@ jobs:
           node-version: '20'
           cache-dependency-path: package-lock.json,app/package-lock.json,packages/package-lock.json
 
+      - name: Install Main Dependencies
+        run: |
+          npm ci
+
       - name: Install App Dependencies
         run: |
           cd app
           npm ci
-
-      - name: Build App
-        run: |
-          cd app
-          npm run build:libs
 
       - name: Install Node Libraries
         run: |
@@ -61,6 +60,17 @@ jobs:
       # - name: Cover
       #   run: npm run coverage
 
+      - name: Publish libraries
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm run build
+          ls -la app/dist/devcrate
+          ls -la packages/dist/devcrate
+
+          npm run publish
+
       - name: Deploy App to Github Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,10 +79,3 @@ jobs:
           git config user.email "danielmhair@gmail.com"
           cd app
           npm run deploy
-
-      - name: Publish libraries
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          npm run publish
