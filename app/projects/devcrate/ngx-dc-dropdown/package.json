@@ -4,10 +4,20 @@
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
-    "@devcrate/ngx-dc-data-sources": "*"
+    "@devcrate/ngx-dc-data-sources": ">=17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../../dist/devcrate/ngx-dc-dropdown"
+      }
+    }
+  },
+  "scripts": {
+    "build": "npx ng build @devcrate/ngx-dc-dropdown --configuration production"
   },
   "includes": [
     "../ngx-dc-data-sources"

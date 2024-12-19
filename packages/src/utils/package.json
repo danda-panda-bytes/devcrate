@@ -12,6 +12,17 @@
     "mkdirp": "0.5.5",
     "jsonc-parser": "3.2.0"
   },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../dist/utils"
+      }
+    }
+  },
+  "scripts": {
+    "prebuild": "node ../../../tools/mkdirp ../../dist/utils",
+    "build": "tsc --project ./tsconfig.json && cp ./package.json ../../dist/utils/package.json"
+  },
   "publishConfig": {
     "access": "public"
   },

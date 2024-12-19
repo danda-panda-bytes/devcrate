@@ -9,6 +9,16 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../../dist/devcrate/ngx-dc-utils"
+      }
+    }
+  },
+  "scripts": {
+    "build": "npx ng build @devcrate/ngx-dc-utils --configuration production"
+  },
   "publishConfig": {
     "access": "public"
   },

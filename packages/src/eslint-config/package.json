@@ -6,6 +6,17 @@
   "files": [
     "**/*"
   ],
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../dist/eslint-config"
+      }
+    }
+  },
+  "scripts": {
+    "prebuild": "node ../../../tools/mkdirp ../../dist/eslint-config",
+    "build": "cp -r ./ ../../dist/eslint-config"
+  },
   "publishConfig": {
     "access": "public"
   },

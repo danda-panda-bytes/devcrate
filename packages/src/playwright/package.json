@@ -8,6 +8,17 @@
   "peerDependencies": {
     "@playwright/test": ">=1.48.0"
   },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../dist/playwright"
+      }
+    }
+  },
+  "scripts": {
+    "prebuild": "node ../../../tools/mkdirp ../../dist/playwright",
+    "build": "tsc --project ./tsconfig.json && cp ./package.json ../../dist/playwright/package.json"
+  },
   "publishConfig": {
     "access": "public"
   },

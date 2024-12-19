@@ -22,5 +22,5 @@
       "@packages/*": ["./packages/src/*"]
     }
   },
-  "include": ["./**/*.ts", "../packages/**/*.ts"]
+  "include": ["./**/*.ts", "../packages/**/*.ts", "mkdirp.js"]
 }

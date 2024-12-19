@@ -33,6 +33,11 @@ jobs:
           cd app
           npm ci
 
+      - name: Install Node Libraries
+        run: |
+          cd packages
+          npm ci
+
       # - name: Verify Dependencies
       #   run: npm run verify-dependencies -- --ci true
 
@@ -51,21 +56,6 @@ jobs:
       # - name: Cover
       #   run: npm run coverage
 
-      - name: Build App
-        run: |
-          cd app
-          npm run build:libs
-
-      - name: Install Node Libraries
-        run: |
-          cd packages
-          npm ci
-
-      - name: Build Node Libraries
-        run: |
-          cd packages
-          npm run build
-
       - name: Deploy App to Github Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -75,109 +65,9 @@ jobs:
           cd app
           npm run deploy
 
-      # TODO: this is deploying every package into one
-      - name: Prepare for Release
+      - name: Publish libraries
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm i
-          npx semantic-release
-          cd app
-          npm run build:libs
-
-      - name: Publish @devcrate/ngx-dc-utils
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-utils
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-data-sources
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-data-sources
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-demo-card
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-demo-card
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-dropdown
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-dropdown
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-file-viewer
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-file-viewer
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-mat-select-data-source
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-mat-select-data-source
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-navbar
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-navbar
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-side-pane-list
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-side-pane-list
-          npm publish --access public
-
-      - name: Publish @devcrate/ngx-dc-styles
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd app/dist/devcrate/ngx-dc-styles
-          npm publish --access public
-
-      - name: Publish @devcrate/utils
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd packages/dist/utils
-          npm publish --access public
-
-      - name: Publish @devcrate/playwright
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd packages/dist/playwright
-          npm publish --access public
-
-      - name: Publish @devcrate/eslint-config
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          cd packages/dist/eslint-config
-          npm publish --access public
+          npm run publish

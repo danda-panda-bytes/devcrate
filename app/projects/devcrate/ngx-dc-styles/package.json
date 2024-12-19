@@ -6,6 +6,13 @@
   "publishConfig": {
     "access": "public"
   },
+  "lerna": {
+    "command": {
+      "publish": {
+        "directory": "../../../dist/devcrate/ngx-dc-styles"
+      }
+    }
+  },
   "scripts": {
     "build": "sass index.scss ../../../dist/devcrate/ngx-dc-styles/index.css --style=compressed"
   },
