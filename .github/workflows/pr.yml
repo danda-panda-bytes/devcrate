@@ -5,8 +5,22 @@ on:
     branches: [main]
   push:
     branches: [main]
-
   workflow_dispatch:
+    inputs:
+      force_publish:
+        description: 'Force publish to npm'
+        type: boolean
+        required: true
+        default: false
+      deployment_type:
+        description: 'What to deploy'
+        type: choice
+        required: true
+        default: 'all'
+        options:
+          - all
+          - app-only
+          - packages-only
 
 permissions:
   contents: write
@@ -18,9 +32,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  install-dependencies:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,67 +43,93 @@ jobs:
           node-version: '20'
           cache-dependency-path: package-lock.json,app/package-lock.json,packages/package-lock.json
 
-      - name: Install Main Dependencies
+
+      - name: Setup git and npmrc
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "DevCrate"
+          git config user.email "danielmhair@gmail.com"
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Install All Dependencies
         run: |
           npm ci
+          cd app && npm ci
+          cd ../packages && npm ci
 
-      - name: Install App Dependencies
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            app/node_modules
+            packages/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+  publish-packages:
+    needs: install-dependencies
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.deployment_type == 'all' || inputs.deployment_type == 'packages-only'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore cached node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            app/node_modules
+            packages/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Build Libraries
         run: |
-          cd app
-          npm ci
+          npm run build
 
-      - name: Install Node Libraries
-        run: |
-          cd packages
-          npm ci
-
-      # - name: Verify Dependencies
-      #   run: npm run verify-dependencies -- --ci true
-
-      # - name: Lint
-      #   run: npm run lint
-
-      # - name: Run unit tests
-      #   run: npm run test:unit
-
-      # - name: Run integration tests
-      #   run: npm run test:integration
-
-      # - name: Run e2e tests
-      #   run: npm run test:e2e
-
-      # - name: Cover
-      #   run: npm run coverage
-
-      - name: Publish libraries
+      - name: Force Publish
+        if: inputs.force_publish == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm run build
+          npm run publish -- --force-publish
 
-          ls -la app/dist/devcrate/ngx-dc-data-sources
-          ls -la app/dist/devcrate/ngx-dc-styles
-
-          ls -la app/dist/devcrate
-          ls -la packages/dist
-          ls -la packages/dist/utils
-          ls -la packages/dist/playwright
-          ls -la packages/dist/eslint-config
-
-          git config user.name "DevCrate"
-          git config user.email "danielmhair@gmail.com"
-
-
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      - name: Publish
+        if: inputs.force_publish == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
           npm run publish
-          rm ~/.npmrc
+
+  deploy-app:
+    needs: install-dependencies
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.deployment_type == 'all' || inputs.deployment_type == 'app-only'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Restore cached node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+            app/node_modules
+            packages/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Deploy App to Github Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name "DevCrate"
-          git config user.email "danielmhair@gmail.com"
           cd app
           npm run deploy
