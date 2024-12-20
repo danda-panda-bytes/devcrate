@@ -36,13 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache-dependency-path: package-lock.json,app/package-lock.json,packages/package-lock.json
-
 
       - name: Setup git and npmrc
         env:
@@ -57,36 +54,6 @@ jobs:
           npm ci
           cd app && npm ci
           cd ../packages && npm ci
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            app/node_modules
-            packages/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
-
-  publish-packages:
-    needs: install-dependencies
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.deployment_type == 'all' || inputs.deployment_type == 'packages-only'))
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Restore cached node_modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            app/node_modules
-            packages/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Build Libraries
         run: |
@@ -108,26 +75,8 @@ jobs:
         run: |
           npm run publish
 
-  deploy-app:
-    needs: install-dependencies
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.deployment_type == 'all' || inputs.deployment_type == 'app-only'))
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Restore cached node_modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            node_modules
-            app/node_modules
-            packages/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
-
       - name: Deploy App to Github Pages
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && (inputs.deployment_type == 'all' || inputs.deployment_type == 'app-only'))
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
