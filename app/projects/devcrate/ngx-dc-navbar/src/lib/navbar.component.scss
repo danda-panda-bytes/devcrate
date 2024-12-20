@@ -153,6 +153,7 @@ ngx-dc-navbar {
   }
 
   .link-active {
+    display: block;
     background-color: var(--ngx-dc-navbar-active-bg-link-color);
   }
 
