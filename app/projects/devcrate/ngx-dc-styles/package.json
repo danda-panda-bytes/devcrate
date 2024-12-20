@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "build": "sass index.scss ../../../dist/devcrate/ngx-dc-styles/index.css --style=compressed"
+    "build": "sass index.scss ../../../dist/devcrate/ngx-dc-styles/index.css --style=compressed && cp package.json ../../../dist/devcrate/ngx-dc-styles"
   },
   "sideEffects": false,
   "license": "ISC"

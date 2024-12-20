@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-      branches: [main]
+    branches: [main]
 
   workflow_dispatch:
 
@@ -23,6 +23,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -79,7 +81,10 @@ jobs:
           git config user.name "DevCrate"
           git config user.email "danielmhair@gmail.com"
 
+
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
           npm run publish
+          rm ~/.npmrc
 
       - name: Deploy App to Github Pages
         env:

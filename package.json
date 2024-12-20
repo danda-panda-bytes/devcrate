@@ -2,6 +2,7 @@
   "name": "devcrate",
   "version": "0.1.0",
   "description": "devcrate monorepo for angular, playwright, and node packages",
+  "private": true,
   "dependencies": {
     "argparse": "^2.0.1",
     "ts-node": "^10.9.2"
