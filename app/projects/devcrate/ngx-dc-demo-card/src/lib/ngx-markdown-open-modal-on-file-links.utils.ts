@@ -45,5 +45,5 @@ export function joinPaths(path: string, src: string, relativePath: string): stri
   }
   console.log('srcFolder', srcFolder)
 
-  return window.location.origin.includes('localhost') ? srcFolder : `${this.relativePath}/${srcFolder}`
+  return window.location.origin.includes('localhost') ? srcFolder : `${relativePath}/${srcFolder}`
 }
