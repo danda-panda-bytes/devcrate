@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/eslint-config",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "main": ".eslintrc.js",
   "sideEffects": false,
   "files": [
