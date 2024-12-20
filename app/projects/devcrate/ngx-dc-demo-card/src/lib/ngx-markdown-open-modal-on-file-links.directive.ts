@@ -1,18 +1,8 @@
-import {
-  AfterContentInit,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Inject,
-  Injectable,
-  InjectionToken,
-  OnDestroy,
-  Output
-} from "@angular/core";
+import { AfterContentInit, Directive, EventEmitter, OnDestroy, Output } from "@angular/core";
+import { DestroyObservable } from "@devcrate/ngx-dc-utils";
 import { MarkdownComponent } from "ngx-markdown";
+import { takeUntil } from "rxjs/operators";
 import { joinPaths } from "./ngx-markdown-open-modal-on-file-links.utils";
-import {DestroyObservable} from "@devcrate/ngx-dc-utils";
-import {takeUntil} from "rxjs/operators";
 
 @Directive({
   selector: 'markdown[ngxMarkdownOnLinkClick]',

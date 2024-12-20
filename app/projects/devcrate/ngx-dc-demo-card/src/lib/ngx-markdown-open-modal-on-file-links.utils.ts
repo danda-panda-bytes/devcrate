@@ -39,12 +39,11 @@ export function joinPaths(path, src): string {
     }
   }
 
-
   srcFolder = srcFolder.startsWith('/') ? srcFolder + path : '/' + srcFolder + path
   if (srcFolder.includes('/public/')) {
     srcFolder = srcFolder.split('/public')[1]
   }
   console.log('srcFolder', srcFolder)
 
-  return srcFolder
+  return window.location.origin.includes('localhost') ? srcFolder : `/devcrate/${srcFolder}`
 }
