@@ -3,8 +3,8 @@ name: Deploy Packages and App
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
   workflow_dispatch:
     inputs:
       force_publish:

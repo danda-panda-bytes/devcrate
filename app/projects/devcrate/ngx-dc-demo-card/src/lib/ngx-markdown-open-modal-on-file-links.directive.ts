@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, EventEmitter, OnDestroy, Output } from "@angular/core";
+import { AfterContentInit, Directive, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 import { DestroyObservable } from "@devcrate/ngx-dc-utils";
 import { MarkdownComponent } from "ngx-markdown";
 import { takeUntil } from "rxjs/operators";
@@ -10,6 +10,7 @@ import { joinPaths } from "./ngx-markdown-open-modal-on-file-links.utils";
 })
 export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestroy, AfterContentInit {
   @Output('ngxMarkdownOnLinkClick') public onLinkClick = new EventEmitter<{ name: string, path: string }>()
+  @Input() public relativePath = ''
 
   constructor(public cmp: MarkdownComponent) {
     super()
@@ -19,8 +20,8 @@ export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestr
     this.onDestroy()
   }
 
-  public joinPaths(path: string, src: string): string {
-    return joinPaths(path, this.cmp.src)
+  public joinPaths(path: string, src: string, relativePath: string): string {
+    return joinPaths(path, this.cmp.src, relativePath)
   }
 
   public ngAfterContentInit() {
@@ -37,7 +38,7 @@ export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestr
           const link = aElement.attributes["href"].nodeValue
           if (!link.startsWith('http') && link.includes('#')) {
             let [path, name] = link.split('#') as string[]
-            const resultPath = this.joinPaths(path, this.cmp.src)
+            const resultPath = this.joinPaths(path, this.cmp.src, this.relativePath)
             this.onLinkClick.emit({name, path: resultPath})
             return
           }

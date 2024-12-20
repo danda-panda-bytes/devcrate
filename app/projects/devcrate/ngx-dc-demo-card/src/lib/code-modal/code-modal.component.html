@@ -11,6 +11,7 @@
 <div mat-dialog-content>
   <markdown
     (ngxMarkdownOnLinkClick)="showModal($event.name, $event.path)"
+    [relativePath]="'/devcrate'"
     [src]="data.path"
   ></markdown>
 
