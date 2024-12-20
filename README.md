@@ -64,3 +64,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](./LICENSE)
 * [Node](https://nodejs.org/)
 * [ESLint](https://eslint.org/)
 * [Airbnb Style Guide](https://github.com/airbnb/javascript)
+
+
+## Next Tasks:
+
+- [ ] Fix the markdown links to show the correct readme (side pane list not showing docs, training > Advanced Angular > ng-template > reusing-code-within-same-component linke.md)
+- [ ] showGlobalLoadingBar is not working as expected
