@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.3 (2024-12-19)
+
+**Note:** Version bump only for package @devcrate/utils
+
+
+
+
+
+## 0.2.2 (2024-12-19)
+
+
+### Bug Fixes
+
+* issue with builds ([a7f6e37](https://github.com/danda-panda-bytes/devcrate/commit/a7f6e377117525945a8ef70dcc209b07eb8517d5))
+
+
+
+
+
+## 0.2.1 (2024-12-19)
+
+**Note:** Version bump only for package @devcrate/utils
+
+
+
+
+
 # 0.2.0 (2024-12-19)
 
 
