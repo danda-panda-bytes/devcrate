@@ -60,7 +60,7 @@ jobs:
           npm run build
 
       - name: Force Publish
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.force_publish == 'true'
+        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.force_publish == 'true') && (github.event.inputs.deployment_type == 'packages-only' || github.event.inputs.deployment_type == 'all')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -68,7 +68,7 @@ jobs:
           npm run publish -- --force-publish
 
       - name: Publish
-        if: github.event_name == 'push' || github.event.inputs.force_publish == 'false'
+        if: (github.event_name == 'push' || github.event.inputs.force_publish == 'false') && (github.event.inputs.deployment_type == 'packages-only' || github.event.inputs.deployment_type == 'all')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
