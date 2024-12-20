@@ -1,4 +1,4 @@
-export function joinPaths(path, src): string {
+export function joinPaths(path: string, src: string, relativePath: string): string {
   let srcFolder = src.split('/').slice(0, -1).join('/')
 
   // TODO: If its not an absolute path, then go to that url and ignore...
@@ -39,12 +39,11 @@ export function joinPaths(path, src): string {
     }
   }
 
-
   srcFolder = srcFolder.startsWith('/') ? srcFolder + path : '/' + srcFolder + path
   if (srcFolder.includes('/public/')) {
     srcFolder = srcFolder.split('/public')[1]
   }
   console.log('srcFolder', srcFolder)
 
-  return srcFolder
+  return window.location.origin.includes('localhost') ? srcFolder : `${this.relativePath}/${srcFolder}`
 }
