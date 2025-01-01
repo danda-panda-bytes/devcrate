@@ -54,7 +54,7 @@ export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestr
             })
             return
           }
-          if (!link.startsWith('http') && link.includes('#')) {
+          if ((!link.startsWith('http') || link.startsWith(window.location.origin)) && link.includes('#')) {
             let [path, name] = link.split('#') as string[]
             const resultPath = this.joinPaths(path)
             this.onLinkClick.emit({name, path: resultPath})
