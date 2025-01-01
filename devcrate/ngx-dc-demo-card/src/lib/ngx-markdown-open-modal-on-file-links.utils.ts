@@ -1,8 +1,5 @@
-export function joinPaths(path: string, src: string, relativePath: string): string {
+export function joinPaths(path: string, src: string): string {
   let srcFolder = src.split('/').slice(0, -1).join('/')
-
-  // TODO: If its not an absolute path, then go to that url and ignore...
-
 
   // For each ../ in the path, remove a folder from the srcFolder
   // If I have devcrate/ngx-dc-navbar and the path is ../../../src/main.ts, I should have /main.ts
@@ -39,11 +36,9 @@ export function joinPaths(path: string, src: string, relativePath: string): stri
         }
       }
     }
-  } else {
-    if (path.startsWith('./')) {
-      // This is a local path from the src folder
-      path = path.replace('.', '')
-    }
+  } else if (path.startsWith('./')) {
+    // This is a local path from the src folder
+    path = path.replace('.', '')
   }
 
   if (srcFolder.startsWith('/')) {
@@ -61,8 +56,9 @@ export function joinPaths(path: string, src: string, relativePath: string): stri
   }
   console.log('srcFolder', srcFolder)
 
-  srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${relativePath}/${srcFolder}`
-
+  // NOTE: This only works for SPA that use the hash for routing
+  const originPath = window.location.origin + window.location.pathname
+  srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${originPath}/${srcFolder}`
   // Ensure there are no extra // - replace with /
   srcFolder = srcFolder.replace(/\/\//g, '/')
   return srcFolder

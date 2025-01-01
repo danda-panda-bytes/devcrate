@@ -39,11 +39,12 @@ export class SidePaneListDemoComponent {
   constructor(private modalService: NgxDcModalService) {}
 
   public async showModal() {
-    const originPath = window.location.origin.split('/#/')[0]
+    const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname
+
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {
       data: {
         title: 'Side Pane List',
-        path: `${originPath}/devcrate/ngx-dc-side-pane-list/README.md`,
+        path: `${originPath}devcrate/ngx-dc-side-pane-list/README.md`,
         previousTitles: [],
         previousPaths: [],
       },
