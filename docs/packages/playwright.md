@@ -39,23 +39,23 @@ To learn good standards, please refer to the [Standard Guide](USAGE_GUIDE.md#mod
 
 The library exports the following components and utilities:
 
-- [MaterialHelpers](./src/components/material-helpers.utils.ts#modal): Utility functions for Angular Material components
+- [MaterialHelpers](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/playwright/src/components/material-helpers.utils.ts): Utility functions for Angular Material components
   - [@angular/material](https://material.angular.io/)
-- [DropdownCmp](./src/components/dropdown.cmp.ts#modal): Test helper for interacting with dropdown elements
-  - [@devcrate/ngx-dc-dropdown](../app/projects/devcrate/ngx-dc-dropdown/README.md#modal)
-- [MoveableFileViewerCmp](./src/components/moveable-file-viewer.cmp.ts#modal): Test helper for file viewer interactions
-  - [@devcrate/ngx-dc-file-viewer](../app/projects/devcrate/ngx-dc-file-viewer/README.md#modal)
-- [SidePaneListCmp](./src/components/side-pane-list.cmp.ts#modal): Test helper for side pane list interactions
-  - [@devcrate/ngx-dc-side-pane-list](../app/projects/devcrate/ngx-dc-side-pane-list/README.md#modal)
-- [UploadFileButtonCmp](./src/components/upload-file-button.cmp.ts#modal): Test helper for file upload interactions
-  - [@devcrate/ngx-dc-upload-file-button](../app/projects/devcrate/ngx-dc-upload-file-button/README.md#modal)
-- [Utils](./src/utils/utils.ts#modal): General utility functions for testing
+- [DropdownCmp](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/playwright/src/components/dropdown.cmp.ts): Test helper for interacting with dropdown elements
+  - [@devcrate/ngx-dc-dropdown](../../../projects/devcrate/ngx-dc-dropdown/README.md#modal)
+- [MoveableFileViewerCmp](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/playwright/src/components/moveable-file-viewer.cmp.ts): Test helper for file viewer interactions
+  - [@devcrate/ngx-dc-file-viewer](../../../projects/devcrate/ngx-dc-file-viewer/README.md#modal)
+- [SidePaneListCmp](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/playwright/src/components/side-pane-list.cmp.ts): Test helper for side pane list interactions
+  - [@devcrate/ngx-dc-side-pane-list](../../../projects/devcrate/ngx-dc-side-pane-list/README.md#modal)
+- [UploadFileButtonCmp](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/playwright/src/components/upload-file-button.cmp.ts): Test helper for file upload interactions
+  - [@devcrate/ngx-dc-upload-file-button](../../../projects/devcrate/ngx-dc-file-viewer/upload-file-button.md#modal)
+- [Utils](https://github.com/danda-panda-bytes/devcrate/blob/main/packages/src/playwright/src/utils/utils.ts): General utility functions for testing
 
 ## Usage Examples
 
 ### Using the DropdownCmp
 
-To test the `NgxDcDropdown` component in your e2e test, do the following:
+To test the [`NgxDcDropdown`](../../../projects/devcrate/ngx-dc-dropdown/README.md#modal) component in your e2e test, do the following:
 
 #### 1. Define the DropdownCmp in your page object
 

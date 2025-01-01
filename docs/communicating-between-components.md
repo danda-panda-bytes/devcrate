@@ -66,7 +66,7 @@ In this example, we will add a `BehaviorSubject` to the parent component and pas
 
 > The downside of this method is that you are now managing state in the parent to manage the sibling components. We can do better. See [Using a directive](#using-a-directive)
 
-## Use a directive
+## Using a directive
 
 In this example, we will use a directive to manage the state communication.
 

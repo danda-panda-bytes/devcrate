@@ -1,5 +1,3 @@
-I'll help create documentation for the upload-file-button component. Based on the codebase patterns and other component documentation, here's a comprehensive README:
-
 # NgxDcUploadFileButton
 
 A customizable file upload button component for Angular applications that provides an easy way to handle file uploads with progress tracking and validation.
@@ -13,6 +11,7 @@ npm i @devcrate/ngx-dc-utils
 ```
 
 ## Features
+
 - Material Design integration
 - File type validation
 - Custom button text and styling
@@ -80,6 +79,7 @@ import { NgxDcUploadFileButtonComponent } from '@devcrate/ngx-dc-utils';
 ## Examples
 
 ### Basic Upload Button
+
 ```html
 <ngx-dc-upload-file-button
   accept=".pdf,.doc,.docx"
@@ -90,6 +90,7 @@ import { NgxDcUploadFileButtonComponent } from '@devcrate/ngx-dc-utils';
 ```
 
 ### Multiple File Upload
+
 ```html
 <ngx-dc-upload-file-button
   [multiple]="true"
@@ -102,6 +103,7 @@ import { NgxDcUploadFileButtonComponent } from '@devcrate/ngx-dc-utils';
 ```
 
 ### Custom Styled Upload Button
+
 ```html
 <ngx-dc-upload-file-button
   color="accent"
@@ -116,6 +118,7 @@ import { NgxDcUploadFileButtonComponent } from '@devcrate/ngx-dc-utils';
 ```
 
 ### Component Implementation
+
 ```typescript
 export class MyComponent {
   onFileSelected(file: File) {
@@ -146,5 +149,6 @@ The component uses Angular Material's theming system and can be customized using
 ```
 
 ## Related Documentation
+
 - [Angular Material Buttons](https://material.angular.io/components/button/overview)
 - [File API](https://developer.mozilla.org/en-US/docs/Web/API/File)

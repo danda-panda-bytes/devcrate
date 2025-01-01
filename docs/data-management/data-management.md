@@ -4,7 +4,7 @@ When working with data in Angular, it's common to display that data in a table, 
 This document shows how you can easily implement a data source to manage your data. 
 It builds upon the ideas that Angular Material shows through its MatTableDataSource class, but takes it a step further.
 
-By the end of this document, you will have a full understanding of the data sources created in [@devcrate/data-sources](../app/projects/devcrate/data-sources/README.md#modal) library.
+By the end of this document, you will have a full understanding of the data sources created in [@devcrate/data-sources](../../../projects/devcrate/ngx-dc-data-sources/README.md#modal) library.
 
 ## Use Cases
 
@@ -32,7 +32,7 @@ To quote [Advanced Data Source usage](https://material.angular.io/components/tab
 >
 > Although Angular Material provides a ready-made table DataSource class, MatTableDataSource, you may want to create your own custom DataSource class for more complex use cases. This can be done by extending the abstract DataSource class with a custom DataSource class that then implements the connect and disconnect methods. For use cases where the custom DataSource must also inherit functionality by extending a different base class, the DataSource base class can be implemented instead (MyCustomDataSource extends SomeOtherBaseClass implements DataSource) to respect Typescript's restriction to only implement one base class.
 
-Understanding both [`MatTableDataSource`](https://github.com/angular/components/blob/main/src/material/table/table-data-source.ts#modal) and `DataSource`, since they both are `DataSource`. We will use `connect` and `disconnect` in our implementation.
+Understanding both [`MatTableDataSource`](https://github.com/angular/components/blob/main/src/material/table/table-data-source.ts) and `DataSource`, since they both are `DataSource`. We will use `connect` and `disconnect` in our implementation.
 
 For better understanding of the DataSource, feel free to go through this [Angular University blog post](https://blog.angular-university.io/angular-material-data-table/#breaking-down-the-design-of-an-angular-cdk-data-source).
 
@@ -390,7 +390,7 @@ To enable paging and sorting, we need 2 things:
 1. A way to manage paging and sorting in the UI
 2. A way to update response params whenever they update.
 
-To do this, we can use the [Paginator](https://material.angular.io/components/paginator/overview) from Material, quite like how [`MatTableDataSource`](https://github.com/angular/components/blob/main/src/material/table/table-data-source.ts#modal) does it.
+To do this, we can use the [Paginator](https://material.angular.io/components/paginator/overview) from Material, quite like how [`MatTableDataSource`](https://github.com/angular/components/blob/main/src/material/table/table-data-source.ts) does it.
 
 So lets first implement the paginator.
 
@@ -512,16 +512,16 @@ We have a `getParams` that allows you to override any param when a get request i
 
 ### Final Solution
 
-This is the end solution: [api-base.data-source.ts](../app/projects/data-sources/src/lib/api-base.data-source.ts#modal)
+This is the end solution: [api-base.data-source.ts](../../../projects/devcrate/ngx-dc-data-sources/src/lib/api-base.data-source.ts#modal)
 
 This is a library that can be used with @devcrate/data-sources. It is a library that can be used to manage data in a
 table-like structure. See [Using these data sources in your application](#using-these-data-sources-in-your-application).
 
 ### Using these data sources in your application
 
-- See [@devcrate/ngx-dc-data-sources](../app/projects/ngx-dc-data-sources).
-- See also [@devcrate/ngx-dc-side-pane-list]('../app/projects/ngx-dc-side-pane-list)
-- See also [@devcrate/ngx-dc-dropdown]('../app/projects/ngx-dc-dropdown)
+- See [@devcrate/ngx-dc-data-sources](../../../projects/devcrate/ngx-dc-data-sources/README.md#modal)
+- See also [@devcrate/ngx-dc-side-pane-list]('../../../projects/devcrate/ngx-dc-side-pane-list/README.md#modal)
+- See also [@devcrate/ngx-dc-dropdown]('../../../projects/devcrate/ngx-dc-dropdown/README.md#modal)
 
 
 ## InfiniteScrollApiDataSource
@@ -535,7 +535,7 @@ This extends the BaseApiDataSource to allow the same functionality in a virtual,
 
 ### Implementing the data source
 
-See [infinite-scroller.data-source.ts](../app/projects/devcrate/ngx-dc-data-sources/src/lib/infinite-scroller.data-source.ts#modal) for full implementation.
+See [infinite-scroller.data-source.ts](../../../projects/devcrate/ngx-dc-data-sources/src/lib/infinite-scroller.data-source.ts#modal) for full implementation.
 
 The infinite scroll implements the following:
 - The scroller works by waiting for the user to scroll. As they reach the bottom of the page, it will automatically get the next page of data.

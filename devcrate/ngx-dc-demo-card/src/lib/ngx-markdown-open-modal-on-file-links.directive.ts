@@ -26,6 +26,13 @@ export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestr
 
   public ngAfterContentInit() {
     this.cmp.load.pipe(takeUntil(this.destroy$)).subscribe(value => {
+      // Add ids to headings
+      const headings = this.cmp.element.nativeElement.querySelectorAll("h1, h2, h3, h4, h5, h6")
+      for (const heading of Array.from(headings)) {
+        const headingName = heading.textContent.replace(/[-',_]/g, '').replace(/\s/g, '-').toLowerCase()
+        heading.id = headingName
+      }
+      // Listen for a tags
       const aChildren = this.cmp.element.nativeElement.querySelectorAll('a')
       for (const aElement of Array.from(aChildren)) {
 
@@ -36,6 +43,18 @@ export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestr
           e.stopImmediatePropagation()
           e.stopPropagation()
           const link = aElement.attributes["href"].nodeValue
+          if (link.startsWith('#')) {
+            // Scroll to element
+            const headingId = link
+            const heading = this.cmp.element.nativeElement.querySelector(headingId)
+            if (!heading) { console.log("Cannot find link to scroll to") }
+            heading?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'start',
+            })
+            return
+          }
           if (!link.startsWith('http') && link.includes('#')) {
             let [path, name] = link.split('#') as string[]
             const resultPath = this.joinPaths(path, this.cmp.src, this.relativePath)

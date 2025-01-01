@@ -4,7 +4,7 @@ The `NgxDcNavbarComponent` is an Angular component designed to create a responsi
 
 ## Key Features
 
-1. **Top Bar**: 
+1. **Top Bar**:
    - Displays title and logo
    - Customizable right-side content
    - Optional background image
@@ -30,6 +30,7 @@ npm i @devcrate/ngx-dc-navbar
 ## Setup
 
 1. Import the module in your component or module:
+
 ```typescript
 import { NgxDcNavbarModule } from '@devcrate/ngx-dc-navbar'
 
@@ -40,6 +41,7 @@ import { NgxDcNavbarModule } from '@devcrate/ngx-dc-navbar'
 ```
 
 2. Add the component to your template:
+
 ```html
 <ngx-dc-navbar
   [mainTitle]="'My Application'"
@@ -63,12 +65,11 @@ import { NgxDcNavbarModule } from '@devcrate/ngx-dc-navbar'
 
 ## Additional Scenarios
 
-In certain scenarios, you may want your `AppComponent` to serve as the primary component. However, in other cases, you might prefer to use different components, such as a `LoggedInLayoutComponent` for authenticated users and a `LoggedOutLayoutComponent` for unauthenticated users. If you choose this approach, you can tailor the navigation bar to suit the specific needs of each user group. 
+In certain scenarios, you may want your `AppComponent` to serve as the primary component. However, in other cases, you might prefer to use different components, such as a `LoggedInLayoutComponent` for authenticated users and a `LoggedOutLayoutComponent` for unauthenticated users. If you choose this approach, you can tailor the navigation bar to suit the specific needs of each user group.
 
 For a single type of navigation bar, whether it features dynamic or static links, it is recommended to use the `AppComponent`.
 
 Below is an example of how to add the HTML for your navbar component:
-
 
 ## Component Inputs
 
@@ -96,6 +97,7 @@ Content to be displayed on the right side of the top bar.
 ```
 
 ### ngxDcNavbarMainContent
+
 The main content area of your application.
 
 ```html
@@ -191,7 +193,6 @@ this.navbarService.collapsed$.next(true);
 // To expand the sidebar
 this.navbarService.collapsed$.next(false);
 ```
-
 
 ## Styling
 
