@@ -1,4 +1,10 @@
 export function joinPaths(path: string, src: string): string {
+  // First off, remove the origin path so we can handle relative paths
+  const originPath = window.location.origin + window.location.pathname
+  if (path.includes(originPath)) {
+    path = path.replace(originPath, '')
+  }
+
   let srcFolder = src.split('/').slice(0, -1).join('/')
 
   // For each ../ in the path, remove a folder from the srcFolder
@@ -57,7 +63,6 @@ export function joinPaths(path: string, src: string): string {
   console.log('srcFolder', srcFolder)
 
   // NOTE: This only works for SPA that use the hash for routing
-  const originPath = window.location.origin + window.location.pathname
   srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${originPath}/${srcFolder}`
   // Ensure there are no extra // - replace with /
   srcFolder = srcFolder.replace(/\/\//g, '/')
