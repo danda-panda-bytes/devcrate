@@ -29,10 +29,11 @@ export class MatSelectDataSourceDemoComponent {
   constructor(private modalService: NgxDcModalService) {}
 
   public async showModal() {
+    const originPath = window.location.origin.split('/#/')[0]
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {
       data: {
         title: 'Mat Select Data Source',
-        path: '/devcrate/ngx-dc-mat-select-data-source/README.md',
+        path: `${originPath}/devcrate/ngx-dc-mat-select-data-source/README.md`,
         previousTitles: [],
         previousPaths: [],
       },

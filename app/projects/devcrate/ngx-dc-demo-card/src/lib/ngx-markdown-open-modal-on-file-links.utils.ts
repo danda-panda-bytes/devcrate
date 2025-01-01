@@ -61,10 +61,6 @@ export function joinPaths(path: string, src: string, relativePath: string): stri
   }
   console.log('srcFolder', srcFolder)
 
-  // if (!srcFolder.startsWith("/devcrate/ngx-dc-")) {
-  //   srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${relativePath}/${srcFolder}`
-  // }
-  debugger
   srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${relativePath}/${srcFolder}`
 
   // Ensure there are no extra // - replace with /

@@ -33,10 +33,11 @@ export class DataSourcesDemoComponent {
   constructor(private modalService: NgxDcModalService) {}
 
   public async showModal() {
+    const originPath = window.location.origin.split('/#/')[0]
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {
       data: {
         title: 'Data Sources',
-        path: '/devcrate/ngx-dc-data-sources/README.md',
+        path: `${originPath}/devcrate/ngx-dc-data-sources/README.md`,
         previousTitles: [],
         previousPaths: [],
       },
