@@ -1,8 +1,8 @@
 export function joinPaths(path: string, src: string): string {
   // First off, remove the origin path so we can handle relative paths
   const originPath = window.location.origin + window.location.pathname
-  if (path.includes(originPath)) {
-    path = path.replace(originPath, '')
+  if (src.includes(originPath)) {
+    src = src.replace(originPath, '')
   }
 
   let srcFolder = src.split('/').slice(0, -1).join('/')
