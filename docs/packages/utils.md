@@ -6,7 +6,7 @@ Here's a detailed overview of the utility functions provided in the `@devcrate/u
 
 ## Overview of Utility Functions
 
-### 1. Array Utilities ([`array.utils.ts`](./array.utils.ts#modal))
+### 1. Array Utilities ([`array.utils.ts`](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/utils/array.utils.ts))
 
 The purpose of this utility is to avoid using `lodash`. Lodash is a great library, but it is struggles to be tree-shaken, which makes it difficult to use.
 
@@ -18,24 +18,24 @@ The purpose of this utility is to avoid using `lodash`. Lodash is a great librar
   - **last**: Retrieves the last element of an array.
   - **first**: Retrieves the first element of an array.
 
-### 2. Core Utilities ([`core.utils.ts`](./core.utils.ts#modal))
+### 2. Core Utilities ([`core.utils.ts`](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/utils/core.utils.ts))
 - **Features**:
   - **CommandOptions**: Interface for defining command options for executing shell commands.
   - Provides methods to handle command execution, logging, and error management.
 
-### 3. File Utilities ([`file.utils.ts`](./file.utils.ts#modal))
+### 3. File Utilities ([`file.utils.ts`](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/utils/file.utils.ts))
 
 This is very helpful when your setting up CI/CD pipelines and want to use node to manage the processes
 - **Features**:
   - **mkdirpSync**: Ensures that a directory path exists, creating it if necessary.
   - **copyGlob**: Copies files matching a glob pattern to a destination.
 
-### 4. Static Utilities ([`static.utils.ts`](./static.utils.ts#modal))
+### 4. Static Utilities ([`static.utils.ts`](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/utils/static.utils.ts))
 
 - **Features**:
   - **StaticExtends**: A decorator for enforcing type on a static property for a class.
 
-### 5. Verify Tsconfig Utilities ([`verify-tsconfig.ts`](./verify-tsconfig.ts#modal))
+### 5. Verify Tsconfig Utilities ([`verify-tsconfig.ts`](https://github.com/danda-panda-bytes/devcrate/tree/main/packages/src/utils/verify-tsconfig.ts))
 
 - **Features**:
   - **verifyTsconfig**: Verifies the validity of all tsconfig files in a given directory.

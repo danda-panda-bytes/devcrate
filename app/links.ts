@@ -51,13 +51,13 @@ export const COMPONENTS_LINKS = <NgxDcNavbarLinkInfo[]>[
     type: 'link',
     path: "/components/upload-file-button",
     title: "Upload File Button",
-    icon: "hourglass_bottom",
+    icon: "upload_file",
   },
   {
     type: 'link',
     path: "/components/demo-card",
     title: "Demo Card",
-    icon: "hourglass_bottom",
+    icon: "integration_instructions",
   },
   {
     type: 'heading',
@@ -73,25 +73,25 @@ export const COMPONENTS_LINKS = <NgxDcNavbarLinkInfo[]>[
     type: 'link',
     path: "/components/role-authorized",
     title: "Role Authorized",
-    icon: "hourglass_bottom",
+    icon: "engineering",
   },
   {
     type: 'link',
     path: "/components/modal-service",
     title: "Modal Service",
-    icon: "hourglass_bottom",
+    icon: "launch",
   },
   {
     type: 'link',
     path: "/components/file-service",
     title: "File Service",
-    icon: "hourglass_bottom",
+    icon: "article",
   },
   {
     type: 'link',
     path: "/components/destroy-observable",
     title: "Destroy Observable",
-    icon: "hourglass_bottom",
+    icon: "auto_delete",
   },
   {
     type: 'heading',
@@ -101,7 +101,7 @@ export const COMPONENTS_LINKS = <NgxDcNavbarLinkInfo[]>[
     type: 'link',
     path: "/components/material-styling",
     title: "Material Styling",
-    icon: "hourglass_bottom",
+    icon: "format_color_fill",
   },
 ]
 
