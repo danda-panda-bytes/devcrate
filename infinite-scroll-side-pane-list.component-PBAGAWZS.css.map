@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/side-pane-list-demo/infinite-scroll-side-pane-list/infinite-scroll-side-pane-list.component.scss"],
+  "sourcesContent": [":host {\n  ngx-dc-side-pane-list {\n    height: 400px;\n    .content-container {\n      height: 100%;\n      padding: 16px;\n    }\n\n    .total-items {\n      padding: 4px 16px;\n      display: flex;\n      align-items: center;\n      width: 100%;\n    }\n  }\n}\n"],
+  "mappings": "AACE,MAAA,sBACE,OAAA,MACA,MAAA,sBAAA,CAAA,kBACE,OAAA,KAHJ,QAII,KAGF,MAAA,sBAAA,CAAA,YAPF,QAQI,IAAA,KACA,QAAA,KACA,YAAA,OACA,MAAA",
+  "names": []
+}

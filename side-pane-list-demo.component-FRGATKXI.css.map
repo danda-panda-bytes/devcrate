@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/side-pane-list-demo/side-pane-list-demo.component.scss"],
+  "sourcesContent": ["app-side-pane-list-demo {\n  basic-side-pane-list {\n    padding: 16px;\n  }\n}\n\n"],
+  "mappings": "AACE,wBAAA,qBAAA,QACE",
+  "names": []
+}

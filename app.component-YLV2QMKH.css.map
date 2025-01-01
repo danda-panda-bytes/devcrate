@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/app.component.scss"],
+  "sourcesContent": ["app-root {\n  ngx-dc-navbar {\n    --ngx-dc-navbar-top-bar-height: 64px;\n    --ngx-dc-navbar-logo-img: 40px;\n    --ngx-dc-navbar-side-bar-height: 250px;\n    --ngx-dc-navbar-collapse-width: 82px;\n  }\n}\n"],
+  "mappings": "AACE,SAAA,cACE,gCAAA,KACA,0BAAA,KACA,iCAAA,MACA,gCAAA",
+  "names": []
+}

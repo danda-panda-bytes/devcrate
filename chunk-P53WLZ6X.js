@@ -1,1 +1,0 @@
-import{Eb as n,Fb as i,_b as s,dc as m,ja as o}from"./chunk-DVQ3SN2B.js";var a=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-utils-demo"]],standalone:!0,features:[m],decls:2,vars:0,template:function(e,l){e&1&&(n(0,"p"),s(1,"Coming Soon"),i())}})};export{a};

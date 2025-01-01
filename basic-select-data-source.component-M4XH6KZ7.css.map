@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/mat-select-data-source-demo/basic-select-data-source/basic-select-data-source.component.scss"],
+  "sourcesContent": [":host {\n  ngx-dc-dropdown {\n    .content-container {\n      height: 100%;\n    }\n  }\n}\n"],
+  "mappings": "AAEI,MAAA,gBAAA,CAAA,kBACE,OAAA",
+  "names": []
+}

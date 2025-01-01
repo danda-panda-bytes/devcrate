@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects/devcrate/ngx-dc-demo-card/src/lib/code-modal/code-modal.component.scss"],
+  "sourcesContent": ["code-modal {\n  .mat-mdc-dialog-title {\n    display: flex;\n    align-items: center;\n    width: 100%;\n    padding-top: 24px;\n    font-size: 30px;\n  }\n}\n\n"],
+  "mappings": "AACE,WAAA,CAAA,qBACE,QAAA,KACA,YAAA,OACA,MAAA,KACA,YAAA,KACA,UAAA",
+  "names": []
+}
