@@ -3,6 +3,9 @@ export function joinPaths(path: string, src: string): string {
   const originPath = window.location.origin + window.location.pathname
   if (src.includes(originPath)) {
     src = src.replace(originPath, '')
+    if (!src.startsWith('/')) {
+      src = `/${src}`
+    }
   }
 
   let srcFolder = src.split('/').slice(0, -1).join('/')
@@ -60,11 +63,13 @@ export function joinPaths(path: string, src: string): string {
   if (srcFolder.includes('/projects/')) {
     srcFolder = srcFolder.split('/projects')[1]
   }
-  srcFolder = srcFolder.replace(/\/\//g, '/')
+  while (srcFolder.includes('//')) {
+    // Ensure there are no extra // - replace with /
+    srcFolder = srcFolder.replace(/\/\//g, '/')
+  }
   console.log('srcFolder', srcFolder)
 
   // NOTE: This only works for SPA that use the hash for routing
   srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${originPath}/${srcFolder}`
-  // Ensure there are no extra // - replace with /
   return srcFolder
 }
