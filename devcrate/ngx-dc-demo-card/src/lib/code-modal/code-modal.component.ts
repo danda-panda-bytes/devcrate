@@ -39,7 +39,6 @@ export class CodeModalComponent {
 
   public async showModal(hashName: string, path: string) {
     this.dialogRef.close()
-    debugger
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {
       data: {
         title: hashName,
