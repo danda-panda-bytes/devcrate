@@ -8,6 +8,9 @@ export interface TestUser { role: string, oun: string, password: string }
 export class GenericPage {
   constructor(public page: Page, public baseUrl: string) {}
 
+  /**
+   * When using this, be sure to override this method for your own GenericPage as you can decide how to log into it
+   */
   public async logIntoApp(user: TestUser) {
     await this.page.goto('/', { waitUntil: 'domcontentloaded' })
     await this.page.waitForLoadState('networkidle')
@@ -20,8 +23,6 @@ export class GenericPage {
     await this.page.locator('#password').press('Enter')
     await this.page.waitForLoadState('networkidle')
   }
-
-  // TODO: Add methods to login with ping without going to the login page
 }
 
 export function readExternalConfIfExists<T>(externalConfFilePath: string, confFilePath: string): T {
