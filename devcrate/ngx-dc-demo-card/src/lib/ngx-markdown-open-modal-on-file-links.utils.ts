@@ -60,11 +60,11 @@ export function joinPaths(path: string, src: string): string {
   if (srcFolder.includes('/projects/')) {
     srcFolder = srcFolder.split('/projects')[1]
   }
+  srcFolder = srcFolder.replace(/\/\//g, '/')
   console.log('srcFolder', srcFolder)
 
   // NOTE: This only works for SPA that use the hash for routing
   srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${originPath}/${srcFolder}`
   // Ensure there are no extra // - replace with /
-  srcFolder = srcFolder.replace(/\/\//g, '/')
   return srcFolder
 }
