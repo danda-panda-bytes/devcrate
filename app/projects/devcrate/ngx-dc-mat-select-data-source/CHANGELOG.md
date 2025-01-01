@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 17.1.7 (2025-01-01)
+
+
+### Bug Fixes
+
+* update issues with modal ([bc0dc7c](https://github.com/danda-panda-bytes/devcrate/commit/bc0dc7c1aee8015e8798966c88e790ddc0525c24))
+
+
+
+
+
 ## 17.1.6 (2024-12-20)
 
 **Note:** Version bump only for package @devcrate/ngx-dc-mat-select-data-source
