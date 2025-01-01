@@ -28,11 +28,12 @@ export class DropdownDemoComponent {
   constructor(private modalService: NgxDcModalService) {}
 
   public async showModal() {
-    const originPath = window.location.origin.split('/#/')[0]
+    const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname
+
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {
       data: {
         title: 'Dropdown',
-        path: `${originPath}/devcrate/ngx-dc-dropdown/README.md`,
+        path: `${originPath}devcrate/ngx-dc-dropdown/README.md`,
         previousTitles: [],
         previousPaths: [],
       },
