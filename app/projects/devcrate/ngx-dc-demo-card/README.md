@@ -1,6 +1,6 @@
 # NgxDcDemoCard
 
-The `NgxDcDemoCard` component is an Angular component designed to display demo cards with customizable content, including titles, subtitles, and example templates.
+The [`NgxDcDemoCard`](../../../projects/devcrate/ngx-dc-demo-card/README.md#modal) component is an Angular component designed to display demo cards with customizable content, including titles, subtitles, and example templates.
 
 ## Key Features
 1. **Customizable Titles and Subtitles**: Easily set titles and subtitles for each demo card.
@@ -15,11 +15,11 @@ npm i @devcrate/ngx-dc-demo-card
 
 ## Usage
 
-To use the `NgxDcDemoCard` component:
+To use the [`NgxDcDemoCard`](../../../projects/devcrate/ngx-dc-demo-card/README.md#modal) component:
 
 ### 1. Import the module
 
-Add the `NgxDcDemoCardModule` to your `standalone` component or in a module, specifically in the `imports` section:
+Add the [`NgxDcDemoCardModule`](../../../projects/devcrate/ngx-dc-demo-card/src/lib/demo-card.module.ts#modal) to your `standalone` component or in a module, specifically in the `imports` section:
 
 ```typescript
 import { NgxDcDemoCardModule } from '@devcrate/ngx-dc-demo-card';

@@ -27,9 +27,16 @@ export function joinPaths(path: string, src: string, relativePath: string): stri
         continue
       }
 
-      const isExtensionFile = p.includes('.')
-      if (!isExtensionFile) {
-        if (srcFolder && p != srcFolder.split('/')[0]) {srcFolder += p }
+      if (srcFolder != "") {
+        const isExtensionFile = p.includes('.')
+        if (!isExtensionFile) {
+          if (srcFolder && p != srcFolder.split('/')[0]) {
+            srcFolder += (!p.startsWith("/") ? `/${p}` : p)
+          }
+          if (path?.startsWith(p)) {
+            path = path.split('/').filter((_, i) => i != 0).join('/')
+          }
+        }
       }
     }
   } else {
@@ -39,13 +46,24 @@ export function joinPaths(path: string, src: string, relativePath: string): stri
     }
   }
 
-  srcFolder = srcFolder.startsWith('/') ? srcFolder + path : '/' + srcFolder + path
+  if (srcFolder.startsWith('/')) {
+    srcFolder = path.startsWith('/') ? srcFolder + path : srcFolder + "/" + path
+  } else {
+    srcFolder = path.startsWith('/') ? '/' + srcFolder + "/" + path : '/' + srcFolder + path
+  }
+
   if (srcFolder.includes('/public/')) {
     srcFolder = srcFolder.split('/public')[1]
   }
+
+  if (srcFolder.includes('/projects/')) {
+    srcFolder = srcFolder.split('/projects')[1]
+  }
   console.log('srcFolder', srcFolder)
 
-  srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${relativePath}/${srcFolder}`
+  if (!srcFolder.startsWith("/devcrate/ngx-dc-")) {
+    srcFolder = window.location.origin.includes('localhost') ? srcFolder : `${relativePath}/${srcFolder}`
+  }
   // Ensure there are no extra // - replace with /
   srcFolder = srcFolder.replace(/\/\//g, '/')
   return srcFolder

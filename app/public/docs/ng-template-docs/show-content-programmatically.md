@@ -37,4 +37,4 @@ public showContent(template: TemplateRef<any>) {
 }
 ```
 
-See the [Modal Service Docs](../../modal-service.md#modal) for more information.
+See the [Modal Service Docs](../../../projects/devcrate/ngx-dc-utils/modal-service.md#modal) for more information.

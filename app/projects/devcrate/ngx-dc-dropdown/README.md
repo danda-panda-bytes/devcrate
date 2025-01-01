@@ -9,6 +9,7 @@ npm i @devcrate/ngx-dc-dropdown
 ```
 
 ## Features
+
 - Custom header templates
 - Custom item templates
 - Loading state handling
@@ -72,6 +73,7 @@ export class MyComponent {
 ### Available Directives
 
 #### NgxDcDropdownHeader
+
 Template for the header section of the dropdown.
 
 ```html
@@ -83,9 +85,11 @@ Template for the header section of the dropdown.
 ```
 
 #### NgxDcDropdownItem
+
 Template for each item in the dropdown list.
 
 Context variables:
+
 - `let item` - The item selected
 
 ```html
@@ -95,6 +99,7 @@ Context variables:
 ```
 
 #### NgxDcDropdownLoading
+
 Template shown during loading states.
 
 ```html
@@ -107,6 +112,7 @@ Template shown during loading states.
 ```
 
 #### NgxDcDropdownNoItems
+
 Template shown when no items are available.
 
 ```html
@@ -118,6 +124,7 @@ Template shown when no items are available.
 ## Examples
 
 ### Basic Dropdown
+
 ```typescript
 @Component({
   selector: 'basic-dropdown',
@@ -171,6 +178,7 @@ constructor(public dataSource: MyInfiniteScrollDataSource) {}
 ```
 
 3. Define the ngx-dc-dropdown.
+
 ```html
 <ngx-dc-dropdown 
   [dataSource]="dataSource"
@@ -180,8 +188,8 @@ constructor(public dataSource: MyInfiniteScrollDataSource) {}
 </ngx-dc-dropdown>
 ```
 
-
 ### With All Templates
+
 ```html
 <ngx-dc-dropdown [dataSource]="dataSource">
   <ng-container *ngxDcDropdownHeader>
@@ -217,7 +225,7 @@ constructor(public dataSource: MyInfiniteScrollDataSource) {}
 The component uses Angular Material's theming system and responds to the following CSS variables:
 
 - `--ngx-dc-dropdown-disabled-text-color`: Controls the text color of disabled items (default: `rgba(154, 154, 154, 0.5)`)
-- `--ngx-dc-dropdown-scrollbar-color`: Controls the scrollbar color using format `<thumb-color> <track-color>` (default: `darkgray transparent`) 
+- `--ngx-dc-dropdown-scrollbar-color`: Controls the scrollbar color using format `<thumb-color> <track-color>` (default: `darkgray transparent`)
 - `--ngx-dc-dropdown-scrollbar-width`: Controls the scrollbar width (default: `thin`)
 - `--ngx-dc-dropdown-scrollbar-gutter`: Controls the scrollbar gutter behavior (default: `auto`)
 - `--ngx-dc-dropdown-header-bg-color`: Controls the background color of the header section (default: `var(--sys-inverse-on-surface)`)

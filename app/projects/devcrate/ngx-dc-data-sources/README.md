@@ -48,15 +48,13 @@ export class ResourcesDataSource extends NgxDcApiDataSource<Resource> {
 }
 ```
 
-
 ## Retrieve data with infinite scrolling
 
-By using the [`NgxDcInfiniteScrollDataSource`](../ngx-dc-infinite-scroll/README.md#modal) class, you can retrieve a paged list of items as you scroll.
+By using the [`NgxDcInfiniteScrollDataSource`](./src/lib/infinite-scroller.data-source.ts#modal) class, you can retrieve a paged list of items as you scroll.
 
 If your using Angular Material, then you can use their [`cdkVirtualFor`](https://material.angular.io/cdk/scrolling/overview#cdkvirtualfor) structural directive.
 
 ### First, define your data source
-
 
 ```typescript
 import {NgxDcInfiniteScrollDataSource} from '@devcrate/ngx-dc-data-sources'
@@ -101,7 +99,6 @@ export class ResourcesDataSource extends NgxDcInfiniteScrollDataSource<MyModel, 
 }
 ```
 
-
 ### Second, Inject your data source into your component and initialize it
 
 ```typescript
@@ -120,8 +117,7 @@ export class MyComponent {
 }
 ```
 
-
-### Third, Display your data with a virtual scroller and virtual for.
+### Third, Display your data with a virtual scroller and virtual for
 
 ```html
 <cdk-virtual-scroll-viewport [itemSize]="dataSource.rowHeight" [minBufferPx]="dataSource.rowHeight * 5" [maxBufferPx]="dataSource.rowHeight * 10">

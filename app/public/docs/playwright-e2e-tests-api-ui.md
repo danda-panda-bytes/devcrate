@@ -1,5 +1,6 @@
 ## Using Playwright for E2E Tests in the API and UI
 
+- If using @angular/material or @devcrate, use the node library [`@devcrate/playwright`](./packages/playwright.md#modal)
 - Using playwright to test both your API and UI in an effective way
   - **Use data-id** to select components for **consistency**
   - Use **playwright test generator** to quickly get the boilerplate
@@ -10,3 +11,4 @@
     - Make a POST request
     - Check its response
     - Go to the database to make sure the request finished with its proper result
+  
