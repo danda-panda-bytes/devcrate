@@ -449,6 +449,9 @@ export abstract class NgxDcSidePaneListApiDataSource<
   /** The parameters to send to the server as params when making the http GET request using the {relativePath} */
   public params: Partial<AllowedParamsT> = {} as any
 
+  /** Needed for paging */
+  public override pageSize: number = INFINITE_DEFAULT_PAGE_SIZE
+
   protected constructor(protected http: HttpClient) {
     super();
   }
