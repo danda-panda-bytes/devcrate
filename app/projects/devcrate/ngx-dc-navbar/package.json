@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/ngx-dc-navbar",
-  "version": "17.1.8",
+  "version": "17.1.9",
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
