@@ -11,7 +11,7 @@ export abstract class NgxDcApiDataSource<
   GetDataItemsT, FinalDataItemsT = GetDataItemsT, AllowedParamsT = any
 > extends NgxDcDataSource<GetDataItemsT, FinalDataItemsT> {
   public abstract relativePath: string
-  public params: Partial<AllowedParamsT> = {};
+  public params: Partial<AllowedParamsT> = {}
   public abstract trackItems(item: FinalDataItemsT): any
 
   protected constructor(protected httpClient: HttpClient) {
@@ -32,11 +32,10 @@ export abstract class NgxDcApiDataSource<
    * next page the scroll wants.
    *
    * This is called each time you initialize or call refresh in the data source (and potentially other cases).
-   *
-   * @param params
    */
   public getCount(response: HttpResponse<GetDataItemsT[]>): number {
-    return parseInt(response.headers.get("X-Total-Count") || "0", 10)
+    const xTotalCount = response.headers.get("X-Total-Count")
+    return xTotalCount === 'null' ? null : parseInt(xTotalCount || "0", 10)
   }
 
   /**
