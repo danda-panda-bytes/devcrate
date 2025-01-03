@@ -116,6 +116,8 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   @Output() public focusedItemChange = new EventEmitter<RetrievedItemT>()
 
   @Input() public useGlobalLoader = false
+
+  @HostBinding('class.infinite-scrolling')
   @Input() public useInfiniteScrolling: boolean = false
 
   constructor(
