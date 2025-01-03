@@ -31,7 +31,7 @@ import {
   NgxDcSidePaneItemTextDirective,
   NgxDcSidePaneLoadingItemDirective
 } from "./directives/side-pane-item.directive";
-import { NgxDcSidePaneListDataSource } from "./side-pane-list.data-source";
+import { NgxDcInfiniteSidePaneListDataSource, NgxDcSidePaneListApiDataSource } from "./side-pane-list.data-source";
 
 /**
  * Just like a mat-table, but instead of a table for the entire area, it has a left pane and a right side content.
@@ -74,7 +74,7 @@ import { NgxDcSidePaneListDataSource } from "./side-pane-list.data-source";
   styleUrl: './side-pane-list.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT> {
+export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> {
   public destroy$ = new BehaviorSubject(false)
   /**
    * Whether the left pane is collapsed or not.
@@ -94,7 +94,7 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   @Input() public collapsible = true
 
   /** The dao that will be used to manage the data. */
-  @Input({ required: true }) public dataSource: NgxDcSidePaneListDataSource<any>;
+  @Input({ required: true }) public dataSource: NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>
 
   @ContentChild(NgxDcSidePaneFooterDirective)
   public sidePaneFooter: NgxDcSidePaneFooterDirective

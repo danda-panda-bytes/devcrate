@@ -1,7 +1,7 @@
 # Better data management in Angular
 
 When working with data in Angular, it's common to display that data in a table, list, grid, or other component.
-This document shows how you can easily implement a data source to manage your data. 
+This document shows how you can easily implement a data source to manage your data.
 It builds upon the ideas that Angular Material shows through its MatTableDataSource class, but takes it a step further.
 
 By the end of this document, you will have a full understanding of the data sources created in [@devcrate/data-sources](../../../projects/devcrate/ngx-dc-data-sources/README.md#modal) library.
@@ -19,6 +19,7 @@ Before building this DataSource, we need to understand the use cases for it.
 # Caution
 
 Before continuing, it is important to remember to not overcomplicate a solution. There are 3 ways to implement what you need if you just need an array that is used, or want local searching, paging or sorting:
+
 - [Just use an observable or a promise](#dont-overcomplicate-solutions-if-needed).
 - Use MatTableDataSource which already allows for sorting and filtering in a local array. See this [example](https://material.angular.io/components/table/overview#table-pagination)
 
@@ -70,8 +71,10 @@ return the `data$` as an observable.
 The `disconnect` method is called when mat-table is destroyed. In this case, we need to complete the `data$` observable so that it doesn't keep subscribing. This is important to prevent memory leaks.
 
 ### `data$` class member
+
 For our data source, we need a way to manage the data. We will use a [BehaviorSubject](https://www.learnrxjs.io/learn-rxjs/subjects/behaviorsubject)
 to manage the data for multiple reasons:
+
 1. To work nicely with Material's `DataSource`
 2. To manage the data easier through the `async` pipe when we use the data source in other places.
 3. You can also extend the observable through pipes to manage local filtering.
@@ -122,6 +125,7 @@ export class MyComponent {
 ```
 
 This `initialize` method will:
+
 1. Set the `loading$` to true so we can show a loading spinner when our data is loading. This will be a BehaviorSubject.
 2. Initialize the data through 2 methods called within `initializeData`:
     1. `retrieveDataItems` - Get the data from the server
@@ -168,6 +172,7 @@ This `initialize` method will:
 ```
 
 You might notice we have multiple functions here:
+
 1. `initializeData` - retrieves the data then sets `data$` to the results.
 2. `retrieveFinalData` - retrieves the data and transforms the data.
     - You may question why we have 2 functions. The reason is that we want to separate the concerns of retrieval/transformation and setting the data. This allows us to easily override these methods in our other data sources.
@@ -264,7 +269,6 @@ export abstract class NgxDcDataSource /* ... */ {
 
 If you want to page, filter and sort locally, and not worry about the API, then I suggest using the `MatTableDataSource` instead. But if you are looking for "Paging and Sorting" from an api, read on -- BaseApiDataSource
 
-
 ## BaseApiDataSource
 
 This is another data source that makes it easier to get data from the server, complete with paging, sorting, filtering,
@@ -296,6 +300,7 @@ export interface MyData {
 ```
 
 But our component requires the data to add an included prop like so:
+
 ```typescript
 export interface MyDataView extends MyData {
     itemNo: number
@@ -303,7 +308,6 @@ export interface MyDataView extends MyData {
 ```
 
 This is easy, just override the `transformDataItems` method and the second generic type.
-
 
 ```typescript
 // Add MyDataView as the second generic type
@@ -321,7 +325,7 @@ export class MyDataSource extends BaseApiDataSource<MyData, MyDataView> {
 }
 ```
 
-Finally, we want to get more data from the server once we get the list of data before giving it to our table. This is 
+Finally, we want to get more data from the server once we get the list of data before giving it to our table. This is
 also easy!
 
 ```typescript
@@ -348,13 +352,12 @@ export class MyDataSource extends BaseApiDataSource<MyData, MyDataView> {
 To implement this, we will do the following:
 
 1. Extend the `NgxDcDataSource`
-2. Use the `HttpClient` to get the data from the server. 
+2. Use the `HttpClient` to get the data from the server.
 3. Define a `relativePath` which will make a `GET` request to that endpoint with the same domain as the app.
-4. Allow overriding a `params` object to easily add paging, sorting, and other params to the `GET` request. 
+4. Allow overriding a `params` object to easily add paging, sorting, and other params to the `GET` request.
 5. Add another generic to allow typing to allowed params.
 6. Override the `retrieveDataItems` to get the data from the server.
 7. (Optional) Though it's not required, we added the ability to get the total count of the data if it's a paged amount of data.
-
 
 ```typescript
 export abstract class ApiNgxDcDataSource<
@@ -365,20 +368,29 @@ export abstract class ApiNgxDcDataSource<
 
    protected constructor(protected httpClient: HttpClient) { super() }
 
-  public async retrieveDataItems(overrideParams: any = null): Promise<GetDataItemsT[]> {
+  public getParams(params: {[key: string]: any }): {[key: string]: any } {
+    return params
+  }
+
+  public getResults(response: HttpResponse<GetDataItemsT[]>): GetDataItemsT[] {
+    return response.body
+  }
+
+  public async retrieveDataItems(overrideParams: any = null): Promise<PageableResult<GetDataItemsT>> {
     const response = await firstValueFrom(this.httpClient.get<GetDataItemsT[]>(this.relativePath, {
-        params: overrideParams || this.params as any,
-        observe: 'response',
+      params: this.getParams(overrideParams || this.params),
+      observe: 'response',
     }))
 
-    return response.body
+    return this.getResults(response)
   }
 }
 ```
 
-Since we extend the `NgxDcDataSource`, it's really simple to make an Api version of this.
+Since we extend the `NgxDcDataSource`, it's really simple to make an Api version of this. Also notice that we allow the user to override `getParams` and `getResults` in case their API is implemented differently.
 
 ### Features
+
 - Paging
 - Sorting
 - Filtering
@@ -387,6 +399,7 @@ Since we extend the `NgxDcDataSource`, it's really simple to make an Api version
 ### Paging
 
 To enable paging and sorting, we need 2 things:
+
 1. A way to manage paging and sorting in the UI
 2. A way to update response params whenever they update.
 
@@ -523,12 +536,12 @@ table-like structure. See [Using these data sources in your application](#using-
 - See also [@devcrate/ngx-dc-side-pane-list]('../../../projects/devcrate/ngx-dc-side-pane-list/README.md#modal)
 - See also [@devcrate/ngx-dc-dropdown]('../../../projects/devcrate/ngx-dc-dropdown/README.md#modal)
 
-
 ## InfiniteScrollApiDataSource
 
 This extends the BaseApiDataSource to allow the same functionality in a virtual, infinite scroller.
 
-### Features:
+### Features
+
 - Auto-paging as the user scrolls
 - Performance improvements when scrolling by only showing the elements you are on and removing the elements you can't see
 - Same functionality as an ApiDataSource
@@ -538,6 +551,7 @@ This extends the BaseApiDataSource to allow the same functionality in a virtual,
 See [infinite-scroller.data-source.ts](../../../projects/devcrate/ngx-dc-data-sources/src/lib/infinite-scroller.data-source.ts#modal) for full implementation.
 
 The infinite scroll implements the following:
+
 - The scroller works by waiting for the user to scroll. As they reach the bottom of the page, it will automatically get the next page of data.
 - However, to determine this, we need to know the `rowHeight` which we require when you extend the `InfiniteScrollApiDataSource`.
 - The `rowHeight` is the height of each row in the table.
@@ -546,13 +560,13 @@ The infinite scroll implements the following:
 - We also have `fetchedPages` which lists all the pages we have already fetched from the server. This helps us not fetch the same page twice.
 
 Important pieces to note:
+
 - `connect` and `disconnect` are used heavily in the infinite scroller, required by the `DataSource` interface.
 - All features in the `BaseApiDataSource` are supported in the `InfiniteScrollApiDataSource`.
 - Only differences are:
   - `refresh` - This will get reset all row items, except for the current page the user is scrolling. This is helpful when you have updated server data.
   - `originalRefresh` - We have this new function for infinite scrolling. Think of this, like you are resetting everything back. It will reset the infinite scroller, but it will also reset the data source to its original state. This is helpful when you change filters or sorting, and then data will be completely new. This is using the same logic as the `refresh` in the other data sources.
   - `initialize` is no longer needed as the infinite scroller will automatically get the first page of data when the user scrolls, and will get the initial data.
-
 
 ## Using component-level services to manage data in a table-like structure
 
@@ -571,7 +585,6 @@ export class MyComponent {
 ```
 
 Doing this allows you to ensure that you have a separate service that other components won't get. Its basically a singleton for that specific component, but anywhere else will have a separate instance of that service.
-
 
 ## Don't overcomplicate solutions if needed
 
@@ -596,6 +609,3 @@ Then
 ```html
 <div *ngFor="let item of items"></div>
 ```
-
-
-

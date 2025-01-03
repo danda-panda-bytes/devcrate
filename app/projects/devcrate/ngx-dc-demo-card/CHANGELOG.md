@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 17.1.9 (2025-01-02)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-demo-card
+
+
+
+
+
+## 17.1.8 (2025-01-02)
+
+
+### Bug Fixes
+
+* issues related to missing params and methods ([f0659c7](https://github.com/danda-panda-bytes/devcrate/commit/f0659c732241d4f252e1552ebab5bfa3a219be2e))
+
+
+
+
+
 ## 17.1.7 (2025-01-01)
 
 

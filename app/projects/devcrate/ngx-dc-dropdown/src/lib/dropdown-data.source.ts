@@ -1,5 +1,5 @@
 import {BehaviorSubject, firstValueFrom, Observable, Subscription} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {NgxDcDataSource, PageableResult} from "@devcrate/ngx-dc-data-sources";
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 
@@ -151,14 +151,49 @@ export abstract class NgxDcDropdownApiDataSource<
     super();
   }
 
+  /**
+   * This allows you to overrride the default behavior of the infinite scroller to set any params based on the
+   * next page the scroll wants.
+   * @param params
+   */
+  public getParams(params: {[key: string]: any }): {[key: string]: any } {
+    return params
+  }
+
+  /**
+   * This allows you to overrride the default behavior of the infinite scroller to set any params based on the
+   * next page the scroll wants.
+   *
+   * This is called each time you initialize or call refresh in the data source (and potentially other cases).
+   */
+  public getCount(response: HttpResponse<GetDataItemsT[]>): number {
+    const xTotalCount = response.headers.get("X-Total-Count")
+    return xTotalCount === 'null' ? null : parseInt(xTotalCount || "0", 10)
+  }
+
+  /**
+   * Allows you to override how you get the data for the data source, once its retrieved from the response.
+   *
+   * This is called each time you initialize or call refresh in the data source (and potentially other cases).
+   *
+   * @param response The response of the GET request made with the relativePath for this data source.
+   *
+   * @returns
+   */
+  public getResults(response: HttpResponse<GetDataItemsT[]>): GetDataItemsT[] {
+    return response.body
+  }
+
   public async retrieveDataItems(overrideParams: any = null): Promise<PageableResult<GetDataItemsT>> {
     const response = await firstValueFrom(this.httpClient.get<GetDataItemsT[]>(this.relativePath, {
-      params: overrideParams || this.params as any,
+      params: this.getParams(overrideParams || this.params),
       observe: 'response',
     }))
 
-    const count = response.headers.get("X-Total-Count") ? parseInt(response.headers.get("X-Total-Count"),10) : null
-    return <PageableResult<GetDataItemsT>>{ count, results: response.body }
+    return <PageableResult<GetDataItemsT>>{
+      count: this.getCount(response),
+      results: this.getResults(response),
+    }
   }
 }
 
@@ -203,19 +238,48 @@ export abstract class NgxDcInfiniteDropdownDataSource<
   }
 
   /**
-   * This is called when the list pane needs to get the data from the server.
-   * This is the function that should be overridden to get the data from the server.
-   * Currently, this assumes the server is return an array as a response and a header with the total count.
-   * @param overrideParams Any parameters to override the set {this.params} object
+   * This allows you to overrride the default behavior of the infinite scroller to set any params based on the
+   * next page the scroll wants.
+   * @param params
    */
+  public getParams(params: {[key: string]: any }): {[key: string]: any } {
+    return params
+  }
+
+  /**
+   * This allows you to overrride the default behavior of the infinite scroller to set any params based on the
+   * next page the scroll wants.
+   *
+   * This is called each time you initialize or call refresh in the data source (and potentially other cases).
+   */
+  public getCount(response: HttpResponse<GetDataItemsT[]>): number {
+    const xTotalCount = response.headers.get("X-Total-Count")
+    return xTotalCount === 'null' ? null : parseInt(xTotalCount || "0", 10)
+  }
+
+  /**
+   * Allows you to override how you get the data for the data source, once its retrieved from the response.
+   *
+   * This is called each time you initialize or call refresh in the data source (and potentially other cases).
+   *
+   * @param response The response of the GET request made with the relativePath for this data source.
+   *
+   * @returns
+   */
+  public getResults(response: HttpResponse<GetDataItemsT[]>): GetDataItemsT[] {
+    return response.body
+  }
+
   public async retrieveDataItems(overrideParams: any = null): Promise<PageableResult<GetDataItemsT>> {
     const response = await firstValueFrom(this.httpClient.get<GetDataItemsT[]>(this.relativePath, {
-      params: overrideParams || this.params as any,
+      params: this.getParams(overrideParams || this.params),
       observe: 'response',
     }))
 
-    const count = response.headers.get("X-Total-Count") ? parseInt(response.headers.get("X-Total-Count"),10) : null
-    return <PageableResult<GetDataItemsT>>{ count, results: response.body }
+    return <PageableResult<GetDataItemsT>>{
+      count: this.getCount(response),
+      results: this.getResults(response),
+    }
   }
 
   /** This sets up the infinite scroller with an array full of null items so that the scrolling bar
@@ -379,13 +443,11 @@ export abstract class NgxDcInfiniteDropdownDataSource<
 
     if (page > 0) {
       serverPagedData.count = this.count$.value
-    } else {
+    } else if (this.cachedData.length < serverPagedData.count) {
+      this.cachedData = this.cachedData.concat(Array.from<FinalDataItemsT>({length: serverPagedData.count - this.cachedData.length}));
+    } else if (this.cachedData.length > serverPagedData.count) {
       // Make sure the cachedData, which could have undefined items, is the correct length once we get data back for the first time
-      if (this.cachedData.length < serverPagedData.count) {
-        this.cachedData = this.cachedData.concat(Array.from<FinalDataItemsT>({length: serverPagedData.count - this.cachedData.length}));
-      } else if (this.cachedData.length > serverPagedData.count) {
-        this.cachedData = this.cachedData.slice(0, serverPagedData.count);
-      }
+      this.cachedData = this.cachedData.slice(0, serverPagedData.count);
     }
 
     if (serverPagedData.results.length === 0) {
@@ -399,16 +461,13 @@ export abstract class NgxDcInfiniteDropdownDataSource<
         // So there is no data.
         this.cachedData = []
       }
+    } else if (serverPagedData.count == serverPagedData.results.length) {
+      // If the count and data match, then there is no more data to retrieve
+      this.cachedData = serverPagedData.results
     } else {
-      // We received data back from the server
-      if (serverPagedData.count == serverPagedData.results.length) {
-        // If the count and data match, then there is no more data to retrieve
-        this.cachedData = serverPagedData.results
-      } else {
-        // We received data back from the server, but it's only a paged amount
-        const startPage = page * this.pageSize
-        this.cachedData.splice(startPage, this.pageSize, ...serverPagedData.results)
-      }
+      // We received data back from the server, but it's only a paged amount
+      const startPage = page * this.pageSize
+      this.cachedData.splice(startPage, this.pageSize, ...serverPagedData.results)
     }
 
     this.data$.next(this.cachedData)

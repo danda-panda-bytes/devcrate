@@ -1,6 +1,6 @@
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {BehaviorSubject, firstValueFrom, Observable, Subscription} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {NgxDcApiDataSource} from "./api.data-source";
 import {PageableResult} from "./base.data-source";
 
@@ -48,19 +48,48 @@ export abstract class NgxDcInfiniteScrollDataSource<
   }
 
   /**
-   * This is called when the list pane needs to get the data from the server.
-   * This is the function that should be overridden to get the data from the server.
-   * Currently, this assumes the server returns an array as a response and a header with the total count.
-   * @param overrideParams Any parameters to override the set {this.params} object
+   * This allows you to overrride the default behavior of the infinite scroller to set any params based on the
+   * next page the scroll wants.
+   * @param params
    */
+  public getParams(params: {[key: string]: any }): {[key: string]: any } {
+    return params
+  }
+
+  /**
+   * This allows you to overrride the default behavior of the infinite scroller to set any params based on the
+   * next page the scroll wants.
+   *
+   * This is called each time you initialize or call refresh in the data source (and potentially other cases).
+   */
+  public getCount(response: HttpResponse<GetDataItemsT[]>): number {
+    const xTotalCount = response.headers.get("X-Total-Count")
+    return xTotalCount === 'null' ? null : parseInt(xTotalCount || "0", 10)
+  }
+
+  /**
+   * Allows you to override how you get the data for the data source, once its retrieved from the response.
+   *
+   * This is called each time you initialize or call refresh in the data source (and potentially other cases).
+   *
+   * @param response The response of the GET request made with the relativePath for this data source.
+   *
+   * @returns
+   */
+  public getResults(response: HttpResponse<GetDataItemsT[]>): GetDataItemsT[] {
+    return response.body
+  }
+
   public async retrieveDataItems(overrideParams: any = null): Promise<PageableResult<GetDataItemsT>> {
     const response = await firstValueFrom(this.httpClient.get<GetDataItemsT[]>(this.relativePath, {
-      params: overrideParams || this.params as any,
+      params: this.getParams(overrideParams || this.params),
       observe: 'response',
     }))
 
-    const count = response.headers.get("X-Total-Count") ? parseInt(response.headers.get("X-Total-Count")!,10) : null
-    return <PageableResult<GetDataItemsT>>{ count, results: response.body }
+    return <PageableResult<GetDataItemsT>>{
+      count: this.getCount(response),
+      results: this.getResults(response),
+    }
   }
 
   /**
