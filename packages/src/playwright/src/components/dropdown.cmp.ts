@@ -6,11 +6,11 @@ export class DropdownCmp {
   }
 
   public get dropdownHeader(): Locator {
-    return this.parent().getByTestId("ngx-table-dropdown")
+    return this.parent().getByTestId("ngx-dc-dropdown")
   }
 
   public get items(): Locator {
-    return this.parent().getByTestId('ngx-table-dropdown-item')
+    return this.parent().getByTestId('ngx-dc-dropdown-item')
   }
 
   public async itemClasses(filterOptions?: LocatorFilterOptions): Promise<string[]> {
@@ -45,7 +45,7 @@ export class DropdownCmp {
   }
 
   public get noItems(): Locator {
-    return this.parent().getByTestId('ngx-table-dropdown-no-item')
+    return this.parent().getByTestId('ngx-dc-dropdown-no-item')
   }
 
   public get activatedItemFilter(): LocatorFilterOptions {

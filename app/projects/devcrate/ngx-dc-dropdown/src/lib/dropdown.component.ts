@@ -58,7 +58,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened) { return }
-    if (!(event.target as HTMLElement).closest(".table-dropdown")) {
+    if (!(event.target as HTMLElement).closest(".dc-dropdown")) {
       this.opened = false
     }
   }
