@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/ngx-dc-utils",
-  "version": "17.1.10",
+  "version": "17.1.11",
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
