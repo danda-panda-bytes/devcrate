@@ -322,6 +322,7 @@ implements DataSource<FinalDataItemsT> {
    * @returns An observable of the data that is displayed in the list pane
    */
   public connect(collectionViewer: CollectionViewer): Observable<FinalDataItemsT[]> {
+    this.loading.next(true)
     this.subscription = collectionViewer.viewChange.subscribe(async range => {
       const startPage = this.getPageForIndex(range.start);
       const endPage = this.getPageForIndex(range.end - 1);
@@ -334,6 +335,9 @@ implements DataSource<FinalDataItemsT> {
       // This must be a for loop without Promise.all because the array needs to be added in order of when the pages happen
       for (const {result, page} of pagesFetched) {
         await this.fetchPage(page, result)
+      }
+      if (this.loading.value) {
+        this.loading.next(false)
       }
     })
     return this.filteredData$;

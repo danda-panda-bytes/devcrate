@@ -383,6 +383,7 @@ export abstract class NgxDcInfiniteDropdownDataSource<
    * @returns An observable of the data that is displayed in the list pane
    */
   public connect(collectionViewer: CollectionViewer): Observable<FinalDataItemsT[]> {
+    this.loading.next(true)
     this.subscription = collectionViewer.viewChange.subscribe(async range => {
       const startPage = this.getPageForIndex(range.start);
       const endPage = this.getPageForIndex(range.end - 1);
@@ -394,6 +395,9 @@ export abstract class NgxDcInfiniteDropdownDataSource<
 
       for (const {result, page} of pagesFetched) {
         await this.fetchPage(page, result)
+      }
+      if (this.loading.value) {
+        this.loading.next(false)
       }
     })
     return this.filteredData$;
