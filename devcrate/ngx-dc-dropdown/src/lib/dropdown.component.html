@@ -1,5 +1,5 @@
 <div
-  class="table-dropdown mat-elevation-z2"
+  class="dc-dropdown mat-elevation-z2"
   matRipple
   data-testid="ngx-dc-dropdown"
   [class.opened]="opened"
@@ -7,7 +7,7 @@
   [ngClass]="dataSource.ngClassTriggerItem(dataSource.selectedItem | async)"
   (click)="onDropdownClick()"
 >
-  <div mat-subheader class="table-dropdown-header"
+  <div mat-subheader class="dc-dropdown-header"
     [style.height]="'calc(' + (dropdownHeader?.height || dataSource.rowHeight || 48) + 'px' + ' - 1.5rem)'"
   >
     <ng-container
@@ -27,12 +27,12 @@
   }
 </div>
 
-<div class="table-dropdown-items-container" [class.opened]="opened">
-  <mat-nav-list class="table-dropdown-items mat-elevation-z2" #matNavList>
+<div class="dc-dropdown-items-container" [class.opened]="opened">
+  <mat-nav-list class="dc-dropdown-items mat-elevation-z2" #matNavList>
     <!-- Displays this per item -- see below -->
     <ng-template let-item let-i="index" #perItem>
       <mat-list-item
-        class="table-dropdown-item"
+        class="dc-dropdown-item"
         data-testid="ngx-dc-dropdown-item"
         [ngClass]="dataSource.ngClassDropdownItem(dataSource.selectedItem | async, item, i)"
         [style.height]="(dropdownOption?.height || dataSource?.rowHeight || dropdownHeader?.height || 48) + 'px'"
@@ -72,7 +72,7 @@
         @if (!dataSource.loading.value && dataSource.actualDataLength == 0) {
           <mat-list-item
             [disabled]="true"
-            class="table-dropdown-item"
+            class="dc-dropdown-item"
             [style.height]="(dropdownOption?.height || dropdownHeader?.height || dataSource?.rowHeight || 48) + 'px'"
             data-testid="ngx-dc-dropdown-no-item"
           >
@@ -93,7 +93,7 @@
       @if (!dataSource.loading.value && dataSource.actualDataLength == 0) {
         <mat-list-item
           [disabled]="true"
-          class="table-dropdown-item"
+          class="dc-dropdown-item"
           [style.height]="(dropdownOption?.height || dropdownHeader?.height || dataSource?.rowHeight || 48) + 'px'"
           data-testid="ngx-dc-dropdown-no-item"
         >
