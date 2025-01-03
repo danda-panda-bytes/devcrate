@@ -178,14 +178,19 @@ export abstract class NgxDcInfiniteScrollDataSource<
    * @returns An observable of the data that is displayed in the list pane
    */
   public connect(collectionViewer: CollectionViewer): Observable<FinalDataItemsT[]> {
+    this.loading.next(true)
     this.subscription = collectionViewer.viewChange.subscribe(async range => {
       const startPage = this.getPageForIndex(range.start);
       const endPage = this.getPageForIndex(range.end - 1);
       const pagesToFetch = Array.from({ length: endPage - startPage + 1}).map((_, i) => {
         return i + startPage;
       })
+
       for (const page of pagesToFetch) {
         await this.fetchPage(page)
+      }
+      if (this.loading.value) {
+        this.loading.next(false)
       }
     })
     return this.filteredData$;
@@ -196,6 +201,7 @@ export abstract class NgxDcInfiniteScrollDataSource<
    */
   public disconnect(): void {
     this.subscription.unsubscribe();
+    this.loading.next(false)
   }
 
   /** Converts an index to the current page number */
