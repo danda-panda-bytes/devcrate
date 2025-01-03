@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/ngx-dc-styles",
-  "version": "17.1.11",
+  "version": "17.1.12",
   "description": "Styles with Angular Material",
   "main": "index.scss",
   "publishConfig": {

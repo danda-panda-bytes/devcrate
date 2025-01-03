@@ -14,16 +14,16 @@ ngx-dc-dropdown {
     scrollbar-gutter: var(--ngx-dc-dropdown-scrollbar-gutter);
   }
 
-  .table-dropdown {
+  .dc-dropdown {
     background-color: var(--ngx-dc-dropdown-header-bg-color);
   }
 
-  .table-dropdown-item {
+  .dc-dropdown-item {
     --mat-list-active-indicator-shape: 0;
   }
 
   &.infinite-scrolling {
-    .table-dropdown-items {
+    .dc-dropdown-items {
       padding: 0;
       position: unset;
     }
@@ -49,7 +49,7 @@ ngx-dc-dropdown {
   }
 
   &:not(.infinite-scrolling) {
-    .table-dropdown-items {
+    .dc-dropdown-items {
       transition: max-height 0.35s, height 0.35s, padding 0.35s;
       padding: 0;
       height: 0;
@@ -58,7 +58,7 @@ ngx-dc-dropdown {
 
 
     .opened {
-      .table-dropdown-items {
+      .dc-dropdown-items {
         transition: max-height 0.35s, height 0.35s, padding 0.35s;
         max-height: 340px;
         height: auto;
@@ -72,7 +72,7 @@ ngx-dc-dropdown {
     }
   }
 
-  .table-dropdown-items {
+  .dc-dropdown-items {
     position: absolute;
     z-index: 1;
     top: -4px;
@@ -84,7 +84,7 @@ ngx-dc-dropdown {
 
 
   .opened {
-    .table-dropdown-items {
+    .dc-dropdown-items {
       overflow: auto;
     }
 
@@ -93,11 +93,11 @@ ngx-dc-dropdown {
     }
   }
 
-  .table-dropdown > mat-progress-bar {
+  .dc-dropdown > mat-progress-bar {
     position: relative;
   }
 
-  .table-dropdown {
+  .dc-dropdown {
     margin-bottom: 8px;
 
     &:hover {
@@ -117,7 +117,7 @@ ngx-dc-dropdown {
     flex: 1;
   }
 
-  .table-dropdown-header {
+  .dc-dropdown-header {
     display: flex;
     align-content: center;
     cursor: pointer;
@@ -130,7 +130,7 @@ ngx-dc-dropdown {
     transform: rotate(0deg);
   }
 
-  .table-dropdown-items-container {
+  .dc-dropdown-items-container {
     position: relative;
     top: -3px;
   }
