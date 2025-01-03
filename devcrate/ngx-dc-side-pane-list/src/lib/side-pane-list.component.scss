@@ -12,6 +12,7 @@ ngx-dc-side-pane-list {
   --ngx-dc-side-pane-list-height: 100%;
 
   --ngx-dc-side-pane-list-container-width: 354px;
+  --ngx-dc-side-pane-list-container-collapsed-width: 100px;
   --ngx-dc-side-pane-list-container-flex-direction: column;
   --ngx-dc-side-pane-list-container-border: 2px black solid;
   --ngx-dc-side-pane-list-container-margin-right: 8px;
@@ -79,7 +80,7 @@ ngx-dc-side-pane-list {
     }
 
     &.collapsed {
-      width: 100px;
+      width: var(--ngx-dc-side-pane-list-container-collapsed-width);
       transition: width 0.3s;
 
       mat-icon {

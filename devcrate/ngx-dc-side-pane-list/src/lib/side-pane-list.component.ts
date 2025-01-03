@@ -31,7 +31,7 @@ import {
   NgxDcSidePaneItemTextDirective,
   NgxDcSidePaneLoadingItemDirective
 } from "./directives/side-pane-item.directive";
-import { NgxDcInfiniteSidePaneListDataSource, NgxDcSidePaneListApiDataSource, NgxDcSidePaneListDataSource } from "./side-pane-list.data-source";
+import { NgxDcInfiniteSidePaneListDataSource, NgxDcSidePaneListApiDataSource } from "./side-pane-list.data-source";
 
 /**
  * Just like a mat-table, but instead of a table for the entire area, it has a left pane and a right side content.

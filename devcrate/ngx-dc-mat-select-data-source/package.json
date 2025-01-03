@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/ngx-dc-mat-select-data-source",
-  "version": "17.1.8",
+  "version": "17.1.10",
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
