@@ -113,6 +113,10 @@ ngx-dc-dropdown {
     }
   }
 
+  .dc-content-pane {
+    flex: 1;
+  }
+
   .dc-dropdown-header {
     display: flex;
     align-content: center;
