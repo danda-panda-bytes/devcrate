@@ -14,8 +14,19 @@ export const NgxDcModalServiceToken = new InjectionToken<NgxDcModalService>("NGX
 /**
  * Provides a custom implementation of the `NgxDcModalService`.
  *
- * @param ServiceClass Optional class of the modal service to provide.
- * @returns Provider that overrides the `NgxDcModalServiceToken`
+ * @deprecated Instead use the example below to add the modal service.
+ *
+ * ```
+ * ...
+ * providers: [
+ *   ServiceClass,
+ *   {
+ *     provide: NgxDcModalServiceToken,
+ *     useFactory: (m: typeof ServiceClass) => { return m },
+ *     deps: [ServiceClass],
+ *   }
+ * ]
+ * ```
  */
 export function provideNgxDcModalService(ServiceClass?: new (...args: any[]) => NgxDcModalService) {
   return {
@@ -37,10 +48,18 @@ export class NgxDcModalService {
   ) {
     this.router.events.pipe(takeUntil(this.destroy$)).subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.showGlobalLoadingBar.next(false)
-        this.dismissNotification()
+        this.onNavigationEnd(event)
       }
     })
+  }
+
+  /**
+   * This method is called every time navigation ends so that we can stop the global loader bar on page change and dismiss any notifications.
+   * @param _event The NavigationEnd event
+   */
+  protected onNavigationEnd(_event: NavigationEnd) {
+    this.showGlobalLoadingBar.next(false)
+    this.dismissNotification()
   }
 
   public ngOnDestroy() {
