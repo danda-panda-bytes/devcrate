@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.12 (2025-01-03)
+
+
+### Bug Fixes
+
+* add loading for dropdown and side pane list ([43e2494](https://github.com/danda-panda-bytes/devcrate/commit/43e249459089f49291c52ca64481b8f37d1aee74))
+
+
+
+
+
+## 0.2.11 (2025-01-03)
+
+**Note:** Version bump only for package @devcrate/playwright
+
+
+
+
+
 ## 0.2.10 (2025-01-03)
 
 **Note:** Version bump only for package @devcrate/playwright

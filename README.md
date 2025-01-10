@@ -9,13 +9,13 @@
 
 Devcrate consists of:
 
-* [Reusable Angular Components, Directives, Pipes, and Services](https://danielmhair.github.io/devcrate/)
-* [Node Utilities](https://danielmhair.github.io/devcrate/packages/)
-* [Trainings](https://danielmhair.github.io/devcrate/training/)
+* [Reusable Angular Components, Directives, Pipes, and Services](https://danda-panda-bytes.github.io/devcrate/)
+* [Node Utilities](https://danda-panda-bytes.github.io/devcrate/#/packages/)
+* [Trainings](https://danda-panda-bytes.github.io/devcrate/#/training/)
 
 ## Demo
 
-The [Demo Site](https://danielmhair.github.io/devcrate/) on all available libraries
+The [Demo Site](https://danda-panda-bytes.github.io/devcrate/) on all available libraries
 
 ## Installation
 
