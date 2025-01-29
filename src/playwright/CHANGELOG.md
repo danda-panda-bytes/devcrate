@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.4.0 (2025-01-29)
+
+
+### chore
+
+* **angular:** Update to Angular 18 ([5163be1](https://github.com/danda-panda-bytes/devcrate/commit/5163be1f7d07149b2b3e5e3cdbafc87817795416))
+
+
+### BREAKING CHANGES
+
+* **angular:** Update to Angular 18
+
+
+
+
+
+## 0.3.3 (2025-01-29)
+
+**Note:** Version bump only for package @devcrate/playwright
+
+
+
+
+
+## [0.3.2](https://github.com/danda-panda-bytes/devcrate/compare/@devcrate/playwright@0.3.1...@devcrate/playwright@0.3.2) (2025-01-29)
+
+**Note:** Version bump only for package @devcrate/playwright
+
+
+
+
+
+## [0.3.1](https://github.com/danda-panda-bytes/devcrate/compare/@devcrate/playwright@0.3.0...@devcrate/playwright@0.3.1) (2025-01-29)
+
+**Note:** Version bump only for package @devcrate/playwright
+
+
+
+
+
+# 0.3.0 (2025-01-29)
+
+
+### Features
+
+* **navbar:** add appLogoUrl ([e539a1e](https://github.com/danda-panda-bytes/devcrate/commit/e539a1e1a244025abeea21a1690f623fae69f888))
+
+
+
+
+
 ## 0.2.12 (2025-01-03)
 
 

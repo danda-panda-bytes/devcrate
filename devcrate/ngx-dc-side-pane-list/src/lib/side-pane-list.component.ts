@@ -166,7 +166,7 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   }
 
   public ngOnInit() {
-    // TODO: Add back in when we have thought about this -- perhaps have a way to manage this in a directive instead that will sync up with both
+    // TODO: Add back in, but use a directive instead that will sync up with both
     // this.navbarService.collapsed$.subscribe(collapsed => {
     //   if (!this.collapsible) { return }
     //   if (collapsed) { this.collapsed = collapsed }
@@ -201,6 +201,9 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
     this.dataSource.retrievedItem.next(null)
   }
 
+  /**
+   * Resets the focused item and resets the data source
+   */
   public reset() {
     this.resetFocusedItem()
     this.dataSource.reset()
