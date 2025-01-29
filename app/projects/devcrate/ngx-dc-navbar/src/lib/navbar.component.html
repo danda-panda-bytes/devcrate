@@ -1,7 +1,7 @@
 <div class="top-bar mat-elevation-z2" [ngStyle]="topBarBackgroundImage ? {'background-image': 'url(' + topBarBackgroundImage + ')'} : {}">
   <div class="main-title flex flex-row">
     @if (appLogoUrl) {
-      <a href="appLogoUrl"><img class="ngx-dc-navbar-icon" [src]="appLogo" alt="{{mainTitle + ' Icon'}}" /></a>
+      <a [href]="appLogoUrl"><img class="ngx-dc-navbar-icon" [src]="appLogo" alt="{{mainTitle + ' Icon'}}" /></a>
     } @else {
       <img class="ngx-dc-navbar-icon" [src]="appLogo" alt="{{mainTitle + ' Icon'}}" />
     }
