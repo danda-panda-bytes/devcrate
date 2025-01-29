@@ -49,6 +49,7 @@ import { NgxDcNavbarLinksConfig, NgxDcNavbarService, NgxDcNavbarServiceToken } f
 export class NgxDcNavbarComponent implements OnInit {
   @Input({ required: true }) public mainTitle: string
   @Input() public appLogo: string
+  @Input() public appLogoUrl: string = null
   @Input() public version: string = null
   @Input() public topBarBackgroundImage: string = null
   @Input() public collapseButtonText: string = null
