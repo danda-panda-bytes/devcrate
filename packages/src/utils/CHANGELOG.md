@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.4.0 (2025-01-29)
+
+
+### chore
+
+* **angular:** Update to Angular 18 ([5163be1](https://github.com/danda-panda-bytes/devcrate/commit/5163be1f7d07149b2b3e5e3cdbafc87817795416))
+
+
+### BREAKING CHANGES
+
+* **angular:** Update to Angular 18
+
+
+
+
+
 ## 0.3.3 (2025-01-29)
 
 **Note:** Version bump only for package @devcrate/utils
