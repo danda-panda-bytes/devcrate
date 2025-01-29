@@ -13,19 +13,18 @@ import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 
 @Component({
-  selector: 'sorted-filter-infinite-scroll-side-pane-list',
-  templateUrl: './sorted-filter-infinite-scroll-side-pane-list.component.html',
-  styleUrl: './sorted-filter-infinite-scroll-side-pane-list.component.scss',
-  standalone: true,
-  imports: [
-    NgxDcSidePaneListModule,
-    MatCardTitle,
-    MatCard,
-    JsonPipe,
-    MatIcon,
-    MatIconButton
-  ],
-  providers: [SortedFilterInfiniteScrollSidePaneListDataSource]
+    selector: 'sorted-filter-infinite-scroll-side-pane-list',
+    templateUrl: './sorted-filter-infinite-scroll-side-pane-list.component.html',
+    styleUrl: './sorted-filter-infinite-scroll-side-pane-list.component.scss',
+    imports: [
+        NgxDcSidePaneListModule,
+        MatCardTitle,
+        MatCard,
+        JsonPipe,
+        MatIcon,
+        MatIconButton
+    ],
+    providers: [SortedFilterInfiniteScrollSidePaneListDataSource]
 })
 
 export class SortedFilterInfiniteScrollSidePaneListComponent implements OnInit {

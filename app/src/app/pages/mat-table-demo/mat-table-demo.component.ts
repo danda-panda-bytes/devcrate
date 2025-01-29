@@ -5,14 +5,13 @@ import { CodeModalComponent } from '@devcrate/ngx-dc-demo-card';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
-  selector: 'app-mat-table-demo',
-  standalone: true,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-  ],
-  templateUrl: './mat-table-demo.component.html',
-  styleUrl: './mat-table-demo.component.scss'
+    selector: 'app-mat-table-demo',
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+    ],
+    templateUrl: './mat-table-demo.component.html',
+    styleUrl: './mat-table-demo.component.scss'
 })
 export class MatTableDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

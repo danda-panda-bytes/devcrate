@@ -20,9 +20,11 @@ $dark-theme-config:  (
     theme-type: dark,
     primary: mat.$blue-palette,
     use-system-variables: true,
+    system-variables-prefix: sys,
   ),
   typography: (
     use-system-variables: true,
+    system-variables-prefix: sys,
   )
 );
 $dark-theme: mat.define-theme($dark-theme-config);
@@ -33,9 +35,11 @@ $light-theme-config: (
     theme-type: light,
     primary: mat.$blue-palette,
     use-system-variables: true,
+    system-variables-prefix: sys,
   ),
   typography: (
     use-system-variables: true,
+    system-variables-prefix: sys,
   )
 );
 $light-theme:  mat.define-theme($light-theme-config);

@@ -12,25 +12,24 @@ import { NgxDcAuthPdfSrcDirective } from "./directives/auth-pdf-src.directive";
 import { NgxDcFileViewerErrorDirective, NgxDcFileViewerNotSupportedFileDirective } from "./file-viewer.directives";
 
 @Component({
-  selector: 'ngx-dc-file-viewer',
-  standalone: true,
-  exportAs: 'fileViewer',
-  imports: [
-    MatDialogModule,
-    ScrollingModule,
-    MatButtonModule,
-    MatIconModule,
-    PdfViewerModule,
-    MatProgressBarModule,
-    PdfViewerModule,
-    AsyncPipe,
-    NgxDcAuthPdfSrcDirective,
-    NgxDcAuthImgSrcDirective,
-    NgTemplateOutlet,
-  ],
-  templateUrl: './file-viewer.component.html',
-  styleUrl: './file-viewer.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ngx-dc-file-viewer',
+    exportAs: 'fileViewer',
+    imports: [
+        MatDialogModule,
+        ScrollingModule,
+        MatButtonModule,
+        MatIconModule,
+        PdfViewerModule,
+        MatProgressBarModule,
+        PdfViewerModule,
+        AsyncPipe,
+        NgxDcAuthPdfSrcDirective,
+        NgxDcAuthImgSrcDirective,
+        NgTemplateOutlet,
+    ],
+    templateUrl: './file-viewer.component.html',
+    styleUrl: './file-viewer.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 /**
  * ### **Examples:**

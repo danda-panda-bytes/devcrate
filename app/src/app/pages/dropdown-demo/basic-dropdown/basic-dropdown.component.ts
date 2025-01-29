@@ -6,17 +6,16 @@ import {NgxDcDropdownModule } from "@devcrate/ngx-dc-dropdown";
 import { BasicDropdownDataSource } from "./basic-dropdown.data-source";
 
 @Component({
-  selector: 'basic-dropdown',
-  templateUrl: './basic-dropdown.component.html',
-  styleUrl: './basic-dropdown.component.scss',
-  standalone: true,
-  imports: [
-    JsonPipe,
-    NgxDcDropdownModule,
-    MatSelectModule,
-    FormsModule,
-],
-  providers: [BasicDropdownDataSource]
+    selector: 'basic-dropdown',
+    templateUrl: './basic-dropdown.component.html',
+    styleUrl: './basic-dropdown.component.scss',
+    imports: [
+        JsonPipe,
+        NgxDcDropdownModule,
+        MatSelectModule,
+        FormsModule,
+    ],
+    providers: [BasicDropdownDataSource]
 })
 
 export class BasicDropdownComponent implements OnInit {

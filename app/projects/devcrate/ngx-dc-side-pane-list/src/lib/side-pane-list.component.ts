@@ -54,25 +54,24 @@ import { NgxDcInfiniteSidePaneListDataSource, NgxDcSidePaneListApiDataSource } f
  * ```
  */
 @Component({
-  selector: 'ngx-dc-side-pane-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatProgressBarModule,
-    MatIconModule,
-    MatListModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTooltipModule,
-    ScrollingModule,
-    NgxDcFilledCountPipe,
-    MatInputModule,
-    FormsModule,
-    MatFormFieldModule,
-  ],
-  templateUrl: './side-pane-list.component.html',
-  styleUrl: './side-pane-list.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ngx-dc-side-pane-list',
+    imports: [
+        CommonModule,
+        MatProgressBarModule,
+        MatIconModule,
+        MatListModule,
+        MatButtonModule,
+        MatCardModule,
+        MatTooltipModule,
+        ScrollingModule,
+        NgxDcFilledCountPipe,
+        MatInputModule,
+        FormsModule,
+        MatFormFieldModule,
+    ],
+    templateUrl: './side-pane-list.component.html',
+    styleUrl: './side-pane-list.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> {
   public destroy$ = new BehaviorSubject(false)

@@ -4,13 +4,12 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
-  selector: 'app-angular-basics',
-  standalone: true,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-  ],
-  templateUrl: './angular-basics-demo.component.html',
+    selector: 'app-angular-basics',
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+    ],
+    templateUrl: './angular-basics-demo.component.html'
 })
 export class AngularBasicsComponent {
   constructor(private modalService: NgxDcModalService) {}

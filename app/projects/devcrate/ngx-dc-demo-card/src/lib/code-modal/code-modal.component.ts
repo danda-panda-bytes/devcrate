@@ -15,19 +15,18 @@ export interface CodeModalData {
 }
 
 @Component({
-  standalone: true,
-  selector: 'code-modal',
-  templateUrl: 'code-modal.component.html',
-  styleUrl: 'code-modal.component.scss',
-  encapsulation: ViewEncapsulation.None,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-    MatDialogModule,
-    MatButton,
-    MatIconButton,
-    MatIcon,
-  ]
+    selector: 'code-modal',
+    templateUrl: 'code-modal.component.html',
+    styleUrl: 'code-modal.component.scss',
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+        MatDialogModule,
+        MatButton,
+        MatIconButton,
+        MatIcon,
+    ]
 })
 
 export class CodeModalComponent {

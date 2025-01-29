@@ -7,17 +7,16 @@ import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {NgxDcNavbarModule} from "@devcrate/ngx-dc-navbar";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  standalone: true,
-  imports: [
-    MatIcon,
-    MatButtonModule,
-    NgxDcNavbarModule,
-    RouterOutlet,
-  ],
-  styleUrl: './app.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    imports: [
+        MatIcon,
+        MatButtonModule,
+        NgxDcNavbarModule,
+        RouterOutlet,
+    ],
+    styleUrl: './app.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   public darkTheme = true

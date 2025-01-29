@@ -4,13 +4,12 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
-  selector: 'app-destroy-observable-demo',
-  standalone: true,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-  ],
-  templateUrl: './destroy-observable-demo.component.html',
+    selector: 'app-destroy-observable-demo',
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+    ],
+    templateUrl: './destroy-observable-demo.component.html'
 })
 export class DestroyObservableDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

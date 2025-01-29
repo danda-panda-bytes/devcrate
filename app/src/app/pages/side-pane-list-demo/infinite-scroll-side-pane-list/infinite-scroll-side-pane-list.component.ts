@@ -11,17 +11,16 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
 import {JsonPipe} from "@angular/common";
 
 @Component({
-  selector: 'infinite-scroll-side-pane-list',
-  templateUrl: './infinite-scroll-side-pane-list.component.html',
-  styleUrl: './infinite-scroll-side-pane-list.component.scss',
-  standalone: true,
-  imports: [
-    NgxDcSidePaneListModule,
-    MatCardTitle,
-    MatCard,
-    JsonPipe
-  ],
-  providers: [InfiniteScrollSidePaneListDataSource]
+    selector: 'infinite-scroll-side-pane-list',
+    templateUrl: './infinite-scroll-side-pane-list.component.html',
+    styleUrl: './infinite-scroll-side-pane-list.component.scss',
+    imports: [
+        NgxDcSidePaneListModule,
+        MatCardTitle,
+        MatCard,
+        JsonPipe
+    ],
+    providers: [InfiniteScrollSidePaneListDataSource]
 })
 
 export class InfiniteScrollSidePaneListComponent implements OnInit {

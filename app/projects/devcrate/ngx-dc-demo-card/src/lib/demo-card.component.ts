@@ -12,19 +12,18 @@ import {
 } from "./demo-card.directives"
 
 @Component({
-  selector: 'ngx-dc-demo-card',
-  standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    HighlightModule,
-    MatTabsModule,
-    MatIconButton,
-    MatIconModule,
-    MatCardModule,
-  ],
-  templateUrl: './demo-card.component.html',
-  styleUrl: './demo-card.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ngx-dc-demo-card',
+    imports: [
+        NgTemplateOutlet,
+        HighlightModule,
+        MatTabsModule,
+        MatIconButton,
+        MatIconModule,
+        MatCardModule,
+    ],
+    templateUrl: './demo-card.component.html',
+    styleUrl: './demo-card.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class NgxDcDemoCardComponent {
   @Input() public title: string

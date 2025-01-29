@@ -26,25 +26,24 @@ import { NgxDcNavbarLinkInfo } from "./navbar.model";
 import { NgxDcNavbarLinksConfig, NgxDcNavbarService, NgxDcNavbarServiceToken } from "./navbar.service";
 
 @Component({
-  selector: 'ngx-dc-navbar',
-  standalone: true,
-  imports: [
-    MatMenuModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    RouterModule,
-    MatIconModule,
-    MatProgressBarModule,
-    NgTemplateOutlet,
-    AsyncPipe,
-    MatRippleModule,
-    MatListItem,
-    MatNavList,
-    NgStyle,
-  ],
-  templateUrl: "navbar.component.html",
-  styleUrls: ["navbar.component.scss"],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ngx-dc-navbar',
+    imports: [
+        MatMenuModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        RouterModule,
+        MatIconModule,
+        MatProgressBarModule,
+        NgTemplateOutlet,
+        AsyncPipe,
+        MatRippleModule,
+        MatListItem,
+        MatNavList,
+        NgStyle,
+    ],
+    templateUrl: "navbar.component.html",
+    styleUrls: ["navbar.component.scss"],
+    encapsulation: ViewEncapsulation.None
 })
 export class NgxDcNavbarComponent implements OnInit {
   @Input({ required: true }) public mainTitle: string

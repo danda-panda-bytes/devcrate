@@ -17,23 +17,22 @@ import {
 } from "./sortable-infinite-scroll-side-pane-list/sortable-infinite-scroll-side-pane-list.component";
 
 @Component({
-  selector: 'app-side-pane-list-demo',
-  standalone: true,
-  imports: [
-    BasicSidePaneListComponent,
-    DemoFileViewerComponent,
-    NgxDcDemoCardModule,
-    MatTab,
-    MatTabGroup,
-    NgxDcDemoCardComponent,
-    NgxDcDemoTabsDirective,
-    InfiniteScrollSidePaneListComponent,
-    SortableInfiniteScrollSidePaneListComponent,
-    MatButton
-  ],
-  templateUrl: './side-pane-list-demo.component.html',
-  styleUrl: './side-pane-list-demo.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-side-pane-list-demo',
+    imports: [
+        BasicSidePaneListComponent,
+        DemoFileViewerComponent,
+        NgxDcDemoCardModule,
+        MatTab,
+        MatTabGroup,
+        NgxDcDemoCardComponent,
+        NgxDcDemoTabsDirective,
+        InfiniteScrollSidePaneListComponent,
+        SortableInfiniteScrollSidePaneListComponent,
+        MatButton
+    ],
+    templateUrl: './side-pane-list-demo.component.html',
+    styleUrl: './side-pane-list-demo.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class SidePaneListDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

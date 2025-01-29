@@ -11,18 +11,17 @@ import { NgxDcModalService, NgxDcModalServiceToken } from '@devcrate/ngx-dc-util
 import { MatButtonModule } from '@angular/material/button'
 
 @Component({
-  selector: 'app-dropdown-demo',
-  standalone: true,
-  imports: [
-    DemoFileViewerComponent,
-    MatTab,
-    MatTabGroup,
-    NgxDcDemoCardModule,
-    BasicDropdownComponent,
-    MatButtonModule,
-  ],
-  templateUrl: './dropdown-demo.component.html',
-  styleUrl: './dropdown-demo.component.scss',
+    selector: 'app-dropdown-demo',
+    imports: [
+        DemoFileViewerComponent,
+        MatTab,
+        MatTabGroup,
+        NgxDcDemoCardModule,
+        BasicDropdownComponent,
+        MatButtonModule,
+    ],
+    templateUrl: './dropdown-demo.component.html',
+    styleUrl: './dropdown-demo.component.scss'
 })
 export class DropdownDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

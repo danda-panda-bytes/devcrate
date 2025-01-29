@@ -3,12 +3,11 @@ import {FileService} from "../file.service";
 import {HighlightModule} from "ngx-highlightjs";
 
 @Component({
-  selector: 'ngx-dc-demo-file-viewer',
-  standalone: true,
-  imports: [
-    HighlightModule,
-  ],
-  templateUrl: "./demo-file-viewer.component.html"
+    selector: 'ngx-dc-demo-file-viewer',
+    imports: [
+        HighlightModule,
+    ],
+    templateUrl: "./demo-file-viewer.component.html"
 })
 export class DemoFileViewerComponent implements OnInit {
   @Input() filePath!: string

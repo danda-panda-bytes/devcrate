@@ -4,13 +4,12 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
-  selector: 'app-playwright-utils-demo',
-  standalone: true,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-  ],
-  templateUrl: './playwright-utils-demo.component.html',
+    selector: 'app-playwright-utils-demo',
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+    ],
+    templateUrl: './playwright-utils-demo.component.html'
 })
 export class PlaywrightUtilsDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

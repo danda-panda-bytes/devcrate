@@ -3,14 +3,13 @@ import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar'
 import {MatButton} from "@angular/material/button";
 
 @Component({
-  selector: 'app-snackbar',
-  templateUrl: './snackbar.component.html',
-  styleUrls: ['./snackbar.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  imports: [
-    MatButton
-  ],
-  standalone: true
+    selector: 'app-snackbar',
+    templateUrl: './snackbar.component.html',
+    styleUrls: ['./snackbar.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        MatButton
+    ]
 })
 export class SnackbarComponent implements OnInit {
   public truncate_flag = false

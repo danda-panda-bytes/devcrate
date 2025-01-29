@@ -4,13 +4,12 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
-  selector: 'app-upload-file-button-demo',
-  standalone: true,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-  ],
-  templateUrl: './upload-file-button-demo.component.html',
+    selector: 'app-upload-file-button-demo',
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+    ],
+    templateUrl: './upload-file-button-demo.component.html'
 })
 export class UploadFileButtonDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

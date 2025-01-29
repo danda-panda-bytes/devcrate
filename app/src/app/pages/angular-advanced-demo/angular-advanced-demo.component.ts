@@ -4,13 +4,12 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
-  selector: 'app-angular-advanced-demo',
-  standalone: true,
-  imports: [
-    MarkdownModule,
-    NgxMarkdownOnLinkClick,
-  ],
-  templateUrl: './angular-advanced-demo.component.html',
+    selector: 'app-angular-advanced-demo',
+    imports: [
+        MarkdownModule,
+        NgxMarkdownOnLinkClick,
+    ],
+    templateUrl: './angular-advanced-demo.component.html'
 })
 export class AngularAdvancedDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

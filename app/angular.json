@@ -420,34 +420,7 @@
       "projectType": "library",
       "root": "projects/devcrate/ngx-dc-styles",
       "sourceRoot": "projects/devcrate/ngx-dc-styles/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/devcrate/ngx-dc-styles/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/devcrate/ngx-dc-styles/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/devcrate/ngx-dc-styles/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/devcrate/ngx-dc-styles/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
-        }
-      }
+      "prefix": "lib"
     }
   },
   "cli": {

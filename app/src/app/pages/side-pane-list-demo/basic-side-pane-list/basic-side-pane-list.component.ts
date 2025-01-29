@@ -7,17 +7,16 @@ import {MatCard, MatCardTitle} from "@angular/material/card";
 import {JsonPipe} from "@angular/common";
 
 @Component({
-  selector: 'basic-side-pane-list',
-  templateUrl: './basic-side-pane-list.component.html',
-  styleUrl: './basic-side-pane-list.component.scss',
-  standalone: true,
-  imports: [
-    NgxDcSidePaneListModule,
-    MatCardTitle,
-    MatCard,
-    JsonPipe
-  ],
-  providers: [BasicSidePaneListDataSource]
+    selector: 'basic-side-pane-list',
+    templateUrl: './basic-side-pane-list.component.html',
+    styleUrl: './basic-side-pane-list.component.scss',
+    imports: [
+        NgxDcSidePaneListModule,
+        MatCardTitle,
+        MatCard,
+        JsonPipe
+    ],
+    providers: [BasicSidePaneListDataSource]
 })
 
 export class BasicSidePaneListComponent implements OnInit {

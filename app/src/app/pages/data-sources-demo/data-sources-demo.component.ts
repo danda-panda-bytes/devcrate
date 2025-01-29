@@ -11,21 +11,20 @@ import { DataSourceForComponent } from "./data-source-for/data-source-for.compon
 import { DataSourceMatTableComponent } from "./data-source-mat-table/data-source-mat-table.component";
 
 @Component({
-  selector: 'app-data-sources-demo',
-  standalone: true,
-  imports: [
-    HighlightModule,
-    MatTabsModule,
-    DataSourceForComponent,
-    DataSourceMatTableComponent,
-    MatIconModule,
-    MatCardModule,
-    NgxDcDemoCardModule,
-    MatButtonModule,
-  ],
-  templateUrl: './data-sources-demo.component.html',
-  styleUrl: './data-sources-demo.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-data-sources-demo',
+    imports: [
+        HighlightModule,
+        MatTabsModule,
+        DataSourceForComponent,
+        DataSourceMatTableComponent,
+        MatIconModule,
+        MatCardModule,
+        NgxDcDemoCardModule,
+        MatButtonModule,
+    ],
+    templateUrl: './data-sources-demo.component.html',
+    styleUrl: './data-sources-demo.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class DataSourcesDemoComponent {
   public showCode = false;

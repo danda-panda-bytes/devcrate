@@ -7,17 +7,16 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-file-viewer-demo',
-  standalone: true,
-  imports: [
-    FileViewerPdfComponent,
-    NgxDcDemoCardModule,
-    MatTabsModule,
-    FileViewerImgComponent,
-    MatButtonModule,
-  ],
-  templateUrl: './file-viewer-demo.component.html',
-  styleUrl: './file-viewer-demo.component.scss'
+    selector: 'app-file-viewer-demo',
+    imports: [
+        FileViewerPdfComponent,
+        NgxDcDemoCardModule,
+        MatTabsModule,
+        FileViewerImgComponent,
+        MatButtonModule,
+    ],
+    templateUrl: './file-viewer-demo.component.html',
+    styleUrl: './file-viewer-demo.component.scss'
 })
 export class FileViewerDemoComponent {
   constructor(private modalService: NgxDcModalService) {}

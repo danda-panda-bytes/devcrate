@@ -27,26 +27,25 @@ import {
 } from "./dropdown.directives";
 
 @Component({
-  selector: 'ngx-dc-dropdown',
-  standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    AsyncPipe,
-    MatIcon,
-    MatListItem,
-    MatListSubheaderCssMatStyler,
-    MatNavList,
-    MatProgressBar,
-    NgClass,
-    NgxDcFilledCountPipe,
-    CdkFixedSizeVirtualScroll,
-    CdkVirtualForOf,
-    CdkVirtualScrollViewport,
-    MatRipple
-  ],
-  templateUrl: './dropdown.component.html',
-  styleUrl: './dropdown.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ngx-dc-dropdown',
+    imports: [
+        NgTemplateOutlet,
+        AsyncPipe,
+        MatIcon,
+        MatListItem,
+        MatListSubheaderCssMatStyler,
+        MatNavList,
+        MatProgressBar,
+        NgClass,
+        NgxDcFilledCountPipe,
+        CdkFixedSizeVirtualScroll,
+        CdkVirtualForOf,
+        CdkVirtualScrollViewport,
+        MatRipple
+    ],
+    templateUrl: './dropdown.component.html',
+    styleUrl: './dropdown.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> implements OnInit, OnDestroy {
   @Input()

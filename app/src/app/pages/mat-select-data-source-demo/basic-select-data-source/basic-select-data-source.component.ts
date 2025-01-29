@@ -22,17 +22,16 @@ import {
 } from "@devcrate/ngx-dc-mat-select-data-source";
 
 @Component({
-  selector: 'basic-select-data-source',
-  templateUrl: './basic-select-data-source.component.html',
-  styleUrl: './basic-select-data-source.component.scss',
-  standalone: true,
-  imports: [
-    JsonPipe,
-    MatSelectModule,
-    FormsModule,
-    NgxDcMatSelectDataSourceModule,
-  ],
-  providers: [BasicSelectDataSourceDataSource]
+    selector: 'basic-select-data-source',
+    templateUrl: './basic-select-data-source.component.html',
+    styleUrl: './basic-select-data-source.component.scss',
+    imports: [
+        JsonPipe,
+        MatSelectModule,
+        FormsModule,
+        NgxDcMatSelectDataSourceModule,
+    ],
+    providers: [BasicSelectDataSourceDataSource]
 })
 
 export class BasicSelectDataSourceComponent implements OnInit {

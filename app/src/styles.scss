@@ -13,15 +13,18 @@
 @import './fonts';
 @import './custom-styles';
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 $dark-theme-config:  (
   color:(
     theme-type: dark,
-    use-system-variables: true
+    use-system-variables: true,
+    system-variables-prefix: sys,
   ),
   typography: (
     use-system-variables: true,
+    system-variables-prefix: sys,
   )
 );
 $dark-theme: mat.define-theme($dark-theme-config);
@@ -30,10 +33,12 @@ $dark-theme: mat.define-theme($dark-theme-config);
 $light-theme-config: (
   color:(
     theme-type: light,
-    use-system-variables: true
+    use-system-variables: true,
+    system-variables-prefix: sys,
   ),
   typography: (
     use-system-variables: true,
+    system-variables-prefix: sys,
   )
 );
 $light-theme:  mat.define-theme($light-theme-config);
