@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, inject } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, inject, output } from '@angular/core';
 
 /**
  * Usage: ```html
@@ -24,8 +24,8 @@ export class NgxDcUploadFileButtonDirective {
     this.input.accept = accept
   }
 
-  @Output() public fileUploaded = new EventEmitter<File>()
-  @Output() public filesChanged = new EventEmitter<File[]>()
+  public readonly fileUploaded = output<File>();
+  public readonly filesChanged = output<File[]>();
   public files: File[] = []
   constructor() {
     this.input = document.createElement('input')

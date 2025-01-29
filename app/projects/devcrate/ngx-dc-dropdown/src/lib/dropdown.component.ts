@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { AsyncPipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import { Component, ContentChild, ElementRef, EventEmitter, HostBinding, HostListener, OnDestroy, OnInit, Output, ViewEncapsulation, inject, input } from '@angular/core';
+import { Component, ContentChild, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, inject, input, output } from '@angular/core';
 import { MatRipple } from "@angular/material/core";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
@@ -40,15 +40,24 @@ import {
 export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> implements OnInit, OnDestroy {
   public modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
 
-  public readonly appearance = input<'fill' | 'outline' | 'none' | 'rounded-fill' | 'rounded-outline'>('rounded-fill');
 
+  // We should put the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
+  public dataSource = input.required<NgxDcDropdownDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
+
+  // We should put the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
+  public opened = input<boolean>(false);
+
+  public readonly useGlobalLoader = input(false);
+  public readonly appearance = input<'fill' | 'outline' | 'none' | 'rounded-fill' | 'rounded-outline'>('rounded-fill');
   public readonly roundedEdgeSize = input<string>('4px');
+
+  public focusedItemChange = output<RetrievedItemT>();
 
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened()) { return }
     if (!(event.target as HTMLElement).closest(".dc-dropdown")) {
-      this.opened = false
+      this.opened.set(false)
     }
   }
 
@@ -97,16 +106,6 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   @ContentChild(CdkVirtualScrollViewport) public scrollViewport: CdkVirtualScrollViewport
   @ContentChild('matNavList', { read: ElementRef }) public matNavListElement: ElementRef
-
-  public readonly opened = input<boolean>(false
-// We should the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
-);
-
-  // We should the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
-  public readonly dataSource = input.required<NgxDcDropdownDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
-  @Output() public focusedItemChange = new EventEmitter<RetrievedItemT>()
-
-  public readonly useGlobalLoader = input(false);
 
   @HostBinding('class.infinite-scrolling')
 public readonly useInfiniteScrolling = input<boolean>(false);
@@ -158,22 +157,22 @@ public readonly useInfiniteScrolling = input<boolean>(false);
   }
 
   public open() {
-    this.opened = true
+    this.opened.set(true)
   }
 
   public close() {
-    this.opened = false
+    this.opened.set(false)
   }
 
   public async onPaneItemClicked(item: FinalDataItemsT): Promise<RetrievedItemT> {
     await this.dataSource().onPaneItemClicked(item)
-    this.opened = false
+    this.opened.set(false)
     return this.dataSource().retrievedItem.value
   }
 
   protected readonly focus = focus;
 
   public onDropdownClick() {
-    this.opened = !this.opened()
+    this.opened.set(!this.opened())
   }
 }
