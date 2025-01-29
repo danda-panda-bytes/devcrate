@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, inject } from '@angular/core';
 
 /**
  * Usage: ```html
@@ -11,6 +11,8 @@ import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '
   exportAs: 'uploadFileButton'
 })
 export class NgxDcUploadFileButtonDirective {
+  private el = inject(ElementRef)
+
   private readonly input: HTMLInputElement
   private accepted: string = ''
 
@@ -23,8 +25,7 @@ export class NgxDcUploadFileButtonDirective {
   @Output() public fileUploaded = new EventEmitter<File>()
   @Output() public filesChanged = new EventEmitter<File[]>()
   public files: File[] = []
-
-  constructor(private el: ElementRef) {
+  constructor() {
     this.input = document.createElement('input')
     this.input.hidden = true
     this.input.style.display = 'none'

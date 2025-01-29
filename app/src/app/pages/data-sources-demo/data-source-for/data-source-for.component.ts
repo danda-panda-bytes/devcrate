@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {DataSourceForData} from "./data-source-for.data-source";
 import {AsyncPipe} from "@angular/common";
 import {MatProgressBar} from "@angular/material/progress-bar";
@@ -15,10 +15,7 @@ import {MatProgressBar} from "@angular/material/progress-bar";
     templateUrl: './data-source-for.component.html'
 })
 export class DataSourceForComponent {
-  constructor(
-    public dataSource: DataSourceForData,
-  ) {
-  }
+  dataSource = inject(DataSourceForData);
 
   public async ngOnInit() {
     await this.dataSource.initialize()

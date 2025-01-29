@@ -1,13 +1,5 @@
 import { AsyncPipe, NgStyle, NgTemplateOutlet } from "@angular/common";
-import {
-  Component,
-  ContentChild,
-  HostListener,
-  Inject,
-  Input,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, ContentChild, HostListener, Input, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatRippleModule } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
@@ -46,6 +38,10 @@ import { NgxDcNavbarLinksConfig, NgxDcNavbarService, NgxDcNavbarServiceToken } f
     encapsulation: ViewEncapsulation.None
 })
 export class NgxDcNavbarComponent implements OnInit {
+  modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
+  navbarService = inject<NgxDcNavbarService>(NgxDcNavbarServiceToken);
+  links = inject(NgxDcNavbarLinksConfig);
+
   @Input({ required: true }) public mainTitle: string
   @Input() public appLogo: string
   @Input() public appLogoUrl: string = null
@@ -61,12 +57,6 @@ export class NgxDcNavbarComponent implements OnInit {
   @ContentChild(NgxDcNavbarMainContentDirective) public mainContentTemplate: NgxDcNavbarMainContentDirective
   @ContentChild(NgxDcNavbarSidebarDirective) public sideBarContentTemplate: NgxDcNavbarSidebarDirective
   @ContentChild(NgxDcNavbarSidebarLinksDirective) public sidebarLinksTemplate: NgxDcNavbarSidebarLinksDirective
-
-  constructor(
-    @Inject(NgxDcModalServiceToken) public modalService: NgxDcModalService,
-    @Inject(NgxDcNavbarServiceToken) public navbarService: NgxDcNavbarService,
-    @Inject(NgxDcNavbarLinksConfig) public links: NgxDcNavbarLinkInfo[],
-  ) {}
 
   @HostListener("window:resize")
   public onWindowResize() {

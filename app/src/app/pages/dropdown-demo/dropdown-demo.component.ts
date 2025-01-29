@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { MatTab, MatTabGroup } from '@angular/material/tabs'
 import {
   CodeModalComponent,
@@ -24,7 +24,8 @@ import { MatButtonModule } from '@angular/material/button'
     styleUrl: './dropdown-demo.component.scss'
 })
 export class DropdownDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal() {
     const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname

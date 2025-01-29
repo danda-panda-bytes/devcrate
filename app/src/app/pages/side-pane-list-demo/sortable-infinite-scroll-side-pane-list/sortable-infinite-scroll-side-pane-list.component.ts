@@ -1,16 +1,13 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
-import {SortableInfiniteScrollSidePaneListDataSource} from "./sortable-infinite-scroll-side-pane-list.data-source";
+import { JsonPipe } from "@angular/common";
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { MatIconButton } from "@angular/material/button";
+import { MatCard, MatCardTitle } from "@angular/material/card";
+import { MatIcon } from "@angular/material/icon";
 import {
-  NgxDcPanePageInfoDirective,
-  NgxDcPaneContentDirective,
-  NgxDcSidePaneItemDirective,
   NgxDcSidePaneListComponent,
   NgxDcSidePaneListModule
 } from "@devcrate/ngx-dc-side-pane-list";
-import {MatCard, MatCardTitle} from "@angular/material/card";
-import {JsonPipe} from "@angular/common";
-import {MatIcon} from "@angular/material/icon";
-import {MatIconButton} from "@angular/material/button";
+import { SortableInfiniteScrollSidePaneListDataSource } from "./sortable-infinite-scroll-side-pane-list.data-source";
 
 @Component({
     selector: 'sortable-infinite-scroll-side-pane-list',
@@ -28,6 +25,8 @@ import {MatIconButton} from "@angular/material/button";
 })
 
 export class SortableInfiniteScrollSidePaneListComponent implements OnInit {
+  dataSource = inject(SortableInfiniteScrollSidePaneListDataSource)
+
   @ViewChild(NgxDcSidePaneListComponent) table: NgxDcSidePaneListComponent<any>
 
   public sorted = false
@@ -41,8 +40,6 @@ export class SortableInfiniteScrollSidePaneListComponent implements OnInit {
     this.dataSource.initialized = false
     await this.dataSource.refresh()
   }
-
-  constructor(public dataSource: SortableInfiniteScrollSidePaneListDataSource) {}
 
   public async ngOnInit() {
     await this.dataSource.initialize()

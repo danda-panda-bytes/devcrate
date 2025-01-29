@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {BasicSelectDataSourceDataSource} from "./basic-select-data-source.data-source";
 import {
   NgxDcPaneContentDirective,
@@ -35,7 +35,8 @@ import {
 })
 
 export class BasicSelectDataSourceComponent implements OnInit {
-  constructor(public dataSource: BasicSelectDataSourceDataSource) {}
+  dataSource = inject(BasicSelectDataSourceDataSource);
+
 
   public async ngOnInit() {
     await this.dataSource.initialize()

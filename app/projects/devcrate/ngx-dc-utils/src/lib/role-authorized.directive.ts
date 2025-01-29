@@ -1,4 +1,4 @@
-import {Directive, Inject, InjectionToken, Input, OnChanges, OnInit, TemplateRef, ViewContainerRef} from '@angular/core'
+import { Directive, InjectionToken, Input, OnChanges, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core'
 
 export class NgxDcRolesService {
   public hasRole(rolesAllowed: string[]): boolean {
@@ -17,14 +17,12 @@ export const NgxDcRolesServiceToken = new InjectionToken<NgxDcRolesService>("Ngx
   standalone: true,
 })
 export class NgxDcRoleAuthorizedDirective implements OnInit, OnChanges {
+  private templateRef = inject<TemplateRef<any>>(TemplateRef);
+  private viewContainerRef = inject(ViewContainerRef);
+  private rolesService = inject<NgxDcRolesService>(NgxDcRolesServiceToken);
+
   @Input() public ngxDcRolesAuthorized: string[]
   private hasView = false
-
-  constructor(
-    private templateRef: TemplateRef<any>,
-    private viewContainerRef: ViewContainerRef,
-    @Inject(NgxDcRolesServiceToken) private rolesService: NgxDcRolesService,
-  ) { }
 
   public ngOnInit() {
     this.configureView()

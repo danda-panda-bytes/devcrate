@@ -1,14 +1,6 @@
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  ContentChild, ElementRef,
-  Inject,
-  Input,
-  QueryList,
-  ViewChild, ViewChildren,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, QueryList, ViewChild, ViewChildren, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -74,6 +66,8 @@ import { NgxDcInfiniteSidePaneListDataSource, NgxDcSidePaneListApiDataSource } f
     encapsulation: ViewEncapsulation.None
 })
 export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> {
+  public modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
+
   public destroy$ = new BehaviorSubject(false)
   /**
    * Whether the left pane is collapsed or not.
@@ -129,11 +123,6 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   public element: ElementRef<any>
   @ViewChildren('matListItem')
   public matListItems: QueryList<MatListItem>
-
-  constructor(
-    @Inject(NgxDcModalServiceToken) public modalService: NgxDcModalService,
-    // @Inject(NgxDcNavbarServiceToken) public navbarService: NgxDcNavbarService,
-  ) {}
 
   public get firstMatItem(): Element {
     return this.matListItems?.first?._elementRef?.nativeElement?.parentElement?.firstElementChild

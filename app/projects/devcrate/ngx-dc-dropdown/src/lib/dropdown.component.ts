@@ -1,16 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { AsyncPipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import {
-  Component,
-  ContentChild, ElementRef,
-  EventEmitter, HostBinding, HostListener,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, ContentChild, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnDestroy, OnInit, Output, ViewEncapsulation, inject } from '@angular/core';
 import { MatRipple } from "@angular/material/core";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
@@ -48,6 +38,8 @@ import {
     encapsulation: ViewEncapsulation.None
 })
 export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> implements OnInit, OnDestroy {
+  public modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
+
   @Input()
   public appearance: 'fill' | 'outline' | 'none' | 'rounded-fill' | 'rounded-outline' = 'rounded-fill'
 
@@ -118,10 +110,6 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   @HostBinding('class.infinite-scrolling')
   @Input() public useInfiniteScrolling: boolean = false
-
-  constructor(
-    @Inject(NgxDcModalServiceToken) public modalService: NgxDcModalService,
-  ) {}
 
   public get disabled() {
     return this.dataSource.actualDataLength === 0

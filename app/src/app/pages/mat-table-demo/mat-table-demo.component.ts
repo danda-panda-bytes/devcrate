@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { CodeModalData, NgxMarkdownOnLinkClick } from '@devcrate/ngx-dc-demo-card';
 import { CodeModalComponent } from '@devcrate/ngx-dc-demo-card';
@@ -14,7 +14,8 @@ import { MarkdownModule } from 'ngx-markdown';
     styleUrl: './mat-table-demo.component.scss'
 })
 export class MatTableDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal(hashName: string, path: string) {
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {

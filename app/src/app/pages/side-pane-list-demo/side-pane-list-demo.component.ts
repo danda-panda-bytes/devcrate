@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatButton } from "@angular/material/button";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import {
@@ -35,7 +35,8 @@ import {
     encapsulation: ViewEncapsulation.None
 })
 export class SidePaneListDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal() {
     const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname

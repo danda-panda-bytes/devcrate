@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { NgxMarkdownOnLinkClick } from '@devcrate/ngx-dc-demo-card';
 import { MarkdownModule, MARKED_OPTIONS } from 'ngx-markdown';
 import {NgxDcModalService} from "@devcrate/ngx-dc-utils";
@@ -15,7 +15,8 @@ import { CodeModalComponent, CodeModalData } from "@devcrate/ngx-dc-demo-card";
     encapsulation: ViewEncapsulation.None
 })
 export class NavbarDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal(hashName: string, path: string) {
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {

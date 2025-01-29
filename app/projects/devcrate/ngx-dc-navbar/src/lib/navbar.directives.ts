@@ -1,14 +1,13 @@
-import {Directive, TemplateRef, ViewContainerRef} from "@angular/core";
+import { Directive, TemplateRef, ViewContainerRef, inject } from "@angular/core";
 
 @Directive({
   selector: '[ngxDcNavbarRightTopBarContent]',
   standalone: true
 })
 export class NgxDcNavbarRightTopBarContentDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 
@@ -17,10 +16,9 @@ export class NgxDcNavbarRightTopBarContentDirective {
   standalone: true
 })
 export class NgxDcNavbarMainContentDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 
@@ -29,10 +27,9 @@ export class NgxDcNavbarMainContentDirective {
   standalone: true
 })
 export class NgxDcNavbarSidebarLinksDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -40,8 +37,7 @@ export class NgxDcNavbarSidebarLinksDirective {
   standalone: true
 })
 export class NgxDcNavbarSidebarDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }

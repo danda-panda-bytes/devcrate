@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {InfiniteScrollSidePaneListDataSource} from "./infinite-scroll-side-pane-list.data-source";
 import {
   NgxDcPaneContentDirective,
@@ -24,7 +24,8 @@ import {JsonPipe} from "@angular/common";
 })
 
 export class InfiniteScrollSidePaneListComponent implements OnInit {
-  constructor(public dataSource: InfiniteScrollSidePaneListDataSource) {}
+  dataSource = inject(InfiniteScrollSidePaneListDataSource);
+
 
   public async ngOnInit() {
     await this.dataSource.initialize()

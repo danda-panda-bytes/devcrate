@@ -1,6 +1,6 @@
-import {Directive, ElementRef, Input, TemplateRef} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, firstValueFrom} from "rxjs";
+import { HttpClient } from "@angular/common/http"
+import { Directive, ElementRef, Input, inject } from '@angular/core'
+import { BehaviorSubject, firstValueFrom } from "rxjs"
 
 @Directive({
   selector: '[ngxDcAuthImgSrc]',
@@ -8,6 +8,9 @@ import {BehaviorSubject, firstValueFrom} from "rxjs";
   exportAs: 'imgSrc'
 })
 export class NgxDcAuthImgSrcDirective {
+  private http = inject(HttpClient)
+  private el = inject<ElementRef<HTMLImageElement>>(ElementRef)
+
   public initialized = false
   public error: string
   public loading = new BehaviorSubject<boolean>(true)
@@ -30,8 +33,6 @@ export class NgxDcAuthImgSrcDirective {
 
   private _fileUrl: string
 
-  constructor(private http: HttpClient, private el: ElementRef<HTMLImageElement>) { }
-
   public async retrieveFileUrlImage() {
     this.loading.next(true)
     const response = await firstValueFrom(this.http.get(this.fileUrl, { responseType: 'blob' }))
@@ -42,26 +43,26 @@ export class NgxDcAuthImgSrcDirective {
     }
 
     reader.onerror = (event: any) => {
-      console.error("File could not be read: " + event.target.error.code);
-    };
+      console.error("File could not be read: " + event.target.error.code)
+    }
 
     reader.readAsDataURL(response)
   }
 
   public async retrieveLocalFileImage() {
     this.loading.next(true)
-    const reader = new FileReader();
+    const reader = new FileReader()
 
     reader.onload = (event: any) => {
-      this.el.nativeElement.src = event.target.result;
+      this.el.nativeElement.src = event.target.result
       this.loading.next(false)
-    };
+    }
 
     reader.onerror = (event: any) => {
-      console.log("File could not be read: " + event.target.error.code);
-    };
+      console.log("File could not be read: " + event.target.error.code)
+    }
 
-    reader.readAsDataURL(this.file);
+    reader.readAsDataURL(this.file)
   }
 
   public async tryRetrieval(retrieve: () => Promise<any>) {

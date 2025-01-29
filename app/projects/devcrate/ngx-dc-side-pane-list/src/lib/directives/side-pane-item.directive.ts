@@ -1,14 +1,13 @@
-import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[ngxDcSidePaneItemLineNumber]',
   standalone: true
 })
 export class NgxDcSidePaneItemLineNumberDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -16,10 +15,9 @@ export class NgxDcSidePaneItemLineNumberDirective {
   standalone: true
 })
 export class NgxDcSidePaneItemDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -27,10 +25,9 @@ export class NgxDcSidePaneItemDirective {
   standalone: true
 })
 export class NgxDcSidePaneFooterDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -38,10 +35,9 @@ export class NgxDcSidePaneFooterDirective {
   standalone: true
 })
 export class NgxDcSidePaneLoadingItemDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -49,10 +45,9 @@ export class NgxDcSidePaneLoadingItemDirective {
   standalone: true
 })
 export class NgxDcSidePaneItemSubtitleDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -60,10 +55,9 @@ export class NgxDcSidePaneItemSubtitleDirective {
   standalone: true
 })
 export class NgxDcSidePaneItemTextDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -71,10 +65,9 @@ export class NgxDcSidePaneItemTextDirective {
   standalone: true
 })
 export class NgxDcSidePaneItemRightTextDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }
 
 @Directive({
@@ -82,8 +75,7 @@ export class NgxDcSidePaneItemRightTextDirective {
   standalone: true
 })
 export class NgxDcSidePaneItemIconDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
 }

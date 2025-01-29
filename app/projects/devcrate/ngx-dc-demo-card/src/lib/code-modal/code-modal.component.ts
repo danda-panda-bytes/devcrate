@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import {NgxDcModalService} from "@devcrate/ngx-dc-utils";
 import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material/dialog";
 import {DialogRef} from "@angular/cdk/dialog";
@@ -30,11 +30,9 @@ export interface CodeModalData {
 })
 
 export class CodeModalComponent {
-  constructor(
-    private modalService: NgxDcModalService,
-    private dialogRef: DialogRef<CodeModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: CodeModalData,
-  ) {}
+  private modalService = inject(NgxDcModalService);
+  private dialogRef = inject<DialogRef<CodeModalComponent>>(DialogRef);
+  public data = inject<CodeModalData>(MAT_DIALOG_DATA);
 
   public async showModal(hashName: string, path: string) {
     this.dialogRef.close()

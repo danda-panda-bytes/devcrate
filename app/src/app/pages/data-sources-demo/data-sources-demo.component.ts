@@ -1,5 +1,5 @@
 import { AsyncPipe, JsonPipe, NgTemplateOutlet } from "@angular/common";
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatButtonModule, MatIconButton } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
@@ -27,9 +27,10 @@ import { DataSourceMatTableComponent } from "./data-source-mat-table/data-source
     encapsulation: ViewEncapsulation.None
 })
 export class DataSourcesDemoComponent {
+  private modalService = inject(NgxDcModalService);
+
   public showCode = false;
 
-  constructor(private modalService: NgxDcModalService) {}
 
   public async showModal() {
     const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname

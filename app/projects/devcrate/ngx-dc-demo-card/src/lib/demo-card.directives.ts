@@ -1,9 +1,4 @@
-import {
-  Directive,
-  TemplateRef,
-  Input,
-  ViewContainerRef, OnInit, ElementRef, HostBinding
-} from '@angular/core';
+import { Directive, HostBinding, inject, TemplateRef } from '@angular/core';
 
 @Directive({
   selector: '[ngx-dc-demo-tabs]',
@@ -34,7 +29,7 @@ export class NgxDcDemoTabsDirective {
   standalone: true,
 })
 export class NgxDcDemoCardExampleDirective {
-  constructor(public templateRef: TemplateRef<any>) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
 }
 
 @Directive({
@@ -42,7 +37,7 @@ export class NgxDcDemoCardExampleDirective {
   standalone: true,
 })
 export class NgxDcDemoCardButtonsDirective {
-  constructor(public templateRef: TemplateRef<any>) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
 }
 
 @Directive({
@@ -50,7 +45,7 @@ export class NgxDcDemoCardButtonsDirective {
   standalone: true,
 })
 export class NgxDcDemoCardSubtitleDirective {
-  constructor(public templateRef: TemplateRef<any>) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
 }
 
 @Directive({
@@ -58,7 +53,7 @@ export class NgxDcDemoCardSubtitleDirective {
   standalone: true,
 })
 export class NgxDcDemoCardTitleDirective {
-  constructor(public templateRef: TemplateRef<any>) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
 }
 
 @Directive({
@@ -66,6 +61,6 @@ export class NgxDcDemoCardTitleDirective {
   standalone: true,
 })
 export class NgxDcDemoCardExampleTitleDirective {
-  constructor(public templateRef: TemplateRef<any>) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
 }
 

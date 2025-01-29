@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {BasicSidePaneListDataSource} from "./basic-side-pane-list.data-source";
 import {
   NgxDcSidePaneListModule
@@ -20,7 +20,8 @@ import {JsonPipe} from "@angular/common";
 })
 
 export class BasicSidePaneListComponent implements OnInit {
-  constructor(public dataSource: BasicSidePaneListDataSource) {}
+  dataSource = inject(BasicSidePaneListDataSource);
+
 
   public async ngOnInit() {
     await this.dataSource.initialize()

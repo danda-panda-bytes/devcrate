@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {CodeModalComponent, CodeModalData, NgxDcDemoCardModule} from "@devcrate/ngx-dc-demo-card";
 import {MatTabsModule} from "@angular/material/tabs";
 import {FileViewerPdfComponent} from "./file-viewer-pdf.component";
@@ -19,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
     styleUrl: './file-viewer-demo.component.scss'
 })
 export class FileViewerDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal() {
     const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname

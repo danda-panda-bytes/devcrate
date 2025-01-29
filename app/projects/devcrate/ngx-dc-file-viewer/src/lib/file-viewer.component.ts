@@ -1,15 +1,15 @@
-import { ScrollingModule } from "@angular/cdk/scrolling";
-import { AsyncPipe, NgTemplateOutlet } from "@angular/common";
-import { Component, ContentChild, ElementRef, HostBinding, Input, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from "@angular/material/button";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatIconModule } from "@angular/material/icon";
-import { MatProgressBarModule } from "@angular/material/progress-bar";
-import { NgxDcFileService } from "@devcrate/ngx-dc-utils";
-import { PdfViewerModule } from "ng2-pdf-viewer";
-import { NgxDcAuthImgSrcDirective } from "./directives/auth-img-src.directive";
-import { NgxDcAuthPdfSrcDirective } from "./directives/auth-pdf-src.directive";
-import { NgxDcFileViewerErrorDirective, NgxDcFileViewerNotSupportedFileDirective } from "./file-viewer.directives";
+import { ScrollingModule } from "@angular/cdk/scrolling"
+import { AsyncPipe, NgTemplateOutlet } from "@angular/common"
+import { Component, ContentChild, ElementRef, HostBinding, Input, ViewChild, ViewEncapsulation, inject } from '@angular/core'
+import { MatButtonModule } from "@angular/material/button"
+import { MatDialogModule } from "@angular/material/dialog"
+import { MatIconModule } from "@angular/material/icon"
+import { MatProgressBarModule } from "@angular/material/progress-bar"
+import { NgxDcFileService } from "@devcrate/ngx-dc-utils"
+import { PdfViewerModule } from "ng2-pdf-viewer"
+import { NgxDcAuthImgSrcDirective } from "./directives/auth-img-src.directive"
+import { NgxDcAuthPdfSrcDirective } from "./directives/auth-pdf-src.directive"
+import { NgxDcFileViewerErrorDirective, NgxDcFileViewerNotSupportedFileDirective } from "./file-viewer.directives"
 
 @Component({
     selector: 'ngx-dc-file-viewer',
@@ -48,6 +48,9 @@ import { NgxDcFileViewerErrorDirective, NgxDcFileViewerNotSupportedFileDirective
  * ```
  */
 export class FileViewerComponent {
+  apiService = inject(NgxDcFileService)
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef)
+
   @ViewChild(NgxDcAuthImgSrcDirective, { static: false })
   public imageSrc: NgxDcAuthImgSrcDirective
 
@@ -91,11 +94,6 @@ export class FileViewerComponent {
       ? `${this.parentRect?.width}px` || this._width
       : this._width
   }
-
-  constructor(
-    public apiService: NgxDcFileService,
-    private elementRef: ElementRef<HTMLElement>,
-  ) {  }
 
   public get disabled() {
     return this.pdfSrc?.loading?.value || this.imageSrc?.loading?.value || false

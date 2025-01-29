@@ -1,4 +1,4 @@
-import {Injectable, InjectionToken, TemplateRef} from "@angular/core";
+import { Injectable, InjectionToken, TemplateRef, inject } from "@angular/core";
 import {BehaviorSubject, firstValueFrom, Subject} from 'rxjs';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {ComponentType} from "@angular/cdk/overlay";
@@ -38,14 +38,15 @@ export function provideNgxDcModalService(ServiceClass?: new (...args: any[]) => 
 
 @Injectable()
 export class NgxDcModalService {
+  dialog = inject(MatDialog);
+  protected snackBar = inject(MatSnackBar);
+  protected router = inject(Router);
+
   public showGlobalLoadingBar: BehaviorSubject<boolean> = new BehaviorSubject(false);
   protected snackbarRef: MatSnackBarRef<SnackbarComponent> = null
   protected destroy$ = new Subject()
-  constructor(
-    public dialog: MatDialog,
-    protected snackBar: MatSnackBar,
-    protected router: Router,
-  ) {
+
+  constructor() {
     this.router.events.pipe(takeUntil(this.destroy$)).subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.onNavigationEnd(event)

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CodeModalComponent, CodeModalData, NgxMarkdownOnLinkClick } from '@devcrate/ngx-dc-demo-card';
 import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MarkdownModule } from 'ngx-markdown';
@@ -12,7 +12,8 @@ import { MarkdownModule } from 'ngx-markdown';
     templateUrl: './angular-basics-demo.component.html'
 })
 export class AngularBasicsComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal(hashName: string, path: string) {
     await this.modalService.showModal<CodeModalData>(CodeModalComponent, {

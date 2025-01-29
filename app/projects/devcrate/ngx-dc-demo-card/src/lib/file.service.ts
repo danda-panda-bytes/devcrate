@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {firstValueFrom, Observable} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
+import { firstValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileService {
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
+  private http = inject(HttpClient)
+  private sanitizer = inject(DomSanitizer)
 
   async getFileBlockContent(filePath: string, section: string): Promise<string> {
     const startMarker = `<!-- ${section} START -->`;

@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
@@ -19,8 +19,11 @@ import {NgxDcNavbarModule} from "@devcrate/ngx-dc-navbar";
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+  private matIconRegistry = inject(MatIconRegistry);
+
   public darkTheme = true
-  constructor(private matIconRegistry: MatIconRegistry) {
+
+  constructor() {
     this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
   }
 

@@ -1,5 +1,5 @@
 import { JsonPipe } from "@angular/common";
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import {NgxDcDropdownModule } from "@devcrate/ngx-dc-dropdown";
@@ -19,7 +19,8 @@ import { BasicDropdownDataSource } from "./basic-dropdown.data-source";
 })
 
 export class BasicDropdownComponent implements OnInit {
-  constructor(public dataSource: BasicDropdownDataSource) {}
+  dataSource = inject(BasicDropdownDataSource);
+
 
   public async ngOnInit() {
     await this.dataSource.initialize()

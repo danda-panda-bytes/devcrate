@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, TemplateRef, ViewChild} from '@angular/core';
+import { Directive, ElementRef, Input, TemplateRef, ViewChild, inject } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, firstValueFrom} from "rxjs";
 import {PdfViewerComponent} from "ng2-pdf-viewer";
@@ -9,6 +9,8 @@ import {PdfViewerComponent} from "ng2-pdf-viewer";
   exportAs: 'pdfSrc'
 })
 export class NgxDcAuthPdfSrcDirective {
+  private http = inject(HttpClient)
+
   @ViewChild(PdfViewerComponent) private host: PdfViewerComponent
 
   public error: string
@@ -34,10 +36,6 @@ export class NgxDcAuthPdfSrcDirective {
   private _fileUrl: string
 
   public src: string
-
-  constructor(
-    private http: HttpClient,
-  ) { }
 
   public async readLocalFile(): Promise<void> {
     this.loading.next(true)
