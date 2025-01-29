@@ -1,9 +1,9 @@
 import {Routes} from "@angular/router";
-import {UtilsDemoComponent} from "./pages/utils-demo/utils-demo.component";
+
 import {NgxDcNavbarLinkInfo} from "@devcrate/ngx-dc-navbar";
-import { EslintConfigDemoComponent } from "./pages/eslint-config-demo/eslint-config-demo.component";
-import { PlaywrightUtilsDemoComponent } from "./pages/playwright-utils-demo/playwright-utils-demo.component";
-import { NodeUtilsDemoComponent } from "./pages/node-utils-demo/node-utils-demo.component";
+
+
+
 
 export const PACKAGE_ROUTES: Routes = [
   {
@@ -13,22 +13,22 @@ export const PACKAGE_ROUTES: Routes = [
   },
   {
     path: 'eslint-config',
-    component: EslintConfigDemoComponent,
+    loadComponent: () => import('./pages/eslint-config-demo/eslint-config-demo.component').then(m => m.EslintConfigDemoComponent),
     data: { title: "ESLint Config" },
   },
   {
     path: 'playwright',
-    component: PlaywrightUtilsDemoComponent,
+    loadComponent: () => import('./pages/playwright-utils-demo/playwright-utils-demo.component').then(m => m.PlaywrightUtilsDemoComponent),
     data: { title: "Playwright Utils" },
   },
   {
     path: 'node-utils',
-    component: NodeUtilsDemoComponent,
+    loadComponent: () => import('./pages/node-utils-demo/node-utils-demo.component').then(m => m.NodeUtilsDemoComponent),
     data: { title: "Node Utilities" },
   },
   {
     path: 'coming-soon',
-    component: UtilsDemoComponent,
+    loadComponent: () => import('./pages/utils-demo/utils-demo.component').then(m => m.UtilsDemoComponent),
     data: { title: "Coming Soon" },
   },
 ]
