@@ -1,4 +1,4 @@
-import { Directive, Input, TemplateRef, ViewContainerRef, inject } from '@angular/core'
+import { Directive, TemplateRef, ViewContainerRef, inject, input } from '@angular/core'
 
 @Directive({
   selector: '[ngxDcDropdownHeader]',
@@ -8,7 +8,7 @@ export class NgxDcDropdownHeaderDirective {
   templateRef = inject<TemplateRef<any>>(TemplateRef)
   ViewContainerRef = inject(ViewContainerRef)
 
-  @Input('ngxDcDropdownHeaderHeight') public height: string = null
+  public readonly height = input<string>(null, { alias: "ngxDcDropdownHeaderHeight" });
 }
 
 @Directive({
@@ -19,7 +19,7 @@ export class NgxDcDropdownItemDirective {
   templateRef = inject<TemplateRef<any>>(TemplateRef)
   ViewContainerRef = inject(ViewContainerRef)
 
-  @Input('ngxDcDropdownItemHeight') public height: string = null
+  public readonly height = input<string>(null, { alias: "ngxDcDropdownItemHeight" });
 }
 
 @Directive({

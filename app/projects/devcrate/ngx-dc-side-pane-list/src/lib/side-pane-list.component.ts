@@ -1,6 +1,6 @@
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CommonModule } from "@angular/common";
-import { Component, ContentChild, ElementRef, Input, QueryList, ViewChild, ViewChildren, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ContentChild, ElementRef, QueryList, ViewChild, ViewChildren, ViewEncapsulation, inject, input } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -72,22 +72,30 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   /**
    * Whether the left pane is collapsed or not.
    */
-  @Input() public collapsed = false
+  public readonly collapsed = input(false
+/**
+ * Whether the dao being used is infinite scrolling or not.
+ */
+);
   /**
    * Whether the dao being used is infinite scrolling or not.
    */
-  @Input() public useInfiniteScrolling = false
+  public readonly useInfiniteScrolling = input(false
+/** Whether the table will show the global loading bar (defined in the ModalService) or not. */
+);
   /** Whether the table will show the global loading bar (defined in the ModalService) or not. */
-  @Input() private useGlobalLoader = true;
+  private readonly useGlobalLoader = input(true);
 
   /** When a user clicks on an item, should the global loading bar be shown */
-  @Input() private useGlobalOnItem = true;
+  private readonly useGlobalOnItem = input(true);
 
   /** Whether the left pane is collapsible or not. */
-  @Input() public collapsible = true
+  public readonly collapsible = input(true
+/** The dao that will be used to manage the data. */
+);
 
   /** The dao that will be used to manage the data. */
-  @Input({ required: true }) public dataSource: NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>
+  public readonly dataSource = input.required<NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
 
   @ContentChild(NgxDcSidePaneFooterDirective)
   public sidePaneFooter: NgxDcSidePaneFooterDirective
@@ -160,14 +168,14 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
     //   if (collapsed) { this.collapsed = collapsed }
     // })
 
-    if (this.useGlobalLoader) {
-      this.dataSource.loading.subscribe(loading => {
+    if (this.useGlobalLoader()) {
+      this.dataSource().loading.subscribe(loading => {
         this.modalService.showGlobalLoadingBar.next(loading)
       })
     }
 
-    if (this.useGlobalOnItem) {
-      this.dataSource.itemLoading.pipe(
+    if (this.useGlobalOnItem()) {
+      this.dataSource().itemLoading.pipe(
         // Skips the initialized value which is always false
         skip(1),
       ).subscribe((loading: boolean) => {
@@ -185,8 +193,8 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
    * Meant to be used by ViewChild if we want to reset a focused item from a parent component.
    */
   public resetFocusedItem() {
-    this.dataSource.selectedItem.next(null)
-    this.dataSource.retrievedItem.next(null)
+    this.dataSource().selectedItem.next(null)
+    this.dataSource().retrievedItem.next(null)
   }
 
   /**
@@ -194,10 +202,10 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
    */
   public reset() {
     this.resetFocusedItem()
-    this.dataSource.reset()
+    this.dataSource().reset()
   }
 
   public async onPaneItemClicked(item: FinalDataItemsT): Promise<void> {
-    await this.dataSource.onPaneItemClicked(item)
+    await this.dataSource().onPaneItemClicked(item)
   }
 }

@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="button-actions">
-      @if (showCodeIcon) {
+      @if (showCodeIcon()) {
         <button mat-icon-button (click)="demoTabsTemplate && (demoTabsTemplate.showCode = !demoTabsTemplate.showCode)"><mat-icon>code</mat-icon></button>
       }
-      @if (showLinkIcon) {
+      @if (showLinkIcon()) {
         <button mat-icon-button><mat-icon>link</mat-icon></button>
       }
       @if (buttonsTemplate?.templateRef) {

@@ -14,8 +14,8 @@
   <ng-container
     #pdfSrc="pdfSrc"
     ngxDcAuthPdfSrc
-    [file]="file"
-    [fileUrl]="fileUrl"
+    [file]="file()"
+    [fileUrl]="fileUrl()"
   >
     @if (pdfSrc.src) {
       <pdf-viewer
@@ -48,9 +48,9 @@
   <img
     class="file-image"
     ngxDcAuthImgSrc
-    [fileUrl]="fileUrl"
-    [file]="file"
-    [alt]="fileName"
+    [fileUrl]="fileUrl()"
+    [file]="file()"
+    [alt]="fileName()"
     [style.width]="width"
     [style.height]="height"
   />

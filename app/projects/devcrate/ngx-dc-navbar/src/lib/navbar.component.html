@@ -1,11 +1,11 @@
-<div class="top-bar mat-elevation-z2" [ngStyle]="topBarBackgroundImage ? {'background-image': 'url(' + topBarBackgroundImage + ')'} : {}">
+<div class="top-bar mat-elevation-z2" [ngStyle]="topBarBackgroundImage() ? {'background-image': 'url(' + topBarBackgroundImage() + ')'} : {}">
   <div class="main-title flex flex-row">
-    @if (appLogoUrl) {
-      <a [href]="appLogoUrl"><img class="ngx-dc-navbar-icon" [src]="appLogo" alt="{{mainTitle + ' Icon'}}" /></a>
+    @if (appLogoUrl()) {
+      <a [href]="appLogoUrl()"><img class="ngx-dc-navbar-icon" [src]="appLogo()" alt="{{mainTitle() + ' Icon'}}" /></a>
     } @else {
-      <img class="ngx-dc-navbar-icon" [src]="appLogo" alt="{{mainTitle + ' Icon'}}" />
+      <img class="ngx-dc-navbar-icon" [src]="appLogo()" alt="{{mainTitle() + ' Icon'}}" />
     }
-    <span class="ngx-dc-navbar-title">{{mainTitle}}</span>
+    <span class="ngx-dc-navbar-title">{{mainTitle()}}</span>
   </div>
   <span class="fill"></span>
   <ng-container *ngTemplateOutlet="rightTopBarContentTemplate?.templateRef"></ng-container>
@@ -75,10 +75,10 @@
                        (click)="navbarService.collapsed$.next(!navbarService.collapsed$.value)">
           <div class="flex align-items-center justify-content-center">
           <span class="version-info">
-            @if (collapseButtonText) {
-              {{ collapseButtonText }}
+            @if (collapseButtonText()) {
+              {{ collapseButtonText() }}
             } @else {
-              {{ mainTitle }} {{ version || '' }}
+              {{ mainTitle() }} {{ version() || '' }}
             }
           </span>
             <span class="fill collapse-fill"></span>

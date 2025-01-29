@@ -15,6 +15,8 @@ export class NgxDcAuthPdfSrcDirective {
 
   public error: string
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set file(file: File) {
     this._file = file
@@ -24,6 +26,8 @@ export class NgxDcAuthPdfSrcDirective {
   public get file(): File { return this._file }
   private _file: File
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set fileUrl(src: string) {
     this._fileUrl = src

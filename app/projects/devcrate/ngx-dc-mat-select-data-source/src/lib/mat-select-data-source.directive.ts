@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, OnDestroy, ContentChild, TemplateRef, ViewContainerRef, ElementRef, QueryList, AfterContentInit, inject } from '@angular/core';
+import { Directive, OnInit, OnDestroy, ContentChild, TemplateRef, ViewContainerRef, ElementRef, QueryList, AfterContentInit, inject, input } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {MatSelect} from "@angular/material/select";
 import {NgxDcMatSelectOptionDirective} from "./mat-select-option.directive";
@@ -22,7 +22,7 @@ import {takeUntil} from "rxjs/operators";
 export class NgxDcMatSelectDataSourceDirective extends DestroyObservable implements AfterContentInit {
   private matSelect = inject(MatSelect);
 
-  @Input('ngxDcMatSelectDataSource') dataSource: any;
+  readonly dataSource = input<any>(undefined, { alias: "ngxDcMatSelectDataSource" });
   @ContentChild(NgxDcMatSelectOptionDirective) optionTemplate: NgxDcMatSelectOptionDirective;
   private subscription: Subscription;
 
@@ -31,8 +31,9 @@ export class NgxDcMatSelectDataSourceDirective extends DestroyObservable impleme
   }
 
   ngOnInit() {
-    if (this.dataSource) {
-      this.dataSource.data$.pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
+    const dataSource = this.dataSource();
+    if (dataSource) {
+      dataSource.data$.pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
         if (this.optionTemplate) {
           this.optionTemplate.viewContainer.clear()
           data.forEach((item: any) => {
@@ -44,9 +45,9 @@ export class NgxDcMatSelectDataSourceDirective extends DestroyObservable impleme
   }
 
   ngAfterContentInit() {
-    if (this.dataSource && this.matSelect?.valueChange) {
+    if (this.dataSource() && this.matSelect?.valueChange) {
       this.matSelect.valueChange.pipe(takeUntil(this.destroy$)).subscribe(item => {
-        this.dataSource.selectedItem.next(item)
+        this.dataSource().selectedItem.next(item)
       });
     }
   }

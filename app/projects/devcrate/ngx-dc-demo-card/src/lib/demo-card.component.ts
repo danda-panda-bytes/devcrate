@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from "@angular/common"
-import { Component, ContentChild, Input, ViewEncapsulation } from '@angular/core'
+import { Component, ContentChild, ViewEncapsulation, input } from '@angular/core'
 import { MatIconButton } from "@angular/material/button"
 import { MatCardModule } from "@angular/material/card"
 import { MatIconModule } from "@angular/material/icon"
@@ -26,12 +26,12 @@ import {
     encapsulation: ViewEncapsulation.None
 })
 export class NgxDcDemoCardComponent {
-  @Input() public title: string
-  @Input() public subtitle: string
+  public title = input<string>();
+  public subtitle = input<string>();
 
   public showCode = false
-  @Input() showLinkIcon!: boolean
-  @Input() showCodeIcon!: boolean
+  showLinkIcon = input.required<boolean>();
+  showCodeIcon = input.required<boolean>();
 
   @ContentChild(NgxDcDemoCardTitleDirective) titleTemplate!: NgxDcDemoCardTitleDirective;
   @ContentChild(NgxDcDemoCardSubtitleDirective) subtitleTemplate!: NgxDcDemoCardSubtitleDirective;

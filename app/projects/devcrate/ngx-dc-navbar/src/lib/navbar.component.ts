@@ -1,5 +1,5 @@
 import { AsyncPipe, NgStyle, NgTemplateOutlet } from "@angular/common";
-import { Component, ContentChild, HostListener, Input, OnInit, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ContentChild, HostListener, OnInit, ViewEncapsulation, inject, input } from '@angular/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatRippleModule } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
@@ -42,12 +42,12 @@ export class NgxDcNavbarComponent implements OnInit {
   navbarService = inject<NgxDcNavbarService>(NgxDcNavbarServiceToken);
   links = inject(NgxDcNavbarLinksConfig);
 
-  @Input({ required: true }) public mainTitle: string
-  @Input() public appLogo: string
-  @Input() public appLogoUrl: string = null
-  @Input() public version: string = null
-  @Input() public topBarBackgroundImage: string = null
-  @Input() public collapseButtonText: string = null
+  public readonly mainTitle = input.required<string>();
+  public readonly appLogo = input<string>();
+  public readonly appLogoUrl = input<string>(null);
+  public readonly version = input<string>(null);
+  public readonly topBarBackgroundImage = input<string>(null);
+  public readonly collapseButtonText = input<string>(null);
 
   public SMALL_SCREEN_WIDTH = 768;
   public opened = false;

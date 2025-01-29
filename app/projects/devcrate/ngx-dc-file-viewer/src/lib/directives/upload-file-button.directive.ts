@@ -16,6 +16,8 @@ export class NgxDcUploadFileButtonDirective {
   private readonly input: HTMLInputElement
   private accepted: string = ''
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input({ required: true, alias: 'accept' })
   public set typeAccepted(accept: string) {
     this.accepted = accept
