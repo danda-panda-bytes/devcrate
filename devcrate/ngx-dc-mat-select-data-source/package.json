@@ -2,9 +2,9 @@
   "name": "@devcrate/ngx-dc-mat-select-data-source",
   "version": "18.0.0",
   "peerDependencies": {
-    "@angular/common": ">=17.0.0",
-    "@angular/core": ">=17.0.0",
-    "@devcrate/ngx-dc-utils": ">=17.0.0"
+    "@angular/common": ">=18.0.0",
+    "@angular/core": ">=18.0.0",
+    "@devcrate/ngx-dc-utils": ">=18.0.0"
   },
   "lerna": {
     "command": {
