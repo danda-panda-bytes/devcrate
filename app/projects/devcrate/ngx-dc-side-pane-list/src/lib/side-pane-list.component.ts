@@ -1,6 +1,6 @@
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CommonModule } from "@angular/common";
-import { Component, ContentChild, ElementRef, QueryList, ViewChild, ViewChildren, ViewEncapsulation, inject, input } from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation, inject, input, contentChild, viewChild, viewChildren } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -97,43 +97,31 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   /** The dao that will be used to manage the data. */
   public readonly dataSource = input.required<NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
 
-  @ContentChild(NgxDcSidePaneFooterDirective)
-  public sidePaneFooter: NgxDcSidePaneFooterDirective
+  readonly sidePaneFooter = contentChild(NgxDcSidePaneFooterDirective);
 
-  @ContentChild(NgxDcSidePaneItemLineNumberDirective)
-  public sidePaneItemLineNumber: NgxDcSidePaneItemLineNumberDirective
+  readonly sidePaneItemLineNumber = contentChild(NgxDcSidePaneItemLineNumberDirective);
 
-  @ContentChild(NgxDcSidePaneItemDirective)
-  public sidePaneItem: NgxDcSidePaneItemDirective
+  readonly sidePaneItem = contentChild(NgxDcSidePaneItemDirective);
 
-  @ContentChild(NgxDcSidePaneLoadingItemDirective)
-  public sidePaneLoadingItem: NgxDcSidePaneLoadingItemDirective
+  readonly sidePaneLoadingItem = contentChild(NgxDcSidePaneLoadingItemDirective);
 
-  @ContentChild(NgxDcSidePaneItemSubtitleDirective)
-  public sidePaneItemSubtitle: NgxDcSidePaneItemSubtitleDirective
+  readonly sidePaneItemSubtitle = contentChild(NgxDcSidePaneItemSubtitleDirective);
 
-  @ContentChild(NgxDcSidePaneItemTextDirective)
-  public sidePaneItemText: NgxDcSidePaneItemTextDirective
+  readonly sidePaneItemText = contentChild(NgxDcSidePaneItemTextDirective);
 
-  @ContentChild(NgxDcSidePaneItemRightTextDirective)
-  public sidePaneItemRightText: NgxDcSidePaneItemRightTextDirective
+  readonly sidePaneItemRightText = contentChild(NgxDcSidePaneItemRightTextDirective);
 
-  @ContentChild(NgxDcPaneContentDirective)
-  public paneContent: NgxDcPaneContentDirective
+  readonly paneContent = contentChild(NgxDcPaneContentDirective);
 
-  @ContentChild(NgxDcPanePageInfoDirective)
-  public panePageInfo: NgxDcPanePageInfoDirective
+  readonly panePageInfo = contentChild(NgxDcPanePageInfoDirective);
 
-  @ContentChild(NgxDcSidePaneItemIconDirective)
-  public sidePaneItemIcon: NgxDcSidePaneItemIconDirective
+  readonly sidePaneItemIcon = contentChild(NgxDcSidePaneItemIconDirective);
 
-  @ViewChild('scroller', { read: ElementRef })
-  public element: ElementRef<any>
-  @ViewChildren('matListItem')
-  public matListItems: QueryList<MatListItem>
+  readonly element = viewChild('scroller', { read: ElementRef });
+  readonly matListItems = viewChildren<MatListItem>('matListItem');
 
   public get firstMatItem(): Element {
-    return this.matListItems?.first?._elementRef?.nativeElement?.parentElement?.firstElementChild
+    return this.matListItems()?.at(0)!?._elementRef?.nativeElement?.parentElement?.firstElementChild
   }
 
   public scrollToFirstItem() {
@@ -145,12 +133,13 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   }
 
   public get activeMatItem(): MatListItem | null {
-    return this.matListItems?.find(item => item?.activated)
+    return this.matListItems()?.find(item => item?.activated)
   }
 
   public scrollToTop() {
-    if (!this.element.nativeElement) return
-    this.element.nativeElement.scrollTop = 0
+    const element = this.element();
+    if (!element.nativeElement) return
+    element.nativeElement.scrollTop = 0
   }
 
   public scrollToActiveItem() {

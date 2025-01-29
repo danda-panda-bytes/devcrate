@@ -1,7 +1,7 @@
 <mat-card class="ngx-dc-side-pane-list" [class.collapsed]="collapsed()">
   <div mat-subheader class="dc-total-count">
       <ng-container
-        *ngTemplateOutlet="panePageInfo?.templateRef; context: {
+        *ngTemplateOutlet="panePageInfo()?.templateRef; context: {
             $implicit: dataSource().selectedItem | async,
             collapsed: collapsed(),
             filteredCount: (dataSource().filteredData$ | async) | filledCount,
@@ -32,7 +32,7 @@
       >
         @if (item) {
           <ng-container
-            *ngTemplateOutlet="sidePaneItem?.templateRef; context: {
+            *ngTemplateOutlet="sidePaneItem()?.templateRef; context: {
                   $implicit: item,
                   index: i,
                   collapsed: collapsed(),
@@ -40,7 +40,7 @@
           ></ng-container>
         } @else {
           <ng-container
-            *ngTemplateOutlet="sidePaneLoadingItem?.templateRef; context: {
+            *ngTemplateOutlet="sidePaneLoadingItem()?.templateRef; context: {
                   index: i,
                   collapsed: collapsed(),
                 }"
@@ -62,9 +62,9 @@
   </mat-nav-list>
 
 
-  @if (sidePaneFooter) {
+  @if (sidePaneFooter()) {
     <ng-container
-      *ngTemplateOutlet="sidePaneFooter?.templateRef; context: {
+      *ngTemplateOutlet="sidePaneFooter()?.templateRef; context: {
             collapsed: collapsed(),
           }"
     ></ng-container>
@@ -82,7 +82,7 @@
 </mat-card>
 <div class="dc-content-pane">
     <ng-container
-      *ngTemplateOutlet="paneContent?.templateRef; context: {
+      *ngTemplateOutlet="paneContent()?.templateRef; context: {
         $implicit: dataSource().retrievedItem | async,
         selectedItem: dataSource().selectedItem | async,
         collapsed: collapsed()

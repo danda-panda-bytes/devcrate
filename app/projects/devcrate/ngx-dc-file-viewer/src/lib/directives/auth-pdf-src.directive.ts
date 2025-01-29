@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, TemplateRef, ViewChild, inject } from '@angular/core';
+import { Directive, ElementRef, Input, TemplateRef, inject, viewChild } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, firstValueFrom} from "rxjs";
 import {PdfViewerComponent} from "ng2-pdf-viewer";
@@ -11,7 +11,7 @@ import {PdfViewerComponent} from "ng2-pdf-viewer";
 export class NgxDcAuthPdfSrcDirective {
   private http = inject(HttpClient)
 
-  @ViewChild(PdfViewerComponent) private host: PdfViewerComponent
+  readonly host = viewChild(PdfViewerComponent);
 
   public error: string
 

@@ -8,10 +8,10 @@
   (click)="onDropdownClick()"
 >
   <div mat-subheader class="dc-dropdown-header"
-    [style.height]="'calc(' + (dropdownHeader?.height() || dataSource().rowHeight || 48) + 'px' + ' - 1.5rem)'"
+    [style.height]="'calc(' + (dropdownHeader()?.height() || dataSource().rowHeight || 48) + 'px' + ' - 1.5rem)'"
   >
     <ng-container
-      *ngTemplateOutlet="dropdownHeader?.templateRef; context: {
+      *ngTemplateOutlet="dropdownHeader()?.templateRef; context: {
         $implicit: dataSource().selectedItem | async,
         opened: opened(),
         filteredCount: (dataSource().filteredData$ | async) | filledCount,
@@ -35,14 +35,14 @@
         class="dc-dropdown-item"
         data-testid="ngx-dc-dropdown-item"
         [ngClass]="dataSource().ngClassDropdownItem(dataSource().selectedItem | async, item, i)"
-        [style.height]="(dropdownOption?.height() || dataSource()?.rowHeight || dropdownHeader?.height() || 48) + 'px'"
+        [style.height]="(dropdownOption()?.height() || dataSource()?.rowHeight || dropdownHeader()?.height() || 48) + 'px'"
         (click)="onPaneItemClicked(item)"
         [activated]="dataSource().selectedItem.value && item && dataSource().isActiveItem(dataSource().selectedItem.value, item)"
       >
         @if (!item || (dataSource().loading | async)) {
-          @if (dropdownLoading) {
+          @if (dropdownLoading()) {
             <ng-container
-              *ngTemplateOutlet="dropdownLoading?.templateRef; context: {
+              *ngTemplateOutlet="dropdownLoading()?.templateRef; context: {
                 opened: opened(),
               }"
             ></ng-container>
@@ -50,9 +50,9 @@
             Loading...
           }
         } @else {
-          @if (dropdownOption) {
+          @if (dropdownOption()) {
             <ng-container
-              *ngTemplateOutlet="dropdownOption?.templateRef; context: {
+              *ngTemplateOutlet="dropdownOption()?.templateRef; context: {
                 $implicit: item,
                 filteredCount: (dataSource().filteredData$ | async) | filledCount,
                 currentCount: dataSource().actualDataLength,
@@ -73,11 +73,11 @@
           <mat-list-item
             [disabled]="true"
             class="dc-dropdown-item"
-            [style.height]="(dropdownOption?.height() || dropdownHeader?.height() || dataSource()?.rowHeight || 48) + 'px'"
+            [style.height]="(dropdownOption()?.height() || dropdownHeader()?.height() || dataSource()?.rowHeight || 48) + 'px'"
             data-testid="ngx-dc-dropdown-no-item"
           >
             <ng-container
-              *ngTemplateOutlet="noItems?.templateRef; context: {
+              *ngTemplateOutlet="noItems()?.templateRef; context: {
               opened: opened(),
             }"
             ></ng-container>
@@ -94,11 +94,11 @@
         <mat-list-item
           [disabled]="true"
           class="dc-dropdown-item"
-          [style.height]="(dropdownOption?.height() || dropdownHeader?.height() || dataSource()?.rowHeight || 48) + 'px'"
+          [style.height]="(dropdownOption()?.height() || dropdownHeader()?.height() || dataSource()?.rowHeight || 48) + 'px'"
           data-testid="ngx-dc-dropdown-no-item"
         >
           <ng-container
-            *ngTemplateOutlet="noItems?.templateRef; context: {
+            *ngTemplateOutlet="noItems()?.templateRef; context: {
               opened: opened(),
             }"
           ></ng-container>

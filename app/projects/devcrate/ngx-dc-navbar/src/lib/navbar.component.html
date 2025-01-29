@@ -8,19 +8,19 @@
     <span class="ngx-dc-navbar-title">{{mainTitle()}}</span>
   </div>
   <span class="fill"></span>
-  <ng-container *ngTemplateOutlet="rightTopBarContentTemplate?.templateRef"></ng-container>
+  <ng-container *ngTemplateOutlet="rightTopBarContentTemplate()?.templateRef"></ng-container>
 </div>
 <div class="main-container">
-  @if (sideBarContentTemplate?.templateRef) {
+  @if (sideBarContentTemplate()?.templateRef) {
     <div class="side-bar mat-elevation-z2" [class.collapsed]="navbarService.collapsed$ | async">
-      <ng-container *ngTemplateOutlet="sideBarContentTemplate?.templateRef; context: {
+      <ng-container *ngTemplateOutlet="sideBarContentTemplate()?.templateRef; context: {
         $implicit: navbarService.collapsed$ | async
       }"></ng-container>
     </div>
   } @else {
     <div class="side-bar mat-elevation-z2" [class.collapsed]="navbarService.collapsed$ | async">
-      @if (sidebarLinksTemplate?.templateRef) {
-        <ng-container *ngTemplateOutlet="sidebarLinksTemplate?.templateRef; context: {
+      @if (sidebarLinksTemplate()?.templateRef) {
+        <ng-container *ngTemplateOutlet="sidebarLinksTemplate()?.templateRef; context: {
           $implicit: navbarService.collapsed$ | async
         }"></ng-container>
       } @else {
@@ -98,6 +98,6 @@
         data-testid="app-global-loader"
       ></mat-progress-bar>
     }
-    <ng-container *ngTemplateOutlet="mainContentTemplate?.templateRef"></ng-container>
+    <ng-container *ngTemplateOutlet="mainContentTemplate()?.templateRef"></ng-container>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { JsonPipe } from "@angular/common";
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, inject, viewChild } from '@angular/core';
 import { MatIconButton } from "@angular/material/button";
 import { MatCard, MatCardTitle } from "@angular/material/card";
 import { MatIcon } from "@angular/material/icon";
@@ -27,12 +27,12 @@ import { SortableInfiniteScrollSidePaneListDataSource } from "./sortable-infinit
 export class SortableInfiniteScrollSidePaneListComponent implements OnInit {
   dataSource = inject(SortableInfiniteScrollSidePaneListDataSource)
 
-  @ViewChild(NgxDcSidePaneListComponent) table: NgxDcSidePaneListComponent<any>
+  readonly table = viewChild(NgxDcSidePaneListComponent);
 
   public sorted = false
   public async sort() {
     this.sorted = !this.sorted
-    this.table.scrollToTop()
+    this.table().scrollToTop()
     this.dataSource.params = {}
     this.dataSource.params.sortField = "name"
     this.dataSource.params.sortDir = this.sorted ? "desc" : "asc"

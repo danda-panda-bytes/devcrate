@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewChildren, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChildren, inject, viewChild } from '@angular/core';
 import {SortedFilterInfiniteScrollSidePaneListDataSource} from "./sorted-filter-infinite-scroll-side-pane-list.data-source";
 import {
   NgxDcPanePageInfoDirective,
@@ -30,12 +30,12 @@ import {MatIconButton} from "@angular/material/button";
 export class SortedFilterInfiniteScrollSidePaneListComponent implements OnInit {
   dataSource = inject(SortedFilterInfiniteScrollSidePaneListDataSource);
 
-  @ViewChild(NgxDcSidePaneListComponent) table: NgxDcSidePaneListComponent<any>
+  readonly table = viewChild(NgxDcSidePaneListComponent);
 
   public sorted = false
   public async sort() {
     this.sorted = !this.sorted
-    this.table.scrollToTop()
+    this.table().scrollToTop()
     this.dataSource.params = {}
     this.dataSource.params.sortField = "name"
     this.dataSource.params.sortDir = this.sorted ? "desc" : "asc"

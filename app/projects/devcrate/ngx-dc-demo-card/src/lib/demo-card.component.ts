@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from "@angular/common"
-import { Component, ContentChild, ViewEncapsulation, input } from '@angular/core'
+import { Component, ViewEncapsulation, input, contentChild } from '@angular/core'
 import { MatIconButton } from "@angular/material/button"
 import { MatCardModule } from "@angular/material/card"
 import { MatIconModule } from "@angular/material/icon"
@@ -33,10 +33,10 @@ export class NgxDcDemoCardComponent {
   showLinkIcon = input.required<boolean>();
   showCodeIcon = input.required<boolean>();
 
-  @ContentChild(NgxDcDemoCardTitleDirective) titleTemplate!: NgxDcDemoCardTitleDirective;
-  @ContentChild(NgxDcDemoCardSubtitleDirective) subtitleTemplate!: NgxDcDemoCardSubtitleDirective;
-  @ContentChild(NgxDcDemoCardButtonsDirective) buttonsTemplate!: NgxDcDemoCardButtonsDirective;
-  @ContentChild(NgxDcDemoCardExampleDirective) exampleTemplate!: NgxDcDemoCardExampleDirective;
-  @ContentChild(NgxDcDemoTabsDirective) demoTabsTemplate!: NgxDcDemoTabsDirective;
-  @ContentChild(NgxDcDemoCardExampleTitleDirective) exampleTitleTemplate!: NgxDcDemoCardExampleTitleDirective
+  readonly titleTemplate = contentChild.required(NgxDcDemoCardTitleDirective);
+  readonly subtitleTemplate = contentChild.required(NgxDcDemoCardSubtitleDirective);
+  readonly buttonsTemplate = contentChild.required(NgxDcDemoCardButtonsDirective);
+  readonly exampleTemplate = contentChild.required(NgxDcDemoCardExampleDirective);
+  readonly demoTabsTemplate = contentChild.required(NgxDcDemoTabsDirective);
+  readonly exampleTitleTemplate = contentChild.required(NgxDcDemoCardExampleTitleDirective);
 }

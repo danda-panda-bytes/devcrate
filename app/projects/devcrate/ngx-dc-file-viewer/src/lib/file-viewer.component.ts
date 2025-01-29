@@ -1,6 +1,6 @@
 import { ScrollingModule } from "@angular/cdk/scrolling"
 import { AsyncPipe, NgTemplateOutlet } from "@angular/common"
-import { Component, ContentChild, ElementRef, HostBinding, Input, ViewChild, ViewEncapsulation, inject, input } from '@angular/core'
+import { Component, ElementRef, HostBinding, Input, ViewEncapsulation, inject, input, viewChild, contentChild } from '@angular/core'
 import { MatButtonModule } from "@angular/material/button"
 import { MatDialogModule } from "@angular/material/dialog"
 import { MatIconModule } from "@angular/material/icon"
@@ -51,15 +51,13 @@ export class FileViewerComponent {
   apiService = inject(NgxDcFileService)
   private elementRef = inject<ElementRef<HTMLElement>>(ElementRef)
 
-  @ViewChild(NgxDcAuthImgSrcDirective, { static: false })
-  public imageSrc: NgxDcAuthImgSrcDirective
+  readonly imageSrc = viewChild(NgxDcAuthImgSrcDirective);
 
-  @ViewChild(NgxDcAuthPdfSrcDirective, { static: false })
-  public pdfSrc: NgxDcAuthPdfSrcDirective
+  readonly pdfSrc = viewChild(NgxDcAuthPdfSrcDirective);
 
-  @ContentChild(NgxDcFileViewerNotSupportedFileDirective) public notSupportedFileContent: NgxDcFileViewerNotSupportedFileDirective
+  readonly notSupportedFileContent = contentChild(NgxDcFileViewerNotSupportedFileDirective);
 
-  @ContentChild(NgxDcFileViewerErrorDirective) public errorContent: NgxDcFileViewerErrorDirective
+  readonly errorContent = contentChild(NgxDcFileViewerErrorDirective);
 
   @HostBinding("class.pdf")
   public isPdf = false
@@ -99,7 +97,7 @@ export class FileViewerComponent {
   }
 
   public get disabled() {
-    return this.pdfSrc?.loading?.value || this.imageSrc?.loading?.value || false
+    return this.pdfSrc()?.loading?.value || this.imageSrc()?.loading?.value || false
   }
   public ngOnInit(): void {
     const fileName = this.fileName();
@@ -112,7 +110,7 @@ export class FileViewerComponent {
   }
 
   public onError(event: any) {
-    this.pdfSrc.error = event.toString()
+    this.pdfSrc().error = event.toString()
   }
 
   /**
@@ -129,7 +127,7 @@ export class FileViewerComponent {
    * ```
    */
   public async downloadFile() {
-    if (this.pdfSrc?.file || this.imageSrc?.file) {
+    if (this.pdfSrc()?.file || this.imageSrc()?.file) {
       await this.apiService.downloadFileLocal(this.file())
     } else {
       const filePart = this.fileName().split('.')
@@ -152,7 +150,7 @@ export class FileViewerComponent {
    * ```
    */
   public async openNewFile() {
-    if (this.pdfSrc?.file || this.imageSrc?.file) {
+    if (this.pdfSrc()?.file || this.imageSrc()?.file) {
       await this.apiService.openFileInNewTabFromFile(this.file())
     } else {
       await this.apiService.openFileInNewTab(this.fileUrl(), this.isPdf)

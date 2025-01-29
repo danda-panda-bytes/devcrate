@@ -1,5 +1,5 @@
 import { AsyncPipe, NgStyle, NgTemplateOutlet } from "@angular/common";
-import { Component, ContentChild, HostListener, OnInit, ViewEncapsulation, inject, input } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, inject, input, contentChild } from '@angular/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatRippleModule } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
@@ -53,10 +53,10 @@ export class NgxDcNavbarComponent implements OnInit {
   public opened = false;
   public item: string = ''
 
-  @ContentChild(NgxDcNavbarRightTopBarContentDirective) public rightTopBarContentTemplate: NgxDcNavbarRightTopBarContentDirective
-  @ContentChild(NgxDcNavbarMainContentDirective) public mainContentTemplate: NgxDcNavbarMainContentDirective
-  @ContentChild(NgxDcNavbarSidebarDirective) public sideBarContentTemplate: NgxDcNavbarSidebarDirective
-  @ContentChild(NgxDcNavbarSidebarLinksDirective) public sidebarLinksTemplate: NgxDcNavbarSidebarLinksDirective
+  readonly rightTopBarContentTemplate = contentChild(NgxDcNavbarRightTopBarContentDirective);
+  readonly mainContentTemplate = contentChild(NgxDcNavbarMainContentDirective);
+  readonly sideBarContentTemplate = contentChild(NgxDcNavbarSidebarDirective);
+  readonly sidebarLinksTemplate = contentChild(NgxDcNavbarSidebarLinksDirective);
 
   @HostListener("window:resize")
   public onWindowResize() {

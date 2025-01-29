@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { AsyncPipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import { Component, ContentChild, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, inject, input, output } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, inject, input, output, contentChild } from '@angular/core';
 import { MatRipple } from "@angular/material/core";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
@@ -92,20 +92,16 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   }
 
   public destroy$ = new BehaviorSubject(false)
-  @ContentChild(NgxDcDropdownHeaderDirective)
-  public dropdownHeader: NgxDcDropdownHeaderDirective;
+  readonly dropdownHeader = contentChild(NgxDcDropdownHeaderDirective);
 
-  @ContentChild(NgxDcDropdownItemDirective)
-  public dropdownOption: NgxDcDropdownItemDirective;
+  readonly dropdownOption = contentChild(NgxDcDropdownItemDirective);
 
-  @ContentChild(NgxDcDropdownLoadingDirective)
-  public dropdownLoading: NgxDcDropdownLoadingDirective;
+  readonly dropdownLoading = contentChild(NgxDcDropdownLoadingDirective);
 
-  @ContentChild(NgxDcDropdownNoItemsDirective)
-  public noItems: NgxDcDropdownNoItemsDirective;
+  readonly noItems = contentChild(NgxDcDropdownNoItemsDirective);
 
-  @ContentChild(CdkVirtualScrollViewport) public scrollViewport: CdkVirtualScrollViewport
-  @ContentChild('matNavList', { read: ElementRef }) public matNavListElement: ElementRef
+  readonly scrollViewport = contentChild(CdkVirtualScrollViewport);
+  readonly matNavListElement = contentChild('matNavList', { read: ElementRef });
 
   @HostBinding('class.infinite-scrolling')
 public readonly useInfiniteScrolling = input<boolean>(false);
@@ -139,12 +135,14 @@ public readonly useInfiniteScrolling = input<boolean>(false);
   public async scrollToTop() {
     await new Promise<void>(resolve => setTimeout(() => {
       if (this.useInfiniteScrolling()) {
-        if (this.scrollViewport) {
-          this.scrollViewport.scrollToIndex(0, 'instant')
+        const scrollViewport = this.scrollViewport();
+        if (scrollViewport) {
+          scrollViewport.scrollToIndex(0, 'instant')
         }
       } else {
-        if (this.matNavListElement?.nativeElement) {
-          this.matNavListElement.nativeElement.scrollToIndex(0, 'instant')
+        const matNavListElement = this.matNavListElement();
+        if (matNavListElement?.nativeElement) {
+          matNavListElement.nativeElement.scrollToIndex(0, 'instant')
         }
       }
       resolve()

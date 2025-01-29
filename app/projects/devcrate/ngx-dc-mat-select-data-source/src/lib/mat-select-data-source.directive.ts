@@ -1,4 +1,4 @@
-import { Directive, OnInit, OnDestroy, ContentChild, TemplateRef, ViewContainerRef, ElementRef, QueryList, AfterContentInit, inject, input } from '@angular/core';
+import { Directive, OnInit, OnDestroy, TemplateRef, ViewContainerRef, ElementRef, AfterContentInit, inject, input, contentChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {MatSelect} from "@angular/material/select";
 import {NgxDcMatSelectOptionDirective} from "./mat-select-option.directive";
@@ -23,7 +23,7 @@ export class NgxDcMatSelectDataSourceDirective extends DestroyObservable impleme
   private matSelect = inject(MatSelect);
 
   readonly dataSource = input<any>(undefined, { alias: "ngxDcMatSelectDataSource" });
-  @ContentChild(NgxDcMatSelectOptionDirective) optionTemplate: NgxDcMatSelectOptionDirective;
+  readonly optionTemplate = contentChild(NgxDcMatSelectOptionDirective);
   private subscription: Subscription;
 
   constructor() {
@@ -34,10 +34,11 @@ export class NgxDcMatSelectDataSourceDirective extends DestroyObservable impleme
     const dataSource = this.dataSource();
     if (dataSource) {
       dataSource.data$.pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
-        if (this.optionTemplate) {
-          this.optionTemplate.viewContainer.clear()
+        const optionTemplate = this.optionTemplate();
+        if (optionTemplate) {
+          optionTemplate.viewContainer.clear()
           data.forEach((item: any) => {
-            this.optionTemplate.viewContainer.createEmbeddedView(this.optionTemplate.templateRef, { $implicit: item });
+            this.optionTemplate().viewContainer.createEmbeddedView(this.optionTemplate().templateRef, { $implicit: item });
           })
         }
       });
