@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.2.2](https://github.com/danda-panda-bytes/devcrate/compare/@devcrate/ngx-dc-styles@17.2.1...@devcrate/ngx-dc-styles@17.2.2) (2025-01-29)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-styles
+
+
+
+
+
 ## [17.2.1](https://github.com/danda-panda-bytes/devcrate/compare/@devcrate/ngx-dc-styles@17.2.0...@devcrate/ngx-dc-styles@17.2.1) (2025-01-29)
 
 **Note:** Version bump only for package @devcrate/ngx-dc-styles
