@@ -21,7 +21,6 @@ import { BasicDropdownDataSource } from "./basic-dropdown.data-source";
 export class BasicDropdownComponent implements OnInit {
   dataSource = inject(BasicDropdownDataSource);
 
-
   public async ngOnInit() {
     await this.dataSource.initialize()
   }

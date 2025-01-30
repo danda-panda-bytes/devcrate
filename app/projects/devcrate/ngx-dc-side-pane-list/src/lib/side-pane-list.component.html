@@ -71,7 +71,7 @@
   }
 
   @if (collapsible()) {
-    <button mat-raised-button class="dc-pane-controller" (click)="collapsed = !collapsed()">
+    <button mat-raised-button class="dc-pane-controller" (click)="collapsed.set(!collapsed())">
       <div class="flex">
         <span class="flex align-items-center">{{ collapsed() ? 'Expand' : 'Collapse' }}</span>
         <span class="fill"></span>

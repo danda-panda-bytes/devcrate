@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { AsyncPipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, inject, input, output, contentChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, inject, input, output, contentChild, signal, model } from '@angular/core';
 import { MatRipple } from "@angular/material/core";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
@@ -35,17 +35,15 @@ import {
     ],
     templateUrl: './dropdown.component.html',
     styleUrl: './dropdown.component.scss',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> implements OnInit, OnDestroy {
   public modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
 
-
   // We should put the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
   public dataSource = input.required<NgxDcDropdownDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
 
-  // We should put the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
-  public opened = input<boolean>(false);
+  public opened = model<boolean>(false);
 
   public readonly useGlobalLoader = input(false);
   public readonly appearance = input<'fill' | 'outline' | 'none' | 'rounded-fill' | 'rounded-outline'>('rounded-fill');
@@ -53,10 +51,18 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   public focusedItemChange = output<RetrievedItemT>();
 
+  public readonly useInfiniteScrolling = input<boolean>(false);
+
+  @HostBinding('class.infinite-scrolling')
+  public get showInfiniteScrollingClass() {
+    return this.useInfiniteScrolling()
+  }
+
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened()) { return }
     if (!(event.target as HTMLElement).closest(".dc-dropdown")) {
+
       this.opened.set(false)
     }
   }
@@ -102,9 +108,6 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   readonly scrollViewport = contentChild(CdkVirtualScrollViewport);
   readonly matNavListElement = contentChild('matNavList', { read: ElementRef });
-
-  @HostBinding('class.infinite-scrolling')
-public readonly useInfiniteScrolling = input<boolean>(false);
 
   public get disabled() {
     return this.dataSource().actualDataLength === 0

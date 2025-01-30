@@ -1,56 +1,30 @@
-import { Injectable, InjectionToken, TemplateRef, inject } from "@angular/core";
-import {BehaviorSubject, firstValueFrom, Subject} from 'rxjs';
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {ComponentType} from "@angular/cdk/overlay";
-import {MatSnackBar, MatSnackBarRef} from "@angular/material/snack-bar";
-import {NavigationEnd, Router} from "@angular/router";
-import {takeUntil} from "rxjs/operators";
-import {SnackbarComponent} from "./snackbar/snackbar.component";
+import { ComponentType } from "@angular/cdk/overlay";
+import { effect, inject, Injectable, InjectionToken, TemplateRef } from "@angular/core";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { MatSnackBar, MatSnackBarRef } from "@angular/material/snack-bar";
+import { NavigationEnd, Router } from "@angular/router";
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
+import { filter, distinctUntilChanged } from "rxjs/operators";
+import { SnackbarComponent } from "./snackbar/snackbar.component";
+import { toSignal } from '@angular/core/rxjs-interop'
 
 export const SECOND_IN_MS = 1000
 
 export const NgxDcModalServiceToken = new InjectionToken<NgxDcModalService>("NGX_DC_MODAL_SERVICE_TOKEN")
-
-/**
- * Provides a custom implementation of the `NgxDcModalService`.
- *
- * @deprecated Instead use the example below to add the modal service.
- *
- * ```
- * ...
- * providers: [
- *   ServiceClass,
- *   {
- *     provide: NgxDcModalServiceToken,
- *     useFactory: (m: typeof ServiceClass) => { return m },
- *     deps: [ServiceClass],
- *   }
- * ]
- * ```
- */
-export function provideNgxDcModalService(ServiceClass?: new (...args: any[]) => NgxDcModalService) {
-  return {
-    provide: NgxDcModalServiceToken,
-    useValue: ServiceClass || NgxDcModalService
-  }
-}
-
 
 @Injectable()
 export class NgxDcModalService {
   dialog = inject(MatDialog);
   protected snackBar = inject(MatSnackBar);
   protected router = inject(Router);
+  protected routerEndEvents = toSignal<NavigationEnd>(this.router.events.pipe(filter(e => e instanceof NavigationEnd)))
 
   public showGlobalLoadingBar: BehaviorSubject<boolean> = new BehaviorSubject(false);
   protected snackbarRef: MatSnackBarRef<SnackbarComponent> = null
-  protected destroy$ = new Subject()
 
   constructor() {
-    this.router.events.pipe(takeUntil(this.destroy$)).subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.onNavigationEnd(event)
-      }
+    effect(() => {
+      this.onNavigationEnd(this.routerEndEvents())
     })
   }
 
@@ -66,8 +40,6 @@ export class NgxDcModalService {
   public ngOnDestroy() {
     this.dismissNotification()
     this.showGlobalLoadingBar.next(false)
-    this.destroy$.next(true)
-    this.destroy$.complete()
   }
 
   public async showModal<DataToModalT = any, ResultFromModalT = any>(

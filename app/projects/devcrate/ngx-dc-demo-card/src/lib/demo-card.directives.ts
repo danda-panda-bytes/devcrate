@@ -18,7 +18,10 @@ export class NgxDcDemoTabsDirective {
       this.display = 'none'
     }
   }
-  @HostBinding('class.code') private _code = true
+  
+  // TODO: Do we need _code and display? I don't think we do...
+  @HostBinding('class.code')
+  private _code = true
 
   @HostBinding('style.display')
   private display = 'none'

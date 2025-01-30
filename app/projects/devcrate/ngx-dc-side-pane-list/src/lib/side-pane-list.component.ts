@@ -1,6 +1,6 @@
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, ViewEncapsulation, inject, input, contentChild, viewChild, viewChildren } from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation, inject, input, contentChild, viewChild, viewChildren, model } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -72,27 +72,20 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   /**
    * Whether the left pane is collapsed or not.
    */
-  public readonly collapsed = input(false
-/**
- * Whether the dao being used is infinite scrolling or not.
- */
-);
+  public collapsed = model(false);
   /**
    * Whether the dao being used is infinite scrolling or not.
    */
-  public readonly useInfiniteScrolling = input(false
-/** Whether the table will show the global loading bar (defined in the ModalService) or not. */
-);
+  public readonly useInfiniteScrolling = input<boolean>(false)
+
   /** Whether the table will show the global loading bar (defined in the ModalService) or not. */
-  private readonly useGlobalLoader = input(true);
+  public readonly useGlobalLoader = input<boolean>(true)
 
   /** When a user clicks on an item, should the global loading bar be shown */
-  private readonly useGlobalOnItem = input(true);
+  public readonly useGlobalOnItem = input<boolean>(true)
 
   /** Whether the left pane is collapsible or not. */
-  public readonly collapsible = input(true
-/** The dao that will be used to manage the data. */
-);
+  public readonly collapsible = input<boolean>(true);
 
   /** The dao that will be used to manage the data. */
   public readonly dataSource = input.required<NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();

@@ -35,7 +35,7 @@ export class NgxDcDemoCardComponent {
 
   readonly titleTemplate = contentChild.required(NgxDcDemoCardTitleDirective);
   readonly subtitleTemplate = contentChild.required(NgxDcDemoCardSubtitleDirective);
-  readonly buttonsTemplate = contentChild.required(NgxDcDemoCardButtonsDirective);
+  readonly buttonsTemplate = contentChild(NgxDcDemoCardButtonsDirective);
   readonly exampleTemplate = contentChild.required(NgxDcDemoCardExampleDirective);
   readonly demoTabsTemplate = contentChild.required(NgxDcDemoTabsDirective);
   readonly exampleTitleTemplate = contentChild.required(NgxDcDemoCardExampleTitleDirective);
