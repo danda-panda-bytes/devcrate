@@ -1,5 +1,5 @@
 import { AsyncPipe, NgStyle, NgTemplateOutlet } from "@angular/common";
-import { Component, HostListener, OnInit, ViewEncapsulation, inject, input, contentChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation, contentChild, inject, input } from '@angular/core';
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatRippleModule } from "@angular/material/core";
 import { MatIconModule } from "@angular/material/icon";
@@ -14,7 +14,6 @@ import {
   NgxDcNavbarRightTopBarContentDirective,
   NgxDcNavbarSidebarDirective, NgxDcNavbarSidebarLinksDirective
 } from "./navbar.directives";
-import { NgxDcNavbarLinkInfo } from "./navbar.model";
 import { NgxDcNavbarLinksConfig, NgxDcNavbarService, NgxDcNavbarServiceToken } from "./navbar.service";
 
 @Component({

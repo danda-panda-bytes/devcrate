@@ -1,12 +1,12 @@
 import { ComponentType } from "@angular/cdk/overlay";
-import { effect, inject, Injectable, InjectionToken, TemplateRef } from "@angular/core";
+import { inject, Injectable, InjectionToken, TemplateRef } from "@angular/core";
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { MatSnackBar, MatSnackBarRef } from "@angular/material/snack-bar";
 import { NavigationEnd, Router } from "@angular/router";
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { filter, distinctUntilChanged } from "rxjs/operators";
+import { filter } from "rxjs/operators";
 import { SnackbarComponent } from "./snackbar/snackbar.component";
-import { toSignal } from '@angular/core/rxjs-interop'
 
 export const SECOND_IN_MS = 1000
 
@@ -14,32 +14,29 @@ export const NgxDcModalServiceToken = new InjectionToken<NgxDcModalService>("NGX
 
 @Injectable()
 export class NgxDcModalService {
-  dialog = inject(MatDialog);
+  public dialog = inject(MatDialog);
   protected snackBar = inject(MatSnackBar);
   protected router = inject(Router);
-  protected routerEndEvents = toSignal<NavigationEnd>(this.router.events.pipe(filter(e => e instanceof NavigationEnd)))
+  protected routerEndEvents = this.router.events.pipe(filter(e => e instanceof NavigationEnd), takeUntilDestroyed())
 
   public showGlobalLoadingBar: BehaviorSubject<boolean> = new BehaviorSubject(false);
   protected snackbarRef: MatSnackBarRef<SnackbarComponent> = null
 
   constructor() {
-    effect(() => {
-      this.onNavigationEnd(this.routerEndEvents())
-    })
+    this.routerEndEvents.subscribe(e => this.onNavigationEnd(e))
   }
 
   /**
    * This method is called every time navigation ends so that we can stop the global loader bar on page change and dismiss any notifications.
    * @param _event The NavigationEnd event
    */
-  protected onNavigationEnd(_event: NavigationEnd) {
+  protected onNavigationEnd(_event?: NavigationEnd) {
     this.showGlobalLoadingBar.next(false)
     this.dismissNotification()
   }
 
   public ngOnDestroy() {
-    this.dismissNotification()
-    this.showGlobalLoadingBar.next(false)
+    this.onNavigationEnd()
   }
 
   public async showModal<DataToModalT = any, ResultFromModalT = any>(
