@@ -75,7 +75,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   public get backgroundColor(): string {
     return {
       'none': '',
-      'fill': 'var(--sys-surface-container-low)',
+      'fill': 'var(--mat-sys-surface-container-low)',
       'outline': 'transparent',
     }[this.baseAppearanceName] || ''
   }
@@ -85,7 +85,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
     return {
       'none': '',
       'fill': '',
-      'outline': '1px solid var(--sys-on-surface)',
+      'outline': '1px solid var(--mat-sys-on-surface)',
     }[this.baseAppearanceName] || ''
   }
 
@@ -126,11 +126,11 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   public ngOnInit() {
     if (this.useGlobalLoader()) {
       this.dataSource().loading.pipe(takeUntil(this.destroy$)).subscribe(loading => {
-        this.modalService.showGlobalLoadingBar.next(loading)
+        this.modalService.showGlobalLoadingBar?.next(loading)
       })
 
       this.dataSource().itemLoading.pipe(takeUntil(this.destroy$)).subscribe(loading => {
-        this.modalService.showGlobalLoadingBar.next(loading)
+        this.modalService.showGlobalLoadingBar?.next(loading)
       })
     }
   }

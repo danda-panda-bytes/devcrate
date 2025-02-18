@@ -35,18 +35,18 @@ ngx-dc-navbar {
   --ngx-dc-navbar-logo-img: 28px;
   --ngx-dc-navbar-side-bar-height: 250px;
   --ngx-dc-navbar-collapse-width: 72px;
-  --ngx-dc-navbar-active-bg-link-color: var(--sys-primary-container);
-  --ngx-dc-navbar-topbar-background: var(--sys-on-primary);
-  --ngx-dc-navbar-topbar-text-color: var(--sys-on-background);
-  --ngx-dc-navbar-content-text-color: var(--sys-on-background);
-  --ngx-dc-navbar-content-bg-color: var(--sys-background);
+  --ngx-dc-navbar-active-bg-link-color: var(--mat-sys-primary-container);
+  --ngx-dc-navbar-topbar-background: var(--mat-sys-on-primary);
+  --ngx-dc-navbar-topbar-text-color: var(--mat-sys-on-background);
+  --ngx-dc-navbar-content-text-color: var(--mat-sys-on-background);
+  --ngx-dc-navbar-content-bg-color: var(--mat-sys-background);
   --ngx-dc-navbar-sidebar-border-color: var(--mat-tab-header-divider-color);
   --ngx-dc-navbar-sidebar-border-width: 1px;
   --ngx-dc-navbar-sidebar-background: var(--ngx-dc-navbar-content-bg-color);
-  --ngx-dc-navbar-sidebar-active-text-color: var(--sys-on-primary);
-  --ngx-dc-navbar-sidebar-text-color: var(--sys-on-background);
+  --ngx-dc-navbar-sidebar-active-text-color: var(--mat-sys-on-background);
+  --ngx-dc-navbar-sidebar-text-color: var(--mat-sys-on-background);
   --ngx-dc-navbar-heading-bg-color: transparent;
-  --ngx-dc-navbar-heading-text-color: var(--sys-on-primary-container);
+  --ngx-dc-navbar-heading-text-color: var(--mat-sys-on-primary-container);
 
   // Material override
   --mat-list-active-indicator-shape: 0;

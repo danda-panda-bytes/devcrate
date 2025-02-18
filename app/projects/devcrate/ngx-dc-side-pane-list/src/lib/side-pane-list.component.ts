@@ -152,7 +152,7 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
 
     if (this.useGlobalLoader()) {
       this.dataSource().loading.subscribe(loading => {
-        this.modalService.showGlobalLoadingBar.next(loading)
+        this.modalService.showGlobalLoadingBar?.next(loading)
       })
     }
 
@@ -161,7 +161,7 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
         // Skips the initialized value which is always false
         skip(1),
       ).subscribe((loading: boolean) => {
-        this.modalService.showGlobalLoadingBar.next(loading)
+        this.modalService.showGlobalLoadingBar?.next(loading)
       })
     }
   }
