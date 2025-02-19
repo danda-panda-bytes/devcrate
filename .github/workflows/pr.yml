@@ -1,8 +1,6 @@
 name: Deploy Packages and App
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
     inputs:
       force_publish:
@@ -58,11 +56,7 @@ jobs:
       - name: Build Libraries
         run: |
           npm run build
-      
-      - name: Setup lerna config for all
-        if: (github.event.inputs.deployment_type == 'all' || github.event.inputs.deployment_type == 'npm-packages-only')
-        run: |
-          cp lerna-all.json lerna.json
+          git update-index --assume-unchanged lerna.json
       
       - name: Setup lerna config for angular packages only
         if: (github.event.inputs.deployment_type == 'angular-packages-only')
@@ -97,3 +91,7 @@ jobs:
         run: |
           cd app
           npm run deploy
+      
+      - name: Retrack
+        run: |
+          git update-index --no-assume-unchanged lerna.json
