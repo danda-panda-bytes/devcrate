@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "packages": ["packages/src/*", "app/projects/devcrate/*"],
+  "packages": ["packages/src/*"],
   "version": "independent",
   "command": {
     "publish": {

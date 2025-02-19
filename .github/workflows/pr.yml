@@ -1,8 +1,6 @@
 name: Deploy Packages and App
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
     inputs:
       force_publish:
@@ -18,7 +16,9 @@ on:
         options:
           - all
           - app-only
-          - packages-only
+          - angular-packages-only
+          - node-packages-only
+          - npm-packages-only
 
 permissions:
   contents: write
@@ -56,9 +56,20 @@ jobs:
       - name: Build Libraries
         run: |
           npm run build
-
+          git update-index --assume-unchanged lerna.json
+      
+      - name: Setup lerna config for angular packages only
+        if: (github.event.inputs.deployment_type == 'angular-packages-only')
+        run: |
+          cp lerna-angular.json lerna.json
+      
+      - name: Setup lerna config for node packages only
+        if: (github.event.inputs.deployment_type == 'node-packages-only')
+        run: |
+          cp lerna-packages.json lerna.json
+      
       - name: Force Publish
-        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.force_publish == 'true') && (github.event.inputs.deployment_type == 'packages-only' || github.event.inputs.deployment_type == 'all')
+        if: (github.event_name == 'workflow_dispatch' && github.event.inputs.force_publish == 'true') && (github.event.inputs.deployment_type != 'app-only')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -66,7 +77,7 @@ jobs:
           npm run publish -- --force-publish
 
       - name: Publish
-        if: (github.event_name == 'push' || github.event.inputs.force_publish == 'false') && (github.event.inputs.deployment_type == 'packages-only' || github.event.inputs.deployment_type == 'all')
+        if: (github.event_name == 'push' || github.event.inputs.force_publish == 'false') && (github.event.inputs.deployment_type != 'app-only')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -80,3 +91,7 @@ jobs:
         run: |
           cd app
           npm run deploy
+      
+      - name: Retrack
+        run: |
+          git update-index --no-assume-unchanged lerna.json
