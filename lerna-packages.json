@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "packages": ["packages/src/*"],
+  "version": "independent",
+  "command": {
+    "publish": {
+      "conventionalCommits": true
+    },
+    "version": {
+      "createRelease": "github",
+      "conventionalCommits": true,
+      "allowBranch": ["main", "angular-17", "angular-18", "angular-19"],
+      "message": "chore(release): publish"
+    }
+	}
+}
