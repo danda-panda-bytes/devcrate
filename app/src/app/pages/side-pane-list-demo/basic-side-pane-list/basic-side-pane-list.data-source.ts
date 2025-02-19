@@ -1,7 +1,7 @@
 import {NgxDcSidePaneListApiDataSource} from "@devcrate/ngx-dc-side-pane-list";
 import {PageableResult} from "@devcrate/ngx-dc-data-sources";
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import {firstValueFrom} from "rxjs";
 
 export interface BasicSidePaneListModel {
@@ -20,7 +20,9 @@ export class BasicSidePaneListDataSource extends NgxDcSidePaneListApiDataSource<
     return item.id
   }
 
-  constructor(httpClient: HttpClient) {
+  constructor() {
+    const httpClient = inject(HttpClient);
+
     super(httpClient)
   }
 }

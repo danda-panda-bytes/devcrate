@@ -1,4 +1,4 @@
-import {Directive, Input, TemplateRef, ViewContainerRef} from "@angular/core";
+import { Directive, TemplateRef, ViewContainerRef, inject } from "@angular/core";
 
 
 @Directive({
@@ -6,5 +6,6 @@ import {Directive, Input, TemplateRef, ViewContainerRef} from "@angular/core";
   standalone: true,
 })
 export class NgxDcMatSelectOptionDirective {
-  constructor(public templateRef: TemplateRef<any>, public viewContainer: ViewContainerRef) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainer = inject(ViewContainerRef);
 }

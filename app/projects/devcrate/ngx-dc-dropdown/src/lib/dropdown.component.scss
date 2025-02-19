@@ -3,7 +3,7 @@ ngx-dc-dropdown {
   --ngx-dc-dropdown-scrollbar-color: darkgray transparent;
   --ngx-dc-dropdown-scrollbar-width: thin;
   --ngx-dc-dropdown-scrollbar-gutter: auto;
-  --ngx-dc-dropdown-header-bg-color: var(--sys-inverse-on-surface);
+  --ngx-dc-dropdown-header-bg-color: var(--mat-sys-inverse-on-surface);
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -30,7 +30,7 @@ ngx-dc-dropdown {
 
     cdk-virtual-scroll-viewport {
       position: absolute;
-      background-color: var(--mdc-elevated-card-container-color);
+      background-color: var(--ngx-dc-dropdown-header-bg-color);
       z-index: 1;
       top: -4px;
       overflow: auto;
@@ -78,8 +78,8 @@ ngx-dc-dropdown {
     top: -4px;
     overflow: auto;
     width: 100%;
-    background-color: var(--mdc-elevated-card-container-color);
-    border-radius: 0 0 4px 4px;
+      background-color: var(--ngx-dc-dropdown-header-bg-color);
+      border-radius: 0 0 4px 4px;
   }
 
 

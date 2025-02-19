@@ -63,7 +63,7 @@ public class CustomCardComponent {}
 ```typescript
 @Directive({ selector: 'myCustomCardItem' })
 export class MyCustomCardItemDirective {
-  @Input() public myCustomCardItem: string
+  public myCustomCardItem = input<string>()
 }
 ```
 

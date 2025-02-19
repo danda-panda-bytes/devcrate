@@ -1,0 +1,30 @@
+/**
+ * This custom scss supports Material v17 and above
+ * For Material 3 apps
+ *
+ *
+ * https://angular-material.dev/articles/angular-material-theme-builder
+ * https://themes.angular-material.dev/
+ */
+
+@use './generated-light-color-theme' as theme;
+@use './generated-dark-color-theme' as darkTheme;
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+@include mat.elevation-classes();
+@include mat.app-background();
+
+html {
+  color-scheme: dark;
+  @include mat.theme((
+    color: mat.$cyan-palette,
+    typography: Roboto,
+    density: 0
+  ));
+
+  body.light-theme {
+    color-scheme: light;
+  }
+}

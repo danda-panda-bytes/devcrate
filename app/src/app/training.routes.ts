@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
-import { AngularAdvancedDemoComponent } from "./pages/angular-advanced-demo/angular-advanced-demo.component";
-import { AngularBasicsComponent } from "./pages/angular-basics-demo/angular-basics-demo.component";
-import { MatTableDemoComponent } from "./pages/mat-table-demo/mat-table-demo.component";
+
+
+
 
 export const TRAINING_ROUTES: Routes = [
   {
@@ -11,17 +11,17 @@ export const TRAINING_ROUTES: Routes = [
   },
   {
     path: 'basics',
-    component: AngularBasicsComponent,
+    loadComponent: () => import('./pages/angular-basics-demo/angular-basics-demo.component').then(m => m.AngularBasicsComponent),
     data: { title: "Basic Angular Training" },
   },
   {
     path: 'advanced',
-    component: AngularAdvancedDemoComponent,
+    loadComponent: () => import('./pages/angular-advanced-demo/angular-advanced-demo.component').then(m => m.AngularAdvancedDemoComponent),
     data: { title: "Advanced Angular Training" },
   },
   {
     path: 'structural-directives',
-    component: MatTableDemoComponent,
+    loadComponent: () => import('./pages/mat-table-demo/mat-table-demo.component').then(m => m.MatTableDemoComponent),
     data: { title: "Structural Directives" },
   }
 ]

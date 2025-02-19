@@ -53,8 +53,10 @@ ngx-dc-side-pane-list {
     scrollbar-gutter: var(--ngx-dc-side-pane-list-scrollbar-gutter);
   }
 
-  display: var(--ngx-dc-side-pane-list-display);
-  height: var(--ngx-dc-side-pane-list-height);
+  & {
+    display: var(--ngx-dc-side-pane-list-display);
+    height: var(--ngx-dc-side-pane-list-height);
+  }
 
   .w-100 {
     width: 100%;

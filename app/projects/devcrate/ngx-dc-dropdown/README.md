@@ -228,4 +228,4 @@ The component uses Angular Material's theming system and responds to the followi
 - `--ngx-dc-dropdown-scrollbar-color`: Controls the scrollbar color using format `<thumb-color> <track-color>` (default: `darkgray transparent`)
 - `--ngx-dc-dropdown-scrollbar-width`: Controls the scrollbar width (default: `thin`)
 - `--ngx-dc-dropdown-scrollbar-gutter`: Controls the scrollbar gutter behavior (default: `auto`)
-- `--ngx-dc-dropdown-header-bg-color`: Controls the background color of the header section (default: `var(--sys-inverse-on-surface)`)
+- `--ngx-dc-dropdown-header-bg-color`: Controls the background color of the header section (default: `var(--mat-sys-inverse-on-surface)`)

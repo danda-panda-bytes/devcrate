@@ -11,7 +11,7 @@
 // mixin that enables css variables in dark mode
 @mixin dark() {
   // Material issue fixes for dark theme
-  --mdc-icon-button-icon-color: var(--sys-on-background);
+  --mdc-icon-button-icon-color: var(--mat-sys-on-background);
 }
 
 @mixin devCrateStyles() {
@@ -65,7 +65,7 @@
   --mdc-outlined-text-field-input-text-placeholder-color: rgba(0, 0, 0, 0.4);
   --mat-form-field-subscript-text-line-height: 8px;
   --mat-form-field-subscript-text-size: 10px;
-  --mdc-filled-text-field-container-color: var(--sys-background);
+  --mdc-filled-text-field-container-color: var(--mat-sys-background);
 
   // Buttons
   --mdc-icon-button-icon-size: 20px;

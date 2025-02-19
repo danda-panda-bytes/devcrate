@@ -1,14 +1,6 @@
 import { ScrollingModule } from "@angular/cdk/scrolling";
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  ContentChild, ElementRef,
-  Inject,
-  Input,
-  QueryList,
-  ViewChild, ViewChildren,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation, inject, input, contentChild, viewChild, viewChildren, model } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -54,90 +46,75 @@ import { NgxDcInfiniteSidePaneListDataSource, NgxDcSidePaneListApiDataSource } f
  * ```
  */
 @Component({
-  selector: 'ngx-dc-side-pane-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatProgressBarModule,
-    MatIconModule,
-    MatListModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTooltipModule,
-    ScrollingModule,
-    NgxDcFilledCountPipe,
-    MatInputModule,
-    FormsModule,
-    MatFormFieldModule,
-  ],
-  templateUrl: './side-pane-list.component.html',
-  styleUrl: './side-pane-list.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'ngx-dc-side-pane-list',
+    imports: [
+        CommonModule,
+        MatProgressBarModule,
+        MatIconModule,
+        MatListModule,
+        MatButtonModule,
+        MatCardModule,
+        MatTooltipModule,
+        ScrollingModule,
+        NgxDcFilledCountPipe,
+        MatInputModule,
+        FormsModule,
+        MatFormFieldModule,
+    ],
+    templateUrl: './side-pane-list.component.html',
+    styleUrl: './side-pane-list.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> {
+  public modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
+
   public destroy$ = new BehaviorSubject(false)
   /**
    * Whether the left pane is collapsed or not.
    */
-  @Input() public collapsed = false
+  public collapsed = model(false);
   /**
    * Whether the dao being used is infinite scrolling or not.
    */
-  @Input() public useInfiniteScrolling = false
+  public readonly useInfiniteScrolling = input<boolean>(false)
+
   /** Whether the table will show the global loading bar (defined in the ModalService) or not. */
-  @Input() private useGlobalLoader = true;
+  public readonly useGlobalLoader = input<boolean>(true)
 
   /** When a user clicks on an item, should the global loading bar be shown */
-  @Input() private useGlobalOnItem = true;
+  public readonly useGlobalOnItem = input<boolean>(true)
 
   /** Whether the left pane is collapsible or not. */
-  @Input() public collapsible = true
+  public readonly collapsible = input<boolean>(true);
 
   /** The dao that will be used to manage the data. */
-  @Input({ required: true }) public dataSource: NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>
+  public readonly dataSource = input.required<NgxDcSidePaneListApiDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT> | NgxDcInfiniteSidePaneListDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
 
-  @ContentChild(NgxDcSidePaneFooterDirective)
-  public sidePaneFooter: NgxDcSidePaneFooterDirective
+  readonly sidePaneFooter = contentChild(NgxDcSidePaneFooterDirective);
 
-  @ContentChild(NgxDcSidePaneItemLineNumberDirective)
-  public sidePaneItemLineNumber: NgxDcSidePaneItemLineNumberDirective
+  readonly sidePaneItemLineNumber = contentChild(NgxDcSidePaneItemLineNumberDirective);
 
-  @ContentChild(NgxDcSidePaneItemDirective)
-  public sidePaneItem: NgxDcSidePaneItemDirective
+  readonly sidePaneItem = contentChild(NgxDcSidePaneItemDirective);
 
-  @ContentChild(NgxDcSidePaneLoadingItemDirective)
-  public sidePaneLoadingItem: NgxDcSidePaneLoadingItemDirective
+  readonly sidePaneLoadingItem = contentChild(NgxDcSidePaneLoadingItemDirective);
 
-  @ContentChild(NgxDcSidePaneItemSubtitleDirective)
-  public sidePaneItemSubtitle: NgxDcSidePaneItemSubtitleDirective
+  readonly sidePaneItemSubtitle = contentChild(NgxDcSidePaneItemSubtitleDirective);
 
-  @ContentChild(NgxDcSidePaneItemTextDirective)
-  public sidePaneItemText: NgxDcSidePaneItemTextDirective
+  readonly sidePaneItemText = contentChild(NgxDcSidePaneItemTextDirective);
 
-  @ContentChild(NgxDcSidePaneItemRightTextDirective)
-  public sidePaneItemRightText: NgxDcSidePaneItemRightTextDirective
+  readonly sidePaneItemRightText = contentChild(NgxDcSidePaneItemRightTextDirective);
 
-  @ContentChild(NgxDcPaneContentDirective)
-  public paneContent: NgxDcPaneContentDirective
+  readonly paneContent = contentChild(NgxDcPaneContentDirective);
 
-  @ContentChild(NgxDcPanePageInfoDirective)
-  public panePageInfo: NgxDcPanePageInfoDirective
+  readonly panePageInfo = contentChild(NgxDcPanePageInfoDirective);
 
-  @ContentChild(NgxDcSidePaneItemIconDirective)
-  public sidePaneItemIcon: NgxDcSidePaneItemIconDirective
+  readonly sidePaneItemIcon = contentChild(NgxDcSidePaneItemIconDirective);
 
-  @ViewChild('scroller', { read: ElementRef })
-  public element: ElementRef<any>
-  @ViewChildren('matListItem')
-  public matListItems: QueryList<MatListItem>
-
-  constructor(
-    @Inject(NgxDcModalServiceToken) public modalService: NgxDcModalService,
-    // @Inject(NgxDcNavbarServiceToken) public navbarService: NgxDcNavbarService,
-  ) {}
+  readonly element = viewChild('scroller', { read: ElementRef });
+  readonly matListItems = viewChildren<MatListItem>('matListItem');
 
   public get firstMatItem(): Element {
-    return this.matListItems?.first?._elementRef?.nativeElement?.parentElement?.firstElementChild
+    return this.matListItems()?.at(0)!?._elementRef?.nativeElement?.parentElement?.firstElementChild
   }
 
   public scrollToFirstItem() {
@@ -149,12 +126,13 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   }
 
   public get activeMatItem(): MatListItem | null {
-    return this.matListItems?.find(item => item?.activated)
+    return this.matListItems()?.find(item => item?.activated)
   }
 
   public scrollToTop() {
-    if (!this.element.nativeElement) return
-    this.element.nativeElement.scrollTop = 0
+    const element = this.element();
+    if (!element.nativeElement) return
+    element.nativeElement.scrollTop = 0
   }
 
   public scrollToActiveItem() {
@@ -172,18 +150,18 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
     //   if (collapsed) { this.collapsed = collapsed }
     // })
 
-    if (this.useGlobalLoader) {
-      this.dataSource.loading.subscribe(loading => {
-        this.modalService.showGlobalLoadingBar.next(loading)
+    if (this.useGlobalLoader()) {
+      this.dataSource().loading.subscribe(loading => {
+        this.modalService.showGlobalLoadingBar?.next(loading)
       })
     }
 
-    if (this.useGlobalOnItem) {
-      this.dataSource.itemLoading.pipe(
+    if (this.useGlobalOnItem()) {
+      this.dataSource().itemLoading.pipe(
         // Skips the initialized value which is always false
         skip(1),
       ).subscribe((loading: boolean) => {
-        this.modalService.showGlobalLoadingBar.next(loading)
+        this.modalService.showGlobalLoadingBar?.next(loading)
       })
     }
   }
@@ -197,8 +175,8 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
    * Meant to be used by ViewChild if we want to reset a focused item from a parent component.
    */
   public resetFocusedItem() {
-    this.dataSource.selectedItem.next(null)
-    this.dataSource.retrievedItem.next(null)
+    this.dataSource().selectedItem.next(null)
+    this.dataSource().retrievedItem.next(null)
   }
 
   /**
@@ -206,10 +184,10 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
    */
   public reset() {
     this.resetFocusedItem()
-    this.dataSource.reset()
+    this.dataSource().reset()
   }
 
   public async onPaneItemClicked(item: FinalDataItemsT): Promise<void> {
-    await this.dataSource.onPaneItemClicked(item)
+    await this.dataSource().onPaneItemClicked(item)
   }
 }

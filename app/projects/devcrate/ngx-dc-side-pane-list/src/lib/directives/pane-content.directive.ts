@@ -1,13 +1,12 @@
-import {Directive, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[ngxDcPaneContent]',
   standalone: true
 })
 export class NgxDcPaneContentDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public ViewContainerRef: ViewContainerRef,
-  ) {}
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  ViewContainerRef = inject(ViewContainerRef);
+
 
 }

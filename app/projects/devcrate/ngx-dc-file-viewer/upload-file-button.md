@@ -72,8 +72,8 @@ import { NgxDcUploadFileButtonComponent } from '@devcrate/ngx-dc-utils';
 ```scss
 --ngx-dc-upload-button-width: 200px;
 --ngx-dc-upload-button-height: 36px;
---ngx-dc-upload-progress-color: var(--sys-primary);
---ngx-dc-upload-error-color: var(--sys-error);
+--ngx-dc-upload-progress-color: var(--mat-sys-primary);
+--ngx-dc-upload-error-color: var(--mat-sys-error);
 ```
 
 ## Examples

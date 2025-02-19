@@ -1,6 +1,6 @@
 import {NgxDcInfiniteScrollDataSource, PageableResult} from "@devcrate/ngx-dc-data-sources";
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import {NgxDcInfiniteSidePaneListDataSource} from "@devcrate/ngx-dc-side-pane-list";
 
 export interface MyModel {
@@ -32,7 +32,9 @@ export class SortedFilterInfiniteScrollSidePaneListDataSource extends NgxDcInfin
     return item.id
   }
 
-  constructor(httpClient: HttpClient) {
+  constructor() {
+    const httpClient = inject(HttpClient);
+
     super(httpClient)
   }
 }

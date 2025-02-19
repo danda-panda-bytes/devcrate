@@ -1,10 +1,11 @@
-import {Injectable} from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import {firstValueFrom} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({ providedIn: 'root' })
 export class NgxDcFileService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+
 
   public async uploadFile(url: string, fileKey: string, fileToUpload: File, additionalKeys?: any): Promise<any> {
     const formData: FormData = new FormData()

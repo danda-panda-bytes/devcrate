@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
@@ -7,21 +7,23 @@ import {MatIcon, MatIconRegistry} from "@angular/material/icon";
 import {NgxDcNavbarModule} from "@devcrate/ngx-dc-navbar";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  standalone: true,
-  imports: [
-    MatIcon,
-    MatButtonModule,
-    NgxDcNavbarModule,
-    RouterOutlet,
-  ],
-  styleUrl: './app.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    imports: [
+        MatIcon,
+        MatButtonModule,
+        NgxDcNavbarModule,
+        RouterOutlet,
+    ],
+    styleUrl: './app.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+  private matIconRegistry = inject(MatIconRegistry);
+
   public darkTheme = true
-  constructor(private matIconRegistry: MatIconRegistry) {
+
+  constructor() {
     this.matIconRegistry.setDefaultFontSetClass('material-symbols-outlined');
   }
 

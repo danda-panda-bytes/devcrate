@@ -3,15 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.0.1 (2025-02-19)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-data-sources
+
 ## 18.0.2 (2025-02-19)
 
 
 ### Bug Fixes
 
 * lerna issue ([9a5cbc1](https://github.com/danda-panda-bytes/devcrate/commit/9a5cbc1d99ba0427a680e054e128e28437c37926))
-
-
-
 
 
 ## 18.0.1 (2025-01-29)

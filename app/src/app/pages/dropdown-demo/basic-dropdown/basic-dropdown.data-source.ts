@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 import { NgxDcDropdownApiDataSource } from "@devcrate/ngx-dc-dropdown";
 
 export interface BasicModel {
@@ -20,7 +20,9 @@ export class BasicDropdownDataSource extends NgxDcDropdownApiDataSource<BasicMod
     return item.id
   }
 
-  constructor(httpClient: HttpClient) {
+  constructor() {
+    const httpClient = inject(HttpClient);
+
     super(httpClient)
   }
 }

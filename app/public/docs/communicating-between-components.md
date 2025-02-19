@@ -95,7 +95,7 @@ Now use the `listener` property to pass it down to the sibling components.
 **sibling.component.ts**
 
 ```ts
-@Input() panelId: BehaviorSubject<string | null>;
+panelId = input<string | null>(null)
 ```
 
 **sibling.component.html**

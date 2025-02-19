@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, TemplateRef, ViewChild} from '@angular/core';
+import { Directive, ElementRef, Input, TemplateRef, inject, viewChild } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, firstValueFrom} from "rxjs";
 import {PdfViewerComponent} from "ng2-pdf-viewer";
@@ -9,10 +9,14 @@ import {PdfViewerComponent} from "ng2-pdf-viewer";
   exportAs: 'pdfSrc'
 })
 export class NgxDcAuthPdfSrcDirective {
-  @ViewChild(PdfViewerComponent) private host: PdfViewerComponent
+  private http = inject(HttpClient)
+
+  readonly host = viewChild(PdfViewerComponent);
 
   public error: string
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set file(file: File) {
     this._file = file
@@ -22,6 +26,8 @@ export class NgxDcAuthPdfSrcDirective {
   public get file(): File { return this._file }
   private _file: File
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set fileUrl(src: string) {
     this._fileUrl = src
@@ -34,10 +40,6 @@ export class NgxDcAuthPdfSrcDirective {
   private _fileUrl: string
 
   public src: string
-
-  constructor(
-    private http: HttpClient,
-  ) { }
 
   public async readLocalFile(): Promise<void> {
     this.loading.next(true)
