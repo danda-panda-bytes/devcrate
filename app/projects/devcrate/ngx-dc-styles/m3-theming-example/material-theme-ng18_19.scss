@@ -7,8 +7,8 @@
  * https://themes.angular-material.dev/
  */
 
-@use 'src/generated-light-color-theme' as theme;
-@use 'src/generated-dark-color-theme' as darkTheme;
+@use './generated-light-color-theme' as theme;
+@use './generated-dark-color-theme' as darkTheme;
 
 @use '@angular/material' as mat;
 @include mat.core();
