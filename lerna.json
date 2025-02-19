@@ -9,7 +9,7 @@
     "version": {
       "createRelease": "github",
       "conventionalCommits": true,
-      "allowBranch": ["main"],
+      "allowBranch": ["main", "angular-19"],
       "message": "chore(release): publish"
     }
 	}
