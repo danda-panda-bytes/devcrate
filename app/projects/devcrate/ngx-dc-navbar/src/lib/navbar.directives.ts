@@ -10,6 +10,16 @@ export class NgxDcNavbarRightTopBarContentDirective {
 
 }
 
+@Directive({
+  selector: '[ngxDcNavbarLeftTopBarContent]',
+  standalone: true
+})
+export class NgxDcNavbarLeftTopBarContentDirective {
+  templateRef = inject<TemplateRef<any>>(TemplateRef);
+  viewContainerRef = inject(ViewContainerRef);
+
+}
+
 
 @Directive({
   selector: '[ngxDcNavbarMainContent]',

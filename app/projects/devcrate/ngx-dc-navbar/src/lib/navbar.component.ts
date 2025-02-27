@@ -10,6 +10,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { RouterModule } from "@angular/router";
 import { NgxDcModalService, NgxDcModalServiceToken } from "@devcrate/ngx-dc-utils";
 import {
+  NgxDcNavbarLeftTopBarContentDirective,
   NgxDcNavbarMainContentDirective,
   NgxDcNavbarRightTopBarContentDirective,
   NgxDcNavbarSidebarDirective, NgxDcNavbarSidebarLinksDirective
@@ -47,12 +48,14 @@ export class NgxDcNavbarComponent implements OnInit {
   public readonly version = input<string>(null);
   public readonly topBarBackgroundImage = input<string>(null);
   public readonly collapseButtonText = input<string>(null);
+  public readonly useCustomLeftTopBar = input<boolean>(false);
 
   public SMALL_SCREEN_WIDTH = 768;
   public opened = false;
   public item: string = ''
 
   readonly rightTopBarContentTemplate = contentChild(NgxDcNavbarRightTopBarContentDirective);
+  readonly leftTopBarContentTemplate = contentChild(NgxDcNavbarLeftTopBarContentDirective);
   readonly mainContentTemplate = contentChild(NgxDcNavbarMainContentDirective);
   readonly sideBarContentTemplate = contentChild(NgxDcNavbarSidebarDirective);
   readonly sidebarLinksTemplate = contentChild(NgxDcNavbarSidebarLinksDirective);
