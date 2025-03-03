@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/training.routes.ts"],
+  "sourcesContent": ["import { Routes } from \"@angular/router\";\n\n\n\n\nexport const TRAINING_ROUTES: Routes = [\n  {\n    path: '',\n    redirectTo: 'basics',\n    pathMatch: 'full',\n  },\n  {\n    path: 'basics',\n    loadComponent: () => import('./pages/angular-basics-demo/angular-basics-demo.component').then(m => m.AngularBasicsComponent),\n    data: { title: \"Basic Angular Training\" },\n  },\n  {\n    path: 'advanced',\n    loadComponent: () => import('./pages/angular-advanced-demo/angular-advanced-demo.component').then(m => m.AngularAdvancedDemoComponent),\n    data: { title: \"Advanced Angular Training\" },\n  },\n  {\n    path: 'structural-directives',\n    loadComponent: () => import('./pages/mat-table-demo/mat-table-demo.component').then(m => m.MatTableDemoComponent),\n    data: { title: \"Structural Directives\" },\n  }\n]\n"],
+  "mappings": "4BAKO,IAAMA,EAA0B,CACrC,CACEC,KAAM,GACNC,WAAY,SACZC,UAAW,QAEb,CACEF,KAAM,SACNG,cAAeA,IAAM,OAAO,qBAA2D,EAAEC,KAAKC,GAAKA,EAAEC,sBAAsB,EAC3HC,KAAM,CAAEC,MAAO,wBAAwB,GAEzC,CACER,KAAM,WACNG,cAAeA,IAAM,OAAO,qBAA+D,EAAEC,KAAKC,GAAKA,EAAEI,4BAA4B,EACrIF,KAAM,CAAEC,MAAO,2BAA2B,GAE5C,CACER,KAAM,wBACNG,cAAeA,IAAM,OAAO,qBAAiD,EAAEC,KAAKC,GAAKA,EAAEK,qBAAqB,EAChHH,KAAM,CAAEC,MAAO,uBAAuB,EACvC",
+  "names": ["TRAINING_ROUTES", "path", "redirectTo", "pathMatch", "loadComponent", "then", "m", "AngularBasicsComponent", "data", "title", "AngularAdvancedDemoComponent", "MatTableDemoComponent"]
+}

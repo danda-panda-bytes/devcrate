@@ -1,4 +1,4 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { MatButton } from "@angular/material/button";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import {
@@ -17,26 +17,26 @@ import {
 } from "./sortable-infinite-scroll-side-pane-list/sortable-infinite-scroll-side-pane-list.component";
 
 @Component({
-  selector: 'app-side-pane-list-demo',
-  standalone: true,
-  imports: [
-    BasicSidePaneListComponent,
-    DemoFileViewerComponent,
-    NgxDcDemoCardModule,
-    MatTab,
-    MatTabGroup,
-    NgxDcDemoCardComponent,
-    NgxDcDemoTabsDirective,
-    InfiniteScrollSidePaneListComponent,
-    SortableInfiniteScrollSidePaneListComponent,
-    MatButton
-  ],
-  templateUrl: './side-pane-list-demo.component.html',
-  styleUrl: './side-pane-list-demo.component.scss',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-side-pane-list-demo',
+    imports: [
+        BasicSidePaneListComponent,
+        DemoFileViewerComponent,
+        NgxDcDemoCardModule,
+        MatTab,
+        MatTabGroup,
+        NgxDcDemoCardComponent,
+        NgxDcDemoTabsDirective,
+        InfiniteScrollSidePaneListComponent,
+        SortableInfiniteScrollSidePaneListComponent,
+        MatButton
+    ],
+    templateUrl: './side-pane-list-demo.component.html',
+    styleUrl: './side-pane-list-demo.component.scss',
+    encapsulation: ViewEncapsulation.None
 })
 export class SidePaneListDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal() {
     const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname

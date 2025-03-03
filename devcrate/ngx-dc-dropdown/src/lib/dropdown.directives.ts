@@ -1,16 +1,14 @@
-import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, inject, input } from '@angular/core'
 
 @Directive({
   selector: '[ngxDcDropdownHeader]',
   standalone: true
 })
 export class NgxDcDropdownHeaderDirective {
-  @Input('ngxDcDropdownHeaderHeight') public height: string = null
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
+  ViewContainerRef = inject(ViewContainerRef)
 
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public ViewContainerRef: ViewContainerRef,
-  ) { }
+  public readonly height = input<string>(null, { alias: "ngxDcDropdownHeaderHeight" });
 }
 
 @Directive({
@@ -18,12 +16,10 @@ export class NgxDcDropdownHeaderDirective {
   standalone: true
 })
 export class NgxDcDropdownItemDirective {
-  @Input('ngxDcDropdownItemHeight') public height: string = null
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
+  ViewContainerRef = inject(ViewContainerRef)
 
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public ViewContainerRef: ViewContainerRef,
-  ) { }
+  public readonly height = input<string>(null, { alias: "ngxDcDropdownItemHeight" });
 }
 
 @Directive({
@@ -31,10 +27,8 @@ export class NgxDcDropdownItemDirective {
   standalone: true
 })
 export class NgxDcDropdownNoItemsDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public ViewContainerRef: ViewContainerRef,
-  ) { }
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
+  ViewContainerRef = inject(ViewContainerRef)
 }
 
 @Directive({
@@ -42,8 +36,6 @@ export class NgxDcDropdownNoItemsDirective {
   standalone: true
 })
 export class NgxDcDropdownLoadingDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public ViewContainerRef: ViewContainerRef,
-  ) { }
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
+  ViewContainerRef = inject(ViewContainerRef)
 }

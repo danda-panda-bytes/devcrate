@@ -2,6 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { NgxDcNavbarComponent } from './navbar.component';
 import {
+  NgxDcNavbarLeftTopBarContentDirective,
   NgxDcNavbarMainContentDirective,
   NgxDcNavbarRightTopBarContentDirective,
   NgxDcNavbarSidebarDirective, NgxDcNavbarSidebarLinksDirective
@@ -15,6 +16,7 @@ import {
 
 export const IMPORTS = [
   NgxDcNavbarComponent,
+  NgxDcNavbarLeftTopBarContentDirective,
   NgxDcNavbarRightTopBarContentDirective,
   NgxDcNavbarMainContentDirective,
   NgxDcNavbarSidebarDirective,

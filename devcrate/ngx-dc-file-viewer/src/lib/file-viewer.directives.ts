@@ -1,14 +1,12 @@
-import {Directive, ViewContainerRef, TemplateRef} from "@angular/core";
+import { Directive, ViewContainerRef, TemplateRef, inject } from "@angular/core";
 
 @Directive({
   selector: '[ngxDcFileViewerNotSupportedFile]',
   standalone: true
 })
 export class NgxDcFileViewerNotSupportedFileDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) { }
+  public templateRef = inject<TemplateRef<any>>(TemplateRef)
+  public viewContainerRef = inject(ViewContainerRef)
 }
 
 @Directive({
@@ -16,8 +14,6 @@ export class NgxDcFileViewerNotSupportedFileDirective {
   standalone: true
 })
 export class NgxDcFileViewerErrorDirective {
-  constructor(
-    public templateRef: TemplateRef<any>,
-    public viewContainerRef: ViewContainerRef,
-  ) { }
+  public templateRef = inject<TemplateRef<any>>(TemplateRef)
+  public viewContainerRef = inject(ViewContainerRef)
 }

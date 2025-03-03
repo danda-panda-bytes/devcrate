@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChildren, inject, viewChild } from '@angular/core';
 import {SortedFilterInfiniteScrollSidePaneListDataSource} from "./sorted-filter-infinite-scroll-side-pane-list.data-source";
 import {
   NgxDcPanePageInfoDirective,
@@ -13,28 +13,29 @@ import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 
 @Component({
-  selector: 'sorted-filter-infinite-scroll-side-pane-list',
-  templateUrl: './sorted-filter-infinite-scroll-side-pane-list.component.html',
-  styleUrl: './sorted-filter-infinite-scroll-side-pane-list.component.scss',
-  standalone: true,
-  imports: [
-    NgxDcSidePaneListModule,
-    MatCardTitle,
-    MatCard,
-    JsonPipe,
-    MatIcon,
-    MatIconButton
-  ],
-  providers: [SortedFilterInfiniteScrollSidePaneListDataSource]
+    selector: 'sorted-filter-infinite-scroll-side-pane-list',
+    templateUrl: './sorted-filter-infinite-scroll-side-pane-list.component.html',
+    styleUrl: './sorted-filter-infinite-scroll-side-pane-list.component.scss',
+    imports: [
+        NgxDcSidePaneListModule,
+        MatCardTitle,
+        MatCard,
+        JsonPipe,
+        MatIcon,
+        MatIconButton
+    ],
+    providers: [SortedFilterInfiniteScrollSidePaneListDataSource]
 })
 
 export class SortedFilterInfiniteScrollSidePaneListComponent implements OnInit {
-  @ViewChild(NgxDcSidePaneListComponent) table: NgxDcSidePaneListComponent<any>
+  dataSource = inject(SortedFilterInfiniteScrollSidePaneListDataSource);
+
+  readonly table = viewChild(NgxDcSidePaneListComponent);
 
   public sorted = false
   public async sort() {
     this.sorted = !this.sorted
-    this.table.scrollToTop()
+    this.table().scrollToTop()
     this.dataSource.params = {}
     this.dataSource.params.sortField = "name"
     this.dataSource.params.sortDir = this.sorted ? "desc" : "asc"
@@ -43,7 +44,6 @@ export class SortedFilterInfiniteScrollSidePaneListComponent implements OnInit {
     await this.dataSource.refresh()
   }
 
-  constructor(public dataSource: SortedFilterInfiniteScrollSidePaneListDataSource) {}
 
   public async ngOnInit() {
     await this.dataSource.initialize()

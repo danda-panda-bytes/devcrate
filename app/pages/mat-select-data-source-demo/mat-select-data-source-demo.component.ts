@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import {
   CodeModalComponent,
@@ -12,21 +12,21 @@ import { NgxDcModalService } from '@devcrate/ngx-dc-utils';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-mat-select-data-source-demo',
-  standalone: true,
-  imports: [
-    DemoFileViewerComponent,
-    MatTab,
-    MatTabGroup,
-    NgxDcDemoCardModule,
-    BasicSelectDataSourceComponent,
-    MatButtonModule,
-  ],
-  templateUrl: './mat-select-data-source-demo.component.html',
-  styleUrl: './mat-select-data-source-demo.component.scss'
+    selector: 'app-mat-select-data-source-demo',
+    imports: [
+        DemoFileViewerComponent,
+        MatTab,
+        MatTabGroup,
+        NgxDcDemoCardModule,
+        BasicSelectDataSourceComponent,
+        MatButtonModule,
+    ],
+    templateUrl: './mat-select-data-source-demo.component.html',
+    styleUrl: './mat-select-data-source-demo.component.scss'
 })
 export class MatSelectDataSourceDemoComponent {
-  constructor(private modalService: NgxDcModalService) {}
+  private modalService = inject(NgxDcModalService);
+
 
   public async showModal() {
     const originPath = window.location.origin.includes('localhost') ? '/' : window.location.origin + window.location.pathname

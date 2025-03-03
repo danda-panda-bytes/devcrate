@@ -110,8 +110,8 @@ this.modalService.dismissNotification();
 The `showGlobalLoadingBar` is a `BehaviorSubject` that can be used to control the visibility of a global loading bar. It automatically hides when navigation ends:
 
 ```typescript
-this.modalService.showGlobalLoadingBar.next(true); // Show loading bar
-this.modalService.showGlobalLoadingBar.next(false); // Hide loading bar
+this.modalService.showGlobalLoadingBar?.next(true); // Show loading bar
+this.modalService.showGlobalLoadingBar?.next(false); // Hide loading bar
 ```
 
 ## Methods

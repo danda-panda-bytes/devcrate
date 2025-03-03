@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
+import { AfterContentInit, Directive, Input, OnDestroy, inject, output } from "@angular/core";
 import { DestroyObservable } from "@devcrate/ngx-dc-utils";
 import { MarkdownComponent } from "ngx-markdown";
 import { takeUntil } from "rxjs/operators";
@@ -9,9 +9,11 @@ import { joinPaths } from "./ngx-markdown-open-modal-on-file-links.utils";
   standalone: true,
 })
 export class NgxMarkdownOnLinkClick extends DestroyObservable implements OnDestroy, AfterContentInit {
-  @Output('ngxMarkdownOnLinkClick') public onLinkClick = new EventEmitter<{ name: string, path: string }>()
+  cmp = inject(MarkdownComponent);
 
-  constructor(public cmp: MarkdownComponent) {
+  public readonly onLinkClick = output<{ name: string, path: string }>({ alias: 'ngxMarkdownOnLinkClick' });
+
+  constructor() {
     super()
   }
 

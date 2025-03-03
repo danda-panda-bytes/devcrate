@@ -1,4 +1,4 @@
-import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, inject, output } from '@angular/core';
 
 /**
  * Usage: ```html
@@ -11,20 +11,23 @@ import {Directive, ElementRef, EventEmitter, HostListener, Input, Output} from '
   exportAs: 'uploadFileButton'
 })
 export class NgxDcUploadFileButtonDirective {
+  private el = inject(ElementRef)
+
   private readonly input: HTMLInputElement
   private accepted: string = ''
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input({ required: true, alias: 'accept' })
   public set typeAccepted(accept: string) {
     this.accepted = accept
     this.input.accept = accept
   }
 
-  @Output() public fileUploaded = new EventEmitter<File>()
-  @Output() public filesChanged = new EventEmitter<File[]>()
+  public readonly fileUploaded = output<File>();
+  public readonly filesChanged = output<File[]>();
   public files: File[] = []
-
-  constructor(private el: ElementRef) {
+  constructor() {
     this.input = document.createElement('input')
     this.input.hidden = true
     this.input.style.display = 'none'
