@@ -1,5 +1,5 @@
 <mat-card class="ngx-dc-side-pane-list" [class.collapsed]="collapsed()">
-  <div mat-subheader class="dc-total-count">
+  <div mat-subheader class="dc-total-count" data-testid="ngx-dc-side-pane-list-total-count">
       <ng-container
         *ngTemplateOutlet="panePageInfo()?.templateRef; context: {
             $implicit: dataSource().selectedItem | async,
@@ -11,19 +11,20 @@
       ></ng-container>
   </div>
   @if (dataSource().allowLocalFilter) {
-    <mat-form-field class="filter-input">
+    <mat-form-field class="filter-input" data-testid="ngx-dc-side-pane-list-filter-form-field">
       <input
         matInput placeholder="Filter"
+        data-testid="ngx-dc-side-pane-list-filter-input"
         [ngModel]="dataSource().filter.value"
         (ngModelChange)="dataSource().filter.next($event)"
       />
     </mat-form-field>
   }
-  <mat-nav-list class="dc-side-pane-items" data-id="dc-side-pane-items" cdkVirtualScrollingElement #scroller>
+  <mat-nav-list class="dc-side-pane-items" data-testid="ngx-dc-side-pane-list-items" cdkVirtualScrollingElement #scroller>
     <ng-template let-item let-i="index" #listItem>
       <mat-list-item
         class="dc-side-pane-item"
-        data-id="dc-side-pane-item"
+        data-testid="ngx-dc-side-pane-item"
         [ngClass]="dataSource().ngClassPaneItem(dataSource().selectedItem | async, item, i)"
         (click)="onPaneItemClicked(item)"
         [disabled]="!item || dataSource().isItemDisabled(item)"
