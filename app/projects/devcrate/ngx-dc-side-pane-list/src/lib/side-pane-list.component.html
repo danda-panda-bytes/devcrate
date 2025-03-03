@@ -1,79 +1,80 @@
-<mat-card class="ngx-dc-side-pane-list" [class.collapsed]="collapsed">
-  <div mat-subheader class="dc-total-count">
+<mat-card class="ngx-dc-side-pane-list" [class.collapsed]="collapsed()">
+  <div mat-subheader class="dc-total-count" data-testid="ngx-dc-side-pane-list-total-count">
       <ng-container
-        *ngTemplateOutlet="panePageInfo?.templateRef; context: {
-            $implicit: dataSource.selectedItem | async,
-            collapsed: collapsed,
-            filteredCount: (dataSource.filteredData$ | async) | filledCount,
-            currentCount: dataSource.actualDataLength,
-            totalCount: dataSource.count$ | async,
+        *ngTemplateOutlet="panePageInfo()?.templateRef; context: {
+            $implicit: dataSource().selectedItem | async,
+            collapsed: collapsed(),
+            filteredCount: (dataSource().filteredData$ | async) | filledCount,
+            currentCount: dataSource().actualDataLength,
+            totalCount: dataSource().count$ | async,
         }"
       ></ng-container>
   </div>
-  @if (dataSource.allowLocalFilter) {
-    <mat-form-field class="filter-input">
+  @if (dataSource().allowLocalFilter) {
+    <mat-form-field class="filter-input" data-testid="ngx-dc-side-pane-list-filter-form-field">
       <input
         matInput placeholder="Filter"
-        [ngModel]="dataSource.filter.value"
-        (ngModelChange)="dataSource.filter.next($event)"
+        data-testid="ngx-dc-side-pane-list-filter-input"
+        [ngModel]="dataSource().filter.value"
+        (ngModelChange)="dataSource().filter.next($event)"
       />
     </mat-form-field>
   }
-  <mat-nav-list class="dc-side-pane-items" data-id="dc-side-pane-items" cdkVirtualScrollingElement #scroller>
+  <mat-nav-list class="dc-side-pane-items" data-testid="ngx-dc-side-pane-list-items" cdkVirtualScrollingElement #scroller>
     <ng-template let-item let-i="index" #listItem>
       <mat-list-item
         class="dc-side-pane-item"
-        data-id="dc-side-pane-item"
-        [ngClass]="dataSource.ngClassPaneItem(dataSource.selectedItem | async, item, i)"
+        data-testid="ngx-dc-side-pane-item"
+        [ngClass]="dataSource().ngClassPaneItem(dataSource().selectedItem | async, item, i)"
         (click)="onPaneItemClicked(item)"
-        [disabled]="!item || dataSource.isItemDisabled(item)"
-        [activated]="dataSource.selectedItem.value && item && dataSource.isActiveItem(dataSource.selectedItem.value, item)"
+        [disabled]="!item || dataSource().isItemDisabled(item)"
+        [activated]="dataSource().selectedItem.value && item && dataSource().isActiveItem(dataSource().selectedItem.value, item)"
         #matListItem
       >
         @if (item) {
           <ng-container
-            *ngTemplateOutlet="sidePaneItem?.templateRef; context: {
+            *ngTemplateOutlet="sidePaneItem()?.templateRef; context: {
                   $implicit: item,
                   index: i,
-                  collapsed: collapsed,
+                  collapsed: collapsed(),
                 }"
           ></ng-container>
         } @else {
           <ng-container
-            *ngTemplateOutlet="sidePaneLoadingItem?.templateRef; context: {
+            *ngTemplateOutlet="sidePaneLoadingItem()?.templateRef; context: {
                   index: i,
-                  collapsed: collapsed,
+                  collapsed: collapsed(),
                 }"
           ></ng-container>
         }
       </mat-list-item>
     </ng-template>
-    @if (useInfiniteScrolling) {
-      <cdk-virtual-scroll-viewport [itemSize]="dataSource.rowHeight" [minBufferPx]="dataSource.rowHeight * 5" [maxBufferPx]="dataSource.rowHeight * 10">
-        <ng-container *cdkVirtualFor="let item of dataSource; let i = index">
+    @if (useInfiniteScrolling()) {
+      <cdk-virtual-scroll-viewport [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * 5" [maxBufferPx]="dataSource().rowHeight * 10">
+        <ng-container *cdkVirtualFor="let item of dataSource(); let i = index">
           <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item, index: i }"></ng-container>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     } @else {
-      @for (item of dataSource.data$ | async; track dataSource.trackItems(item); let i = $index) {
+      @for (item of dataSource().data$ | async; track dataSource().trackItems(item); let i = $index) {
         <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item, index: i }"></ng-container>
       }
     }
   </mat-nav-list>
 
 
-  @if (sidePaneFooter) {
+  @if (sidePaneFooter()) {
     <ng-container
-      *ngTemplateOutlet="sidePaneFooter?.templateRef; context: {
-            collapsed: collapsed,
+      *ngTemplateOutlet="sidePaneFooter()?.templateRef; context: {
+            collapsed: collapsed(),
           }"
     ></ng-container>
   }
 
-  @if (collapsible) {
-    <button mat-raised-button class="dc-pane-controller" (click)="collapsed = !collapsed">
+  @if (collapsible()) {
+    <button mat-raised-button class="dc-pane-controller" (click)="collapsed.set(!collapsed())">
       <div class="flex">
-        <span class="flex align-items-center">{{ collapsed ? 'Expand' : 'Collapse' }}</span>
+        <span class="flex align-items-center">{{ collapsed() ? 'Expand' : 'Collapse' }}</span>
         <span class="fill"></span>
         <mat-icon class="double-arrow">double_arrow</mat-icon>
       </div>
@@ -82,10 +83,10 @@
 </mat-card>
 <div class="dc-content-pane">
     <ng-container
-      *ngTemplateOutlet="paneContent?.templateRef; context: {
-        $implicit: dataSource.retrievedItem | async,
-        selectedItem: dataSource.selectedItem | async,
-        collapsed: collapsed
+      *ngTemplateOutlet="paneContent()?.templateRef; context: {
+        $implicit: dataSource().retrievedItem | async,
+        selectedItem: dataSource().selectedItem | async,
+        collapsed: collapsed()
       }"
     ></ng-container>
 </div>

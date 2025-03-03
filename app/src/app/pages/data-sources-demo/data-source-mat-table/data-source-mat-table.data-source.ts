@@ -1,6 +1,6 @@
 import {NgxDcApiDataSource, PageableResult} from "@devcrate/ngx-dc-data-sources";
 import {HttpClient} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import { Injectable, inject } from "@angular/core";
 
 @Injectable({ providedIn: 'root', deps: [HttpClient] })
 export class DataSourceMatTableData extends NgxDcApiDataSource<any> {
@@ -17,7 +17,9 @@ export class DataSourceMatTableData extends NgxDcApiDataSource<any> {
     }
   }
 
-  constructor(httpClient: HttpClient) {
+  constructor() {
+    const httpClient = inject(HttpClient);
+
     super(httpClient)
   }
 }

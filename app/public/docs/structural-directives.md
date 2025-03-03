@@ -117,7 +117,7 @@ Moving on! Lets define the directives.
 ```typescript
 @Directive({ selector: 'matHeaderRowDef' })
 export class MatHeaderRowDefDirective {
-  @Input('matHeaderRowDef') public columns: string[] = []
+  public columns: string[] = input([], { alias: 'matHeaderRowDef' })
 
   constructor(
     public templateRef: TemplateRef,
@@ -134,7 +134,7 @@ The footer and row need information for each row since it will show each cell. S
 ```typescript
 @Directive({ selector: 'matFooterRowDef' })
 export class MatFooterRowDefDirective {
-    @Input("matFooterRowDefColumns") public columns: string[] = []
+    public columns: string[] = input([], { alias: 'matFooterRowDefColumns' })
 
     constructor(
         public templateRef: TemplateRef,
@@ -149,7 +149,7 @@ Same for the row definition.
 @Directive({ selector: 'matRowDef' })
 export class MatRowDefDirective {
   // This shows
-  @Input("matRowDefColumns") public columns: string[] = []
+  public columns: string[] = input([], { alias: 'matRowDefColumns' })
 
   constructor(
     public templateRef: TemplateRef,
@@ -219,7 +219,7 @@ Before moving forward, we need to define the orchestrator for each column. This 
 @Directive({ selector: 'matColumnDef' })
 export class MatColumnDefDirective {
   /** we would also set a class name for the rendered content of this column, but we won't for this demo example */
-  @Input('matColumnDef') public name: string
+  public name = input<string>(null, { alias: 'matColumnDef' })
   
   @ContentChild(MatHeaderCellDefDirective) public headerCell: MatHeaderCellDefDirective
   @ContentChild(MatCellDefDirective) public cell: MatCellDefDirective
@@ -267,7 +267,7 @@ We will use the `columns` input to render the columns. However, we first need th
 Then we can go through each column, per row.
 
 ```typescript
-@Input() public dataSource: NgxDcDataSource<GetDataItemsT, FinalDataItemsT>
+  public dataSource = input<NgxDcDataSource<GetDataItemsT, FinalDataItemsT>>()
 ```
 
 > Note: Don't know what `NgxDcDataSource` is? Check out the [docs](./data-management/data-management.md#modal)
@@ -283,7 +283,7 @@ type ColumnDef = {
 
 @Directive({ selector: 'mat-table' })
 export class MatTableDirective<GetDataItemsT = any, FinalDataItemsT = GetDataItemsT> implements DestroyObservable {
-  @Input() public dataSource: NgxDcDataSource<GetDataItemsT, FinalDataItemsT>
+  public dataSource = input<NgxDcDataSource<GetDataItemsT, FinalDataItemsT>>()
 
   @ContentChild(MatHeaderRowDefDirective) public headerRow: MatHeaderRowDefDirective
   @ContentChild(MatRowDefDirective) public row: MatRowDefDirective

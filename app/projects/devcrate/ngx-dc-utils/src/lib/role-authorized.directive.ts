@@ -1,4 +1,4 @@
-import {Directive, Inject, InjectionToken, Input, OnChanges, OnInit, TemplateRef, ViewContainerRef} from '@angular/core'
+import { Directive, InjectionToken, OnChanges, OnInit, TemplateRef, ViewContainerRef, inject, input } from '@angular/core'
 
 export class NgxDcRolesService {
   public hasRole(rolesAllowed: string[]): boolean {
@@ -17,14 +17,12 @@ export const NgxDcRolesServiceToken = new InjectionToken<NgxDcRolesService>("Ngx
   standalone: true,
 })
 export class NgxDcRoleAuthorizedDirective implements OnInit, OnChanges {
-  @Input() public ngxDcRolesAuthorized: string[]
-  private hasView = false
+  private templateRef = inject<TemplateRef<any>>(TemplateRef);
+  private viewContainerRef = inject(ViewContainerRef);
+  private rolesService = inject<NgxDcRolesService>(NgxDcRolesServiceToken);
 
-  constructor(
-    private templateRef: TemplateRef<any>,
-    private viewContainerRef: ViewContainerRef,
-    @Inject(NgxDcRolesServiceToken) private rolesService: NgxDcRolesService,
-  ) { }
+  public readonly ngxDcRolesAuthorized = input<string[]>();
+  private hasView = false
 
   public ngOnInit() {
     this.configureView()
@@ -35,7 +33,7 @@ export class NgxDcRoleAuthorizedDirective implements OnInit, OnChanges {
   }
 
   public configureView(): void {
-    const roleAuthorized = this.rolesService.hasRole(this.ngxDcRolesAuthorized)
+    const roleAuthorized = this.rolesService.hasRole(this.ngxDcRolesAuthorized())
     if (roleAuthorized && !this.hasView) {
       this.viewContainerRef.createEmbeddedView(this.templateRef)
       this.hasView = true

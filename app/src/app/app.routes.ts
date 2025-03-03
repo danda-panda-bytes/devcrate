@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { provideNgxDcNavbarLinksConfig } from "@devcrate/ngx-dc-navbar";
-import { AppComponent } from "./app.component";
+
 import { COMPONENTS_LINKS, PACKAGE_LINKS, TRAINING_LINKS } from "./links";
 
 
@@ -12,7 +12,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'components',
-    component: AppComponent,
+    loadComponent: () => import('./app.component').then(m => m.AppComponent),
     providers: [provideNgxDcNavbarLinksConfig(COMPONENTS_LINKS)],
     canActivate: [],
     children: [
@@ -24,14 +24,14 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'packages',
-    component: AppComponent,
+    loadComponent: () => import('./app.component').then(m => m.AppComponent),
     providers: [provideNgxDcNavbarLinksConfig(PACKAGE_LINKS)],
     canActivate: [],
     loadChildren: () => import('./packages.routes').then(p => p.PACKAGE_ROUTES),
   },
   {
     path: 'training',
-    component: AppComponent,
+    loadComponent: () => import('./app.component').then(m => m.AppComponent),
     providers: [provideNgxDcNavbarLinksConfig(TRAINING_LINKS)],
     canActivate: [],
     loadChildren: () => import('./training.routes').then(p => p.TRAINING_ROUTES),

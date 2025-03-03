@@ -1,13 +1,4 @@
-import {
-  Directive,
-  Input,
-  OnInit,
-  OnDestroy,
-  ContentChild,
-  TemplateRef,
-  ViewContainerRef,
-  ElementRef, QueryList, AfterContentInit
-} from '@angular/core';
+import { Directive, OnInit, OnDestroy, TemplateRef, ViewContainerRef, ElementRef, AfterContentInit, inject, input, contentChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {MatSelect} from "@angular/material/select";
 import {NgxDcMatSelectOptionDirective} from "./mat-select-option.directive";
@@ -29,21 +20,25 @@ import {takeUntil} from "rxjs/operators";
   selector: '[ngxDcMatSelectDataSource]'
 })
 export class NgxDcMatSelectDataSourceDirective extends DestroyObservable implements AfterContentInit {
-  @Input('ngxDcMatSelectDataSource') dataSource: any;
-  @ContentChild(NgxDcMatSelectOptionDirective) optionTemplate: NgxDcMatSelectOptionDirective;
+  private matSelect = inject(MatSelect);
+
+  readonly dataSource = input<any>(undefined, { alias: "ngxDcMatSelectDataSource" });
+  readonly optionTemplate = contentChild(NgxDcMatSelectOptionDirective);
   private subscription: Subscription;
 
-  constructor(private viewContainer: ViewContainerRef, private matSelect: MatSelect) {
+  constructor() {
     super()
   }
 
   ngOnInit() {
-    if (this.dataSource) {
-      this.dataSource.data$.pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
-        if (this.optionTemplate) {
-          this.optionTemplate.viewContainer.clear()
+    const dataSource = this.dataSource();
+    if (dataSource) {
+      dataSource.data$.pipe(takeUntil(this.destroy$)).subscribe((data: any) => {
+        const optionTemplate = this.optionTemplate();
+        if (optionTemplate) {
+          optionTemplate.viewContainer.clear()
           data.forEach((item: any) => {
-            this.optionTemplate.viewContainer.createEmbeddedView(this.optionTemplate.templateRef, { $implicit: item });
+            this.optionTemplate().viewContainer.createEmbeddedView(this.optionTemplate().templateRef, { $implicit: item });
           })
         }
       });
@@ -51,9 +46,9 @@ export class NgxDcMatSelectDataSourceDirective extends DestroyObservable impleme
   }
 
   ngAfterContentInit() {
-    if (this.dataSource && this.matSelect?.valueChange) {
+    if (this.dataSource() && this.matSelect?.valueChange) {
       this.matSelect.valueChange.pipe(takeUntil(this.destroy$)).subscribe(item => {
-        this.dataSource.selectedItem.next(item)
+        this.dataSource().selectedItem.next(item)
       });
     }
   }

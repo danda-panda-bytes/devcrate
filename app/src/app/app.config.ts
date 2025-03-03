@@ -7,7 +7,7 @@ import {HttpClient, provideHttpClient, withInterceptorsFromDi} from "@angular/co
 import {provideHighlightOptions} from "ngx-highlightjs";
 import {provideNgxDcNavbarService} from "@devcrate/ngx-dc-navbar";
 import {MARKED_OPTIONS, MarkedOptions, provideMarkdown} from 'ngx-markdown';
-import { NgxDcModalService, provideNgxDcModalService } from '@devcrate/ngx-dc-utils';
+import { NgxDcModalService, NgxDcModalServiceToken } from '@devcrate/ngx-dc-utils';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideNgxDcNavbarService(),
     NgxDcModalService,
-    provideNgxDcModalService(),
+    { provide: NgxDcModalServiceToken, useClass: NgxDcModalService },
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimationsAsync(),
     provideRouter(APP_ROUTES, withHashLocation()),

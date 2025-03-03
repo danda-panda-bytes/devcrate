@@ -3,13 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 19.1.0 (2025-02-27)
+
+
+### Features
+
+* add additional functionality for the left side of the nav topbar ([9bdbbaa](https://github.com/danda-panda-bytes/devcrate/commit/9bdbbaa100225e694b967cfd7e1cd80ad4c0ecf0))
+
+
+
+
+
+## 19.0.1 (2025-02-19)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-dropdown
+
+
+
 ## 18.0.2 (2025-02-19)
 
 
 ### Bug Fixes
 
 * lerna issue ([9a5cbc1](https://github.com/danda-panda-bytes/devcrate/commit/9a5cbc1d99ba0427a680e054e128e28437c37926))
-
 
 
 

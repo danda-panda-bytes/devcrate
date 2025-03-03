@@ -124,7 +124,7 @@ Then in `my-custom-component` ts file, we define the Input
 ```js
 @Component({ selector: 'my-custom-component' })
 public class MyCustomComponent {
-  @Input() public buttonTemplate: TemplateRef<any>
+  public buttonTemplate = input<TemplateRef<any>>()
 }
 ```
 
