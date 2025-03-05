@@ -24,7 +24,7 @@
     <ng-template let-item let-i="index" #listItem>
       <mat-list-item
         class="dc-side-pane-item"
-        data-testid="ngx-dc-side-pane-item"
+        data-testid="ngx-dc-side-pane-list-item"
         [ngClass]="dataSource().ngClassPaneItem(dataSource().selectedItem | async, item, i)"
         (click)="onPaneItemClicked(item)"
         [disabled]="!item || dataSource().isItemDisabled(item)"

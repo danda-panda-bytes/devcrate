@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.2 (2025-03-05)
+
+
+### Bug Fixes
+
+* testid ([3c7fb69](https://github.com/danda-panda-bytes/devcrate/commit/3c7fb69650692e472a8eca6888d4d19095a9c244))
+
+
+
+
+
 ## 19.1.1 (2025-03-03)
 
 **Note:** Version bump only for package @devcrate/ngx-dc-navbar
