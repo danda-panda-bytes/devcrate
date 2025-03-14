@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.3 (2025-03-14)
+
+
+### Bug Fixes
+
+* styling on infinite scrollable dropdown ([18ff3ac](https://github.com/danda-panda-bytes/devcrate/commit/18ff3ac20c0bb1f92c4cacaf9a50d986c7e2a443))
+
+
+
+
+
 ## 19.1.2 (2025-03-05)
 
 
