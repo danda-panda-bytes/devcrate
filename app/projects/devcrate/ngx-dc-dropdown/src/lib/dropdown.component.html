@@ -28,7 +28,7 @@
 </div>
 
 <div class="dc-dropdown-items-container" [class.opened]="opened()">
-  <mat-nav-list class="dc-dropdown-items mat-elevation-z2" #matNavList>
+  <mat-nav-list class="dc-dropdown-items mat-elevation-z2" data-testid="ngx-dc-dropdown-items" #matNavList>
     <!-- Displays this per item -- see below -->
     <ng-template let-item let-i="index" #perItem>
       <mat-list-item
@@ -95,7 +95,7 @@
           [disabled]="true"
           class="dc-dropdown-item"
           [style.height]="(dropdownOption()?.height() || dropdownHeader()?.height() || dataSource()?.rowHeight || 48) + 'px'"
-          data-testid="ngx-dc-dropdown-item"
+          data-testid="ngx-dc-dropdown-no-item"
         >
           <ng-container
             *ngTemplateOutlet="noItems()?.templateRef; context: {

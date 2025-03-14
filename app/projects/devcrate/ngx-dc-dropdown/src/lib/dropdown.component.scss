@@ -28,7 +28,7 @@ ngx-dc-dropdown {
       position: unset;
     }
 
-    cdk-virtual-scroll-viewport {
+    .cdk-virtual-scroll-content-wrapper {
       position: absolute;
       background-color: var(--ngx-dc-dropdown-header-bg-color);
       z-index: 1;
@@ -41,7 +41,7 @@ ngx-dc-dropdown {
     }
 
     .opened {
-      cdk-virtual-scroll-viewport {
+      .cdk-virtual-scroll-content-wrapper {
         transition: height 0.35s;
         height: 340px;
       }
