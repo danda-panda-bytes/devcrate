@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.4 (2025-03-14)
+
+
+### Bug Fixes
+
+* continued fix on styling of dropdown ([4c94c4b](https://github.com/danda-panda-bytes/devcrate/commit/4c94c4b027c8705cd243adc747e3c1230bf566e7))
+
+
+
+
+
 ## 19.1.3 (2025-03-14)
 
 
