@@ -4,10 +4,12 @@
   data-testid="ngx-dc-dropdown"
   [class.opened]="opened()"
   [class.disabled]="disabled"
-  [ngClass]="dataSource().ngClassTriggerItem(dataSource().selectedItem | async)"
-  (click)="onDropdownClick()"
 >
-  <div matRipple>
+  <div
+    matRipple
+    [ngClass]="dataSource().ngClassTriggerItem(dataSource().selectedItem | async)"
+    (click)="onDropdownClick()"
+  >
     <div
       mat-subheader
       class="dc-dropdown-header"
