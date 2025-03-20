@@ -6,7 +6,7 @@ ngx-dc-dropdown {
   --ngx-dc-dropdown-scrollbar-width: thin;
   --ngx-dc-dropdown-scrollbar-gutter: auto;
   --ngx-dc-dropdown-header-bg-color: var(--mat-sys-inverse-on-surface);
-  --ngx-dc-dropdown-line-item-header-padding: 0 16px;
+  --ngx-dc-dropdown-line-item-header-padding: 8px 16px;
 
   display: flex;
   flex-direction: column;
@@ -26,7 +26,11 @@ ngx-dc-dropdown {
     --mat-list-active-indicator-shape: 0;
   }
 
-  .dc-dropdown-item-header {
+  .dc-dropdown-bottom-header-divider {
+    margin: 0;
+  }
+
+  .dc-dropdown-bottom-header {
     padding: var(--ngx-dc-dropdown-line-item-header-padding) !important;
     @include mat.list-overrides((
       list-item-disabled-label-text-color: white,
