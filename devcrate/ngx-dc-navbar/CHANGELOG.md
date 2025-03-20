@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.5 (2025-03-20)
+
+
+### Bug Fixes
+
+* improve dropdown to have header ([b3a276c](https://github.com/danda-panda-bytes/devcrate/commit/b3a276cd0712762ba3afda03db71030a547dd935))
+
+
+
+
+
+## 19.1.4 (2025-03-14)
+
+
+### Bug Fixes
+
+* continued fix on styling of dropdown ([4c94c4b](https://github.com/danda-panda-bytes/devcrate/commit/4c94c4b027c8705cd243adc747e3c1230bf566e7))
+
+
+
+
+
+## 19.1.3 (2025-03-14)
+
+
+### Bug Fixes
+
+* styling on infinite scrollable dropdown ([18ff3ac](https://github.com/danda-panda-bytes/devcrate/commit/18ff3ac20c0bb1f92c4cacaf9a50d986c7e2a443))
+
+
+
+
+
 ## 19.1.2 (2025-03-05)
 
 

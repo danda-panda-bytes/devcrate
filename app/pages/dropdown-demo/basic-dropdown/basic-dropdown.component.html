@@ -1,4 +1,7 @@
 <ngx-dc-dropdown [dataSource]="dataSource" appearance="rounded-outline">
+  <ng-container *ngxDcDropdownOptionsHeader="let selectedItem">
+    Header Item
+  </ng-container>
   <ng-container *ngxDcDropdownHeader="let selectedItem">
     {{ selectedItem?.name }}
   </ng-container>

@@ -1,9 +1,13 @@
+@use '@angular/material' as mat;
+
 ngx-dc-dropdown {
   --ngx-dc-dropdown-disabled-text-color: rgba(154, 154, 154, 0.5);
   --ngx-dc-dropdown-scrollbar-color: darkgray transparent;
   --ngx-dc-dropdown-scrollbar-width: thin;
   --ngx-dc-dropdown-scrollbar-gutter: auto;
   --ngx-dc-dropdown-header-bg-color: var(--mat-sys-inverse-on-surface);
+  --ngx-dc-dropdown-line-item-header-padding: 0 16px;
+
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -22,29 +26,51 @@ ngx-dc-dropdown {
     --mat-list-active-indicator-shape: 0;
   }
 
+  .dc-dropdown-item-header {
+    padding: var(--ngx-dc-dropdown-line-item-header-padding) !important;
+    @include mat.list-overrides((
+      list-item-disabled-label-text-color: white,
+      list-item-disabled-label-text-opacity: 1
+    ));
+  }
+
   &.infinite-scrolling {
     .dc-dropdown-items {
       padding: 0;
       position: unset;
     }
 
-    cdk-virtual-scroll-viewport {
+    cdk-virtual-scroll-viewport,
+    .cdk-virtual-scroll-content-wrapper {
       position: absolute;
       background-color: var(--ngx-dc-dropdown-header-bg-color);
       z-index: 1;
       top: -4px;
-      overflow: auto;
       width: 100%;
       transition: height 0.35s;
       padding: 0;
       height: 0;
     }
 
+    .cdk-virtual-scroll-content-wrapper {
+      overflow: auto;
+    }
+
+    cdk-virtual-scroll-viewport {
+      overflow: hidden;
+    }
+
     .opened {
       cdk-virtual-scroll-viewport {
-        transition: height 0.35s;
-        height: 340px;
+        transition: height .35s;
+        height: 336px !important;
+        
+        .cdk-virtual-scroll-content-wrapper {
+          transition: height 0.35s;
+          height: 340px;
+        }
       }
+      
     }
   }
 
