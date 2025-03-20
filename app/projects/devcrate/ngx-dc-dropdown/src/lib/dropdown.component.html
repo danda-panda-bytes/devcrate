@@ -1,28 +1,45 @@
 <div
   class="dc-dropdown mat-elevation-z2"
   [id]="dropdownId"
-  matRipple
   data-testid="ngx-dc-dropdown"
   [class.opened]="opened()"
   [class.disabled]="disabled"
   [ngClass]="dataSource().ngClassTriggerItem(dataSource().selectedItem | async)"
   (click)="onDropdownClick()"
 >
-  <div mat-subheader class="dc-dropdown-header"
-    [style.height]="'calc(' + (dropdownHeader()?.height() || dataSource().rowHeight || 48) + 'px' + ' - 1.5rem)'"
-  >
-    <ng-container
-      *ngTemplateOutlet="dropdownHeader()?.templateRef; context: {
-        $implicit: dataSource().selectedItem | async,
-        opened: opened(),
-        filteredCount: (dataSource().filteredData$ | async) | filledCount,
-        currentCount: dataSource().actualDataLength,
-        totalCount: dataSource().count$ | async,
-      }"
-    ></ng-container>
-    <span class="fill"></span>
-    <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+  <div matRipple>
+    <div
+      mat-subheader
+      class="dc-dropdown-header"
+      [style.height]="'calc(' + (dropdownHeader()?.height() || dataSource().rowHeight || 48) + 'px' + ' - 1.5rem)'"
+    >
+      <ng-container
+        *ngTemplateOutlet="dropdownHeader()?.templateRef; context: {
+          $implicit: dataSource().selectedItem | async,
+          opened: opened(),
+          filteredCount: (dataSource().filteredData$ | async) | filledCount,
+          currentCount: dataSource().actualDataLength,
+          totalCount: dataSource().count$ | async,
+        }"
+      ></ng-container>
+      <span class="fill"></span>
+      <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+    </div>
   </div>
+  @if (dropdownOptionsHeader()) {
+    <hr class="dc-dropdown-bottom-header-divider" />
+    <div class="dc-dropdown-bottom-header" data-testid="ngx-dc-dropdown-bottom-header">
+      <ng-container
+        *ngTemplateOutlet="dropdownOptionsHeader()?.templateRef; context: {
+            $implicit: dataSource().selectedItem | async,
+            opened: opened(),
+            filteredCount: (dataSource().filteredData$ | async) | filledCount,
+            currentCount: dataSource().actualDataLength,
+            totalCount: dataSource().count$ | async,
+          }"
+      ></ng-container>
+    </div>
+  }
   @if (dataSource().loading | async) {
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   }
@@ -30,21 +47,6 @@
 
 <div class="dc-dropdown-items-container" [class.opened]="opened()">
   <mat-nav-list class="dc-dropdown-items mat-elevation-z2" data-testid="ngx-dc-dropdown-items" #matNavList>
-    <ng-template #dropdownOptionsHeaderTemplate>
-      @if (dropdownOptionsHeader()) {
-        <mat-list-item class="dc-dropdown-item-header" data-testid="ngx-dc-dropdown-item-header" [disabled]="true" [activated]="false" (click)="$event.stopImmediatePropagation()">
-          <ng-container
-            *ngTemplateOutlet="dropdownOptionsHeader()?.templateRef; context: {
-                $implicit: dataSource().selectedItem | async,
-                opened: opened(),
-                filteredCount: (dataSource().filteredData$ | async) | filledCount,
-                currentCount: dataSource().actualDataLength,
-                totalCount: dataSource().count$ | async,
-              }"
-          ></ng-container>
-        </mat-list-item>
-      }
-    </ng-template>
     <!-- Displays this per item -- see below -->
     <ng-template let-item let-i="index" #perItem>
       <mat-list-item
@@ -100,13 +102,11 @@
           </mat-list-item>
         }
 
-        <ng-container *ngTemplateOutlet="dropdownOptionsHeaderTemplate"></ng-container>
         <ng-container *cdkVirtualFor="let item of dataSource(); let i = index">
           <ng-container *ngTemplateOutlet="perItem; context: { $implicit: item, index: i }"></ng-container>
         </ng-container>
       </cdk-virtual-scroll-viewport>
     } @else {
-      <ng-container *ngTemplateOutlet="dropdownOptionsHeaderTemplate"></ng-container>
       <!-- Display when dropdown is loading or have no items -->
       @if (!dataSource().loading.value && dataSource().actualDataLength == 0) {
         <mat-list-item
