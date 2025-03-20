@@ -16,4 +16,23 @@
 
 <br/>
 
+
+<ngx-dc-dropdown [dataSource]="dataSource" [useInfiniteScrolling]="true" appearance="rounded-outline">
+  <ng-container *ngxDcDropdownOptionsHeader="let selectedItem">
+    Header Item
+  </ng-container>
+  <ng-container *ngxDcDropdownHeader="let selectedItem">
+    {{ selectedItem?.name }}
+  </ng-container>
+  <ng-container *ngxDcDropdownItem="let item">
+    {{ item.name }}
+  </ng-container>
+  <ng-container *ngxDcDropdownNoItems>No Items found</ng-container>
+  <ng-container *ngxDcDropdownLoading>
+      Loading...
+  </ng-container>
+</ngx-dc-dropdown>
+
+<br/>
+
 {{ dataSource.retrievedItem.value | json }}

@@ -16,6 +16,7 @@ import {
   NgxDcDropdownItemDirective, NgxDcDropdownLoadingDirective, NgxDcDropdownNoItemsDirective,
   NgxDcDropdownOptionsHeaderDirective
 } from "./dropdown.directives";
+import { v4 as uuid } from 'uuid';
 
 @Component({
     selector: 'ngx-dc-dropdown',
@@ -32,13 +33,14 @@ import {
         CdkFixedSizeVirtualScroll,
         CdkVirtualForOf,
         CdkVirtualScrollViewport,
-        MatRipple
+        MatRipple,
     ],
     templateUrl: './dropdown.component.html',
     styleUrl: './dropdown.component.scss',
     encapsulation: ViewEncapsulation.None,
 })
 export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItemsT, RetrievedItemT = GetDataItemsT> implements OnInit, OnDestroy {
+  public dropdownId = `dc-${uuid()}`
   public modalService = inject<NgxDcModalService>(NgxDcModalServiceToken);
 
   // We should put the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
@@ -62,8 +64,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened()) { return }
-    if (!(event.target as HTMLElement).closest(".dc-dropdown")) {
-
+    if (!(event.target as HTMLElement).closest(`#${this.dropdownId}`)) {
       this.opened.set(false)
     }
   }
