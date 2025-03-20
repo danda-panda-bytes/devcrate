@@ -30,7 +30,11 @@
   </div>
   @if (dropdownOptionsHeader()) {
     <hr class="dc-dropdown-bottom-header-divider" />
-    <div class="dc-dropdown-bottom-header" data-testid="ngx-dc-dropdown-bottom-header">
+    <div
+      class="dc-dropdown-bottom-header"
+      data-testid="ngx-dc-dropdown-bottom-header"
+      [ngClass]="dataSource().ngClassBottomHeader(dataSource().selectedItem | async)"
+    >
       <ng-container
         *ngTemplateOutlet="dropdownOptionsHeader()?.templateRef; context: {
             $implicit: dataSource().selectedItem | async,

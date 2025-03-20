@@ -64,7 +64,9 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened()) { return }
-    if (!(event.target as HTMLElement).closest(`#${this.dropdownId}`)) {
+    const matSelectPanel = (event.target as HTMLElement).closest('.mat-mdc-select-panel')
+    const me = (event.target as HTMLElement).closest(`#${this.dropdownId}`)
+    if (!me && !matSelectPanel) {
       this.opened.set(false)
     }
   }

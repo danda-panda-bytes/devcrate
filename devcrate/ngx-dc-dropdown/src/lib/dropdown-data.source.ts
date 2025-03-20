@@ -116,6 +116,28 @@ export abstract class NgxDcDropdownDataSource<
   }
 
   /**
+   * This is the `[ngClass]` function for the bottom header. It expects what the {NgClass} object.
+   * The key is the class name and the value is a boolean saying to add the class or not.
+   *
+   * @param selectedItem The item that is currently selected in the details pane
+   *
+   * @returns {NgClass} object
+   *
+   * @example
+   *
+   * ```typescript
+   * public ngClassBottomHeader(focusedItem: FinalDataItemsT) {
+   *   return {
+   *     'pending-bg-color': focusedItem.status === 'Pending',
+   *   }
+   * }
+   * ```
+   */
+  public ngClassBottomHeader(selectedItem: FinalDataItemsT) {
+    return {}
+  }
+
+  /**
    * This is the `[ngClass]` function for the dropdown header. It expects what the {NgClass} object.
    * The key is the class name and the value is a boolean saying to add the class or not.
    *
