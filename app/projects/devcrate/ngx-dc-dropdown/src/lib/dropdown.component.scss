@@ -1,9 +1,13 @@
+@use '@angular/material' as mat;
+
 ngx-dc-dropdown {
   --ngx-dc-dropdown-disabled-text-color: rgba(154, 154, 154, 0.5);
   --ngx-dc-dropdown-scrollbar-color: darkgray transparent;
   --ngx-dc-dropdown-scrollbar-width: thin;
   --ngx-dc-dropdown-scrollbar-gutter: auto;
   --ngx-dc-dropdown-header-bg-color: var(--mat-sys-inverse-on-surface);
+  --ngx-dc-dropdown-line-item-header-padding: 0 16px;
+
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -20,6 +24,14 @@ ngx-dc-dropdown {
 
   .dc-dropdown-item {
     --mat-list-active-indicator-shape: 0;
+  }
+
+  .dc-dropdown-item-header {
+    padding: var(--ngx-dc-dropdown-line-item-header-padding) !important;
+    @include mat.list-overrides((
+      list-item-disabled-label-text-color: white,
+      list-item-disabled-label-text-opacity: 1
+    ));
   }
 
   &.infinite-scrolling {

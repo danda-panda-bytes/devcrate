@@ -29,6 +29,19 @@
 
 <div class="dc-dropdown-items-container" [class.opened]="opened()">
   <mat-nav-list class="dc-dropdown-items mat-elevation-z2" data-testid="ngx-dc-dropdown-items" #matNavList>
+    @if (dropdownOptionsHeader()) {  
+      <mat-list-item class="dc-dropdown-item-header" data-testid="ngx-dc-dropdown-item-header" [disabled]="true" [activated]="false">
+        <ng-container
+          *ngTemplateOutlet="dropdownOptionsHeader()?.templateRef; context: {
+              $implicit: dataSource().selectedItem | async,
+              opened: opened(),
+              filteredCount: (dataSource().filteredData$ | async) | filledCount,
+              currentCount: dataSource().actualDataLength,
+              totalCount: dataSource().count$ | async,
+            }"
+        ></ng-container>
+      </mat-list-item>
+    }
     <!-- Displays this per item -- see below -->
     <ng-template let-item let-i="index" #perItem>
       <mat-list-item

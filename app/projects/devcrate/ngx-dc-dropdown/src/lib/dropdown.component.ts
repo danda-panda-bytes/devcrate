@@ -13,7 +13,8 @@ import {
 } from "./dropdown-data.source";
 import {
   NgxDcDropdownHeaderDirective,
-  NgxDcDropdownItemDirective, NgxDcDropdownLoadingDirective, NgxDcDropdownNoItemsDirective
+  NgxDcDropdownItemDirective, NgxDcDropdownLoadingDirective, NgxDcDropdownNoItemsDirective,
+  NgxDcDropdownOptionsHeaderDirective
 } from "./dropdown.directives";
 
 @Component({
@@ -99,6 +100,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   public destroy$ = new BehaviorSubject(false)
   readonly dropdownHeader = contentChild(NgxDcDropdownHeaderDirective);
+  readonly dropdownOptionsHeader = contentChild(NgxDcDropdownOptionsHeaderDirective);
 
   readonly dropdownOption = contentChild(NgxDcDropdownItemDirective);
 
