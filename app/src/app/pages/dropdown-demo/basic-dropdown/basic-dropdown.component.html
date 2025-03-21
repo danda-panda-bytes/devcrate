@@ -63,7 +63,9 @@
 <h3>Basic Dropdown with bottom header and infinite scrolling</h3>
 <ngx-dc-dropdown [dataSource]="dataSource" [useInfiniteScrolling]="true" appearance="rounded-outline">
   <ng-container *ngxDcDropdownOptionsHeader="let selectedItem">
-    Header Item
+    <button mat-icon-button (click)="modalService.showModal(modalWithSelect)">
+      Open Modal
+    </button>
   </ng-container>
   <ng-container *ngxDcDropdownHeader="let selectedItem">
     {{ selectedItem?.name }}
@@ -78,3 +80,15 @@
 </ngx-dc-dropdown>
 
 {{ dataSource.retrievedItem.value | json }}
+
+
+<ng-template #modalWithSelect>
+  <h1>Modal with Select</h1>
+  <mat-form-field>
+    <mat-select>
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>

@@ -64,9 +64,21 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened()) { return }
-    const matSelectPanel = (event.target as HTMLElement).closest('.mat-mdc-select-panel')
-    const me = (event.target as HTMLElement).closest(`#${this.dropdownId}`)
-    if (!me && !matSelectPanel) {
+    const meDropdown = (event.target as HTMLElement).closest(`#${this.dropdownId}`)
+    const meClicked = !!meDropdown
+    const anyPanel = Array.from(document.querySelectorAll('.cdk-overlay-pane'))
+    const somePanelIsOpened = anyPanel.length > 0
+    const isInPanel = !!anyPanel.find(panel => panel.querySelector((`#${this.dropdownId}`)))
+
+    // The following shows each scenario
+    // if the dropdown is in a modal, and we didn't click on the dropdown itself, close it
+    // If the dropdown is NOT in the modal, but under the modal, don't close it
+    // If the dropdown is in the modal, and we clicked on the dropdown itself, close it
+    // If the dropdown is NOT in the modal, but under the modal and we clicked on the dropdown itself, don't close it because it's not interactable
+    // if there is no modal opened, and we clicked on the dropdown itself, close it
+    // if there is no modal and we didn't click on the dropdown itself, close it
+
+    if ((isInPanel || !somePanelIsOpened) && !meClicked) {
       this.opened.set(false)
     }
   }
