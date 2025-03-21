@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.10 (2025-03-21)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-dropdown
+
+
+
+
+
 ## 19.1.9 (2025-03-20)
 
 **Note:** Version bump only for package @devcrate/ngx-dc-dropdown
