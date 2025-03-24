@@ -51,6 +51,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   public readonly allowClickOutside = input<boolean>(true);
   public readonly allowOptionClick = input<boolean>(true);
   public optionClicked = output<FinalDataItemsT>();
+  public headerClicked = output<void>();
   
   public readonly useGlobalLoader = input(false);
   public readonly appearance = input<'fill' | 'outline' | 'none' | 'rounded-fill' | 'rounded-outline'>('rounded-fill');
@@ -202,6 +203,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   protected readonly focus = focus;
 
   public onDropdownClick() {
+    this.headerClicked.emit()
     if (!this.allowOptionClick()) { return }
     this.opened.set(!this.opened())
   }
