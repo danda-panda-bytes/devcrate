@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 import { PageableResult } from "@devcrate/ngx-dc-data-sources";
-import { NgxDcDropdownApiDataSource } from "@devcrate/ngx-dc-dropdown";
+import { NgxDcDropdownApiDataSource, NgxDcInfiniteDropdownDataSource } from "@devcrate/ngx-dc-dropdown";
 
 export interface BasicModel {
   id: number
@@ -34,7 +34,7 @@ export interface MyModel {
 }
 
 @Injectable()
-export class InfiniteDropdownDataSource extends NgxDcDropdownApiDataSource<MyModel> {
+export class InfiniteDropdownDataSource extends NgxDcInfiniteDropdownDataSource<MyModel> {
   public relativePath = "https://devcrate.onrender.com/api/people"
   public rowHeight: number = 80
   public pageSize = 10

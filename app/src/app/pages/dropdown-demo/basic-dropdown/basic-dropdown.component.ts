@@ -26,6 +26,7 @@ export class BasicDropdownComponent implements OnInit {
 
   public async ngOnInit() {
     await this.dataSource.initialize()
-    await this.infiniteDataSource.initialize()
+    this.infiniteDataSource.pageSize = 10
+    this.infiniteDataSource.initialize()
   }
 }
