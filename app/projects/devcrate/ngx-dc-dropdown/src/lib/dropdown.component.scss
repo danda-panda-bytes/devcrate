@@ -44,37 +44,16 @@ ngx-dc-dropdown {
       position: unset;
     }
 
-    cdk-virtual-scroll-viewport,
-    .cdk-virtual-scroll-content-wrapper {
+    cdk-virtual-scroll-viewport {
       position: absolute;
       background-color: var(--ngx-dc-dropdown-header-bg-color);
       z-index: 1;
-      top: -2px;
+      top: -4px;
+      // overflow: auto;
       width: 100%;
       transition: height 0.35s;
       padding: 0;
       height: 0;
-    }
-
-    .cdk-virtual-scroll-content-wrapper {
-      overflow: auto;
-    }
-
-    cdk-virtual-scroll-viewport {
-      overflow: hidden;
-    }
-
-    .opened {
-      cdk-virtual-scroll-viewport {
-        transition: height .35s;
-        height: 336px !important;
-        
-        .cdk-virtual-scroll-content-wrapper {
-          transition: height 0.35s;
-          height: 340px;
-        }
-      }
-      
     }
   }
 
@@ -86,8 +65,12 @@ ngx-dc-dropdown {
       max-height: 0;
     }
 
-
     .opened {
+      cdk-virtual-scroll-viewport {
+        transition: height 0.35s;
+        height: 340px;
+      }
+
       .dc-dropdown-items {
         transition: max-height 0.35s, height 0.35s, padding 0.35s;
         max-height: 340px;
@@ -97,6 +80,10 @@ ngx-dc-dropdown {
   }
 
   .opened {
+    cdk-virtual-scroll-viewport {
+      transition: height 0.35s;
+      height: 340px;
+    }
     .dropdown-arrow {
       transform: rotate(180deg) !important;
     }
