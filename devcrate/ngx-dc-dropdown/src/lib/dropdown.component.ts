@@ -48,6 +48,11 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   public opened = model<boolean>(false);
 
+  public readonly allowClickOutside = input<boolean>(true);
+  public readonly allowOptionClick = input<boolean>(true);
+  public optionClicked = output<FinalDataItemsT>();
+  public headerClicked = output<void>();
+  
   public readonly useGlobalLoader = input(false);
   public readonly appearance = input<'fill' | 'outline' | 'none' | 'rounded-fill' | 'rounded-outline'>('rounded-fill');
   public readonly roundedEdgeSize = input<string>('4px');
@@ -64,8 +69,9 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
   @HostListener("document:click", ["$event"])
   public onClick(event: MouseEvent) {
     if (!this.opened()) { return }
+    if (!this.allowClickOutside()) { return }
     const meDropdown = (event.target as HTMLElement).closest(`#${this.dropdownId}`)
-    const meClicked = !!meDropdown
+    const clickedOnDropdown = !!meDropdown
     const anyPanel = Array.from(document.querySelectorAll('.cdk-overlay-pane'))
     const somePanelIsOpened = anyPanel.length > 0
     const isInPanel = !!anyPanel.find(panel => panel.querySelector((`#${this.dropdownId}`)))
@@ -78,7 +84,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
     // if there is no modal opened, and we clicked on the dropdown itself, close it
     // if there is no modal and we didn't click on the dropdown itself, close it
 
-    if ((isInPanel || !somePanelIsOpened) && !meClicked) {
+    if ((isInPanel || !somePanelIsOpened) && !clickedOnDropdown) {
       this.opened.set(false)
     }
   }
@@ -182,15 +188,23 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
     this.opened.set(false)
   }
 
-  public async onPaneItemClicked(item: FinalDataItemsT): Promise<RetrievedItemT> {
+  public async onPaneItemClicked(item: FinalDataItemsT): Promise<void> {
+    if (this.allowOptionClick()) {
+      this.handlePaneItemClick(item)
+    }
+    this.optionClicked.emit(item)
+  }
+
+  public async handlePaneItemClick(item: FinalDataItemsT): Promise<void> {
     await this.dataSource().onPaneItemClicked(item)
     this.opened.set(false)
-    return this.dataSource().retrievedItem.value
   }
 
   protected readonly focus = focus;
 
   public onDropdownClick() {
+    this.headerClicked.emit()
+    if (!this.allowOptionClick()) { return }
     this.opened.set(!this.opened())
   }
 }
