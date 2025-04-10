@@ -49,11 +49,15 @@ ngx-dc-dropdown {
       background-color: var(--ngx-dc-dropdown-header-bg-color);
       z-index: 1;
       top: -4px;
-      // overflow: auto;
+      overflow: auto;
       width: 100%;
       transition: height 0.35s;
       padding: 0;
       height: 0;
+
+      .cdk-virtual-scroll-content-wrapper {
+        height: auto;
+      }
     }
   }
 
@@ -69,6 +73,10 @@ ngx-dc-dropdown {
       cdk-virtual-scroll-viewport {
         transition: height 0.35s;
         height: 340px;
+
+        .cdk-virtual-scroll-content-wrapper {
+          height: auto;
+        }
       }
 
       .dc-dropdown-items {
@@ -83,6 +91,10 @@ ngx-dc-dropdown {
     cdk-virtual-scroll-viewport {
       transition: height 0.35s;
       height: 340px;
+
+      .cdk-virtual-scroll-content-wrapper {
+        height: auto;
+      }
     }
     .dropdown-arrow {
       transform: rotate(180deg) !important;
@@ -95,8 +107,8 @@ ngx-dc-dropdown {
     top: -4px;
     overflow: auto;
     width: 100%;
-      background-color: var(--ngx-dc-dropdown-header-bg-color);
-      border-radius: 0 0 4px 4px;
+    background-color: var(--ngx-dc-dropdown-header-bg-color);
+    border-radius: 0 0 4px 4px;
   }
 
 
