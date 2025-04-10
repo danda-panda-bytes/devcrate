@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.14 (2025-04-10)
+
+
+### Bug Fixes
+
+* scrolling issues ([c5d3097](https://github.com/danda-panda-bytes/devcrate/commit/c5d30977188ad8069ae89035d9f856f572b8aa9b))
+
+
+
+
+
 ## 19.1.13 (2025-03-31)
 
 **Note:** Version bump only for package @devcrate/ngx-dc-demo-card
