@@ -29,4 +29,9 @@ export class BasicDropdownComponent implements OnInit {
     this.infiniteDataSource.pageSize = 10
     this.infiniteDataSource.initialize()
   }
+  
+  public async refresh() {
+    this.infiniteDataSource.resetInfiniteScrolling()
+    await this.infiniteDataSource.refresh()
+  }
 }

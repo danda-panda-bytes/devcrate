@@ -246,13 +246,13 @@ export abstract class NgxDcInfiniteDropdownDataSource<
   public params: Partial<AllowedParamsT> = {} as any
 
   /** The pages we have queried from the server */
-  private fetchedPages: Set<number> = new Set<number>()
+  public fetchedPages: Set<number> = new Set<number>()
 
   private cachedData: FinalDataItemsT[]
   private subscription: Subscription
 
   /** The current page the user is on (based on the scroll position on the list pane) */
-  private lastPageAccessed: number = null
+  public lastPageAccessed: number = null
 
   protected constructor(httpClient: HttpClient) {
     super(httpClient)
@@ -342,9 +342,11 @@ export abstract class NgxDcInfiniteDropdownDataSource<
    */
   public resetInfiniteScrolling(){
     this.params = {}
-    this.lastPageAccessed = null
+    // Ensure that page accessed adds 0 since we are resetting, we want to initially initialize
+    this.lastPageAccessed = 0
     this.cachedData = Array.from<FinalDataItemsT>({length: this.maxTotalCount})
     this.fetchedPages = new Set<number>()
+    this.fetchedPages.add(0)
     this.data$.next(this.cachedData)
     this.count$.next(0)
     this.initialized = false
