@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/playwright",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Shared playwright code",
   "main": "index.js",
   "types": "index.d.ts",
