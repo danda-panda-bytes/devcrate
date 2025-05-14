@@ -418,6 +418,7 @@ export abstract class NgxDcInfiniteDropdownDataSource<
       }))
 
       for (const {result, page} of pagesFetched) {
+        if (!result) { continue }
         await this.fetchPage(page, result)
       }
       if (this.loading.value) {

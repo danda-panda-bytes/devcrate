@@ -173,13 +173,13 @@ implements DataSource<FinalDataItemsT> {
   public params: Partial<AllowedParamsT> = {} as any
 
   /** The pages we have queried from the server */
-  private fetchedPages: Set<number> = new Set<number>()
+  public fetchedPages: Set<number> = new Set<number>()
 
   private cachedData: FinalDataItemsT[]
   private subscription: Subscription
 
   /** The current page the user is on (based on the scroll position on the list pane) */
-  private lastPageAccessed: number = null
+  public lastPageAccessed: number = null
 
   protected constructor(protected httpClient: HttpClient) {
     super()
