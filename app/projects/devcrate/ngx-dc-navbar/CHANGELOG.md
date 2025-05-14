@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.15 (2025-04-17)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-navbar
+
+
+
+
+
 ## 19.1.14 (2025-04-10)
 
 
