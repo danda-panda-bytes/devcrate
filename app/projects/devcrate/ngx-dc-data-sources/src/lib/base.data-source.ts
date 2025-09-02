@@ -226,7 +226,7 @@ export abstract class NgxDcDataSource<GetDataItemsT = any, FinalDataItemsT = Get
 
   public localUpdateDataItem(updates: Partial<FinalDataItemsT>, matchesId: (item: FinalDataItemsT) => boolean) {
     updates = cleanObject<FinalDataItemsT>(updates, false, true)
-    if (Object.keys(updates).length === 0) return
+    if (Object.keys(updates).length === 0) {return updates}
     
     this.data$.value.forEach(dataItem => {
       if (matchesId(dataItem)) {
