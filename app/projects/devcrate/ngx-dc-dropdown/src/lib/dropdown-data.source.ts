@@ -160,6 +160,89 @@ export abstract class NgxDcDropdownDataSource<
   public ngClassDropdownItem(selectedItem: FinalDataItemsT, currentItem: FinalDataItemsT, index: number) {
     return {}
   }
+
+  /**
+   * Sometimes you need to update the data item locally without refreshing the data for live feedback.
+   * This function allows you to edit the retrievedItem without updating the BehaviorSubject.
+   * 
+   * @param updates The updates to apply to the data item
+   * @param matchesId A function that determines if an item matches the criteria
+   */
+  public localUpdateRetrievedDataItem(updates: Partial<RetrievedPaneItemT>, matchesId: (item: RetrievedPaneItemT) => boolean) {
+    if (Array.isArray(this.retrievedItem.value)) {
+      this.retrievedItem.value.forEach(lineItem => {
+        if (matchesId(lineItem)) {
+          for (const key of Object.keys(updates)) {
+            lineItem[key] = updates[key]
+          }
+        }
+      })
+    } else {
+      if (matchesId(this.retrievedItem.value)) {
+        for (const key of Object.keys(updates)) {
+          this.retrievedItem.value[key] = updates[key]
+        }
+      }
+    }
+  }
+
+  
+
+  /**
+   * Sometimes you need to update the data item locally without refreshing the data for live feedback.
+   * This function allows you to edit the selectedItem without updating the BehaviorSubject.
+   * 
+   * @param updates The updates to apply to the data item
+   * @param matchesId A function that determines if an item matches the criteria
+   */
+  public localUpdateSelectedDataItem(updates: Partial<FinalDataItemsT>, matchesId: (item: FinalDataItemsT) => boolean) {
+    if (Array.isArray(this.selectedItem.value)) {
+      this.selectedItem.value.forEach(lineItem => {
+        if (matchesId(lineItem)) {
+          for (const key of Object.keys(updates)) {
+            lineItem[key] = updates[key]
+          }
+        }
+      })
+    } else {
+      if (matchesId(this.selectedItem.value)) {
+        for (const key of Object.keys(updates)) {
+          this.selectedItem.value[key] = updates[key]
+        }
+      }
+    }
+  }
+
+  /**
+   * Sometimes you need to update the data item locally without refreshing the data for live feedback.
+   * This function allows you to edit the data$, selectedItem, retrievedItem without updating the BehaviorSubject or sending it to the server.
+   * 
+   * @param selectedUpdates The updates to apply to the selected data item
+   * @param selectedMatchesId A function that determines if the selected item matches the criteria to update the selected item with selectedUpdates
+   * @param retrievedUpdates The updates to apply to the retrieved data item
+   * @param retrievedMatchesId A function that determines if the retrieved item matches the criteria to update the retrieved item with retrievedUpdates
+   * 
+   * @example
+   * 
+   * ```typescript
+   * dao.fullLocalUpdateDataItem(
+   *   { status: 'Updated' },
+   *   item => item.id === selectedItemId,
+   *   { myStatus: 'Updated' },
+   *   item => item.id === retrievedItemId
+   * )
+   * ```
+   */
+  public fullLocalUpdateDataItem(
+    selectedUpdates: Partial<FinalDataItemsT>,
+    selectedMatchesId: (item: FinalDataItemsT) => boolean,
+    retrievedUpdates: Partial<RetrievedPaneItemT>,
+    retrievedMatchesId: (item: RetrievedPaneItemT) => boolean,
+  ) {
+    this.localUpdateDataItem(selectedUpdates, selectedMatchesId)
+    this.localUpdateSelectedDataItem(selectedUpdates, selectedMatchesId)
+    this.localUpdateRetrievedDataItem(retrievedUpdates, retrievedMatchesId)
+  }
 }
 
 

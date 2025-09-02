@@ -15,8 +15,8 @@ import {DestroyObservable} from "@devcrate/ngx-dc-utils";
  * export class MyCustomNavbar extends NgxDcNavbarService<string> {
  *   constructor(private userService: UserService) {}
  *
- *   public isAllowed(allowedList: string[]): boolean {
- *     return this.userService.user.roles.find(role => allowedList.includes(role.name))
+ *   public isAllowed(info: NgxDcNavbarLinkInfo<AllowedItemT>): boolean {
+ *     return this.userService.user.roles.find(role => info.allowedList.includes(role.name))
  *   }
  * }
  * ```
@@ -66,7 +66,7 @@ export class NgxDcNavbarService<AllowedItemT = string> extends DestroyObservable
    *
    * @param allowedList The list of items you define in each `NgxDcNavbarLinkInfo` called `allowedList`.
    */
-  public isAllowed(allowedList: AllowedItemT[]): boolean {
+  public isAllowed(info: NgxDcNavbarLinkInfo<AllowedItemT>): boolean {
     return true
   }
 }

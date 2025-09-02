@@ -31,7 +31,7 @@
       } @else {
         <mat-nav-list class="menu-navigation">
           @for (menuItem of links; track menuItem.title) {
-            @if (navbarService.isAllowed(menuItem.allowedList)) {
+            @if (navbarService.isAllowed(menuItem)) {
               @if (menuItem.type === 'heading') {
                 <mat-list-item disabled class="menu-title heading"
                                [class.align-items-center]="navbarService.collapsed$ | async">
