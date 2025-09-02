@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.17 (2025-09-02)
+
+
+### Bug Fixes
+
+* return issue ([5187a73](https://github.com/danda-panda-bytes/devcrate/commit/5187a73257c14cd3f1367d09872e40bc843e2fda))
+
+
+
+
+
 ## 19.1.16 (2025-05-14)
 
 **Note:** Version bump only for package @devcrate/ngx-dc-utils
