@@ -10,6 +10,9 @@ export abstract class NgxDcDropdownDataSource<
   GetDataItemsT = any, FinalDataItemsT = GetDataItemsT, RetrievedPaneItemT = GetDataItemsT
 > extends NgxDcDataSource<GetDataItemsT, FinalDataItemsT> {
   public rowHeight: number = null
+  public minBufferMultiplier = 5
+  public maxBufferMultiplier = 10
+  
   /** The data given for the details of the selected item */
   public retrievedItem = new BehaviorSubject<RetrievedPaneItemT>(null)
 
