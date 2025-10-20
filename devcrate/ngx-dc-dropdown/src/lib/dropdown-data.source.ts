@@ -10,6 +10,9 @@ export abstract class NgxDcDropdownDataSource<
   GetDataItemsT = any, FinalDataItemsT = GetDataItemsT, RetrievedPaneItemT = GetDataItemsT
 > extends NgxDcDataSource<GetDataItemsT, FinalDataItemsT> {
   public rowHeight: number = null
+  public minBufferMultiplier = 5
+  public maxBufferMultiplier = 10
+  
   /** The data given for the details of the selected item */
   public retrievedItem = new BehaviorSubject<RetrievedPaneItemT>(null)
 
@@ -160,6 +163,89 @@ export abstract class NgxDcDropdownDataSource<
   public ngClassDropdownItem(selectedItem: FinalDataItemsT, currentItem: FinalDataItemsT, index: number) {
     return {}
   }
+
+  /**
+   * Sometimes you need to update the data item locally without refreshing the data for live feedback.
+   * This function allows you to edit the retrievedItem without updating the BehaviorSubject.
+   * 
+   * @param updates The updates to apply to the data item
+   * @param matchesId A function that determines if an item matches the criteria
+   */
+  public localUpdateRetrievedDataItem(updates: Partial<RetrievedPaneItemT>, matchesId: (item: RetrievedPaneItemT) => boolean) {
+    if (Array.isArray(this.retrievedItem.value)) {
+      this.retrievedItem.value.forEach(lineItem => {
+        if (matchesId(lineItem)) {
+          for (const key of Object.keys(updates)) {
+            lineItem[key] = updates[key]
+          }
+        }
+      })
+    } else {
+      if (matchesId(this.retrievedItem.value)) {
+        for (const key of Object.keys(updates)) {
+          this.retrievedItem.value[key] = updates[key]
+        }
+      }
+    }
+  }
+
+  
+
+  /**
+   * Sometimes you need to update the data item locally without refreshing the data for live feedback.
+   * This function allows you to edit the selectedItem without updating the BehaviorSubject.
+   * 
+   * @param updates The updates to apply to the data item
+   * @param matchesId A function that determines if an item matches the criteria
+   */
+  public localUpdateSelectedDataItem(updates: Partial<FinalDataItemsT>, matchesId: (item: FinalDataItemsT) => boolean) {
+    if (Array.isArray(this.selectedItem.value)) {
+      this.selectedItem.value.forEach(lineItem => {
+        if (matchesId(lineItem)) {
+          for (const key of Object.keys(updates)) {
+            lineItem[key] = updates[key]
+          }
+        }
+      })
+    } else {
+      if (matchesId(this.selectedItem.value)) {
+        for (const key of Object.keys(updates)) {
+          this.selectedItem.value[key] = updates[key]
+        }
+      }
+    }
+  }
+
+  /**
+   * Sometimes you need to update the data item locally without refreshing the data for live feedback.
+   * This function allows you to edit the data$, selectedItem, retrievedItem without updating the BehaviorSubject or sending it to the server.
+   * 
+   * @param selectedUpdates The updates to apply to the selected data item
+   * @param selectedMatchesId A function that determines if the selected item matches the criteria to update the selected item with selectedUpdates
+   * @param retrievedUpdates The updates to apply to the retrieved data item
+   * @param retrievedMatchesId A function that determines if the retrieved item matches the criteria to update the retrieved item with retrievedUpdates
+   * 
+   * @example
+   * 
+   * ```typescript
+   * dao.fullLocalUpdateDataItem(
+   *   { status: 'Updated' },
+   *   item => item.id === selectedItemId,
+   *   { myStatus: 'Updated' },
+   *   item => item.id === retrievedItemId
+   * )
+   * ```
+   */
+  public fullLocalUpdateDataItem(
+    selectedUpdates: Partial<FinalDataItemsT>,
+    selectedMatchesId: (item: FinalDataItemsT) => boolean,
+    retrievedUpdates: Partial<RetrievedPaneItemT>,
+    retrievedMatchesId: (item: RetrievedPaneItemT) => boolean,
+  ) {
+    this.localUpdateDataItem(selectedUpdates, selectedMatchesId)
+    this.localUpdateSelectedDataItem(selectedUpdates, selectedMatchesId)
+    this.localUpdateRetrievedDataItem(retrievedUpdates, retrievedMatchesId)
+  }
 }
 
 
@@ -246,13 +332,13 @@ export abstract class NgxDcInfiniteDropdownDataSource<
   public params: Partial<AllowedParamsT> = {} as any
 
   /** The pages we have queried from the server */
-  private fetchedPages: Set<number> = new Set<number>()
+  public fetchedPages: Set<number> = new Set<number>()
 
   private cachedData: FinalDataItemsT[]
   private subscription: Subscription
 
   /** The current page the user is on (based on the scroll position on the list pane) */
-  private lastPageAccessed: number = null
+  public lastPageAccessed: number = null
 
   protected constructor(httpClient: HttpClient) {
     super(httpClient)
@@ -342,9 +428,11 @@ export abstract class NgxDcInfiniteDropdownDataSource<
    */
   public resetInfiniteScrolling(){
     this.params = {}
-    this.lastPageAccessed = null
+    // Ensure that page accessed adds 0 since we are resetting, we want to initially initialize
+    this.lastPageAccessed = 0
     this.cachedData = Array.from<FinalDataItemsT>({length: this.maxTotalCount})
     this.fetchedPages = new Set<number>()
+    this.fetchedPages.add(0)
     this.data$.next(this.cachedData)
     this.count$.next(0)
     this.initialized = false
@@ -416,6 +504,7 @@ export abstract class NgxDcInfiniteDropdownDataSource<
       }))
 
       for (const {result, page} of pagesFetched) {
+        if (!result) { continue }
         await this.fetchPage(page, result)
       }
       if (this.loading.value) {

@@ -11,7 +11,7 @@
 // mixin that enables css variables in dark mode
 @mixin dark() {
   // Material issue fixes for dark theme
-  --mdc-icon-button-icon-color: var(--mat-sys-on-background);
+  --mat-icon-button-icon-color: var(--mat-sys-on-background);
 }
 
 @mixin devCrateStyles() {
@@ -44,40 +44,40 @@
   @include dark();
 
   // Mat Checkbox
-  --mdc-checkbox-state-layer-size: 36px;
+  --mat-checkbox-state-layer-size: 36px;
 
   .mat-mdc-checkbox {
-    --mdc-form-field-label-text-size: 13px !important;
+    --mat-form-field-label-text-size: 13px !important;
   }
 
   // Mat Form Fields
   --mat-form-field-filled-with-label-container-padding-top: 12px;
   --mat-form-field-filled-with-label-container-padding-bottom: 8px;
   --mat-form-field-container-text-size: 14px;
-  --mdc-form-field-label-text-size: 12px;
-  --mdc-list-list-item-label-text-size: 14px !important;
+  --mat-form-field-label-text-size: 12px;
+  --mat-list-list-item-label-text-size: 14px !important;
   --mat-form-field-container-vertical-padding: 8px;
   --mat-form-field-container-height: 36px;
-  --mdc-filled-text-field-label-text-size: 12px;
+  --mat-form-field-filled-label-text-size: 12px;
   --mat-form-field-outlined-label-text-populated-size: 12px;
-  --mdc-outlined-text-field-label-text-size: 12px;
-  --mdc-outlined-text-field-label-text-weight: 400;
-  --mdc-outlined-text-field-input-text-placeholder-color: rgba(0, 0, 0, 0.4);
+  --mat-form-field-outlined-label-text-size: 12px;
+  --mat-form-field-outlined-label-text-weight: 400;
+  --mat-form-field-outlined-input-text-placeholder-color: rgba(0, 0, 0, 0.4);
   --mat-form-field-subscript-text-line-height: 8px;
   --mat-form-field-subscript-text-size: 10px;
-  --mdc-filled-text-field-container-color: var(--mat-sys-background);
+  --mat-form-field-filled-container-color: var(--mat-sys-background);
 
   // Buttons
-  --mdc-icon-button-icon-size: 20px;
-  --mdc-protected-button-label-text-size: 12px;
-  --mdc-text-button-container-height: 28px;
-  --mdc-filled-button-container-height: 28px;
-  --mdc-outlined-button-container-height: 28px;
-  --mdc-protected-button-container-height: 28px;
-  --mat-protected-button-horizontal-padding: 10px;
+  --mat-icon-button-icon-size: 20px;
+  --mat-button-protected-label-text-size: 12px;
+  --mat-button-text-container-height: 28px;
+  --mat-button-filled-container-height: 28px;
+  --mat-button-outlined-container-height: 28px;
+  --mat-button-protected-container-height: 28px;
+  --mat-button-protected-horizontal-padding: 10px;
 
   // Modals
-  --mdc-dialog-container-shape: 4px;
+  --mat-dialog-container-shape: 4px;
   --mat-dialog-container-max-width: 65vw;
   --mat-dialog-actions-padding: 8px 12px;
   --mat-dialog-content-padding: 10px 12px;
@@ -100,7 +100,7 @@
   // Input form field icons
   mat-form-field:has(input) {
     .mat-mdc-icon-button.mat-mdc-button-base {
-      --mdc-icon-button-state-layer-size: 30px;
+      --mat-icon-button-state-layer-size: 30px;
       .mat-icon {
         font-size: 22px;
         top: 0;

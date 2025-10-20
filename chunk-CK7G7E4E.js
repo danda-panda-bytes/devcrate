@@ -1,0 +1,2 @@
+import{Pb as n,Qb as i,lc as m,pb as o}from"./chunk-NCX4KHCN.js";import"./chunk-MF24F5AL.js";var s=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=o({type:e,selectors:[["app-utils-demo"]],decls:2,vars:0,template:function(t,a){t&1&&(n(0,"p"),m(1,"Coming Soon"),i())},encapsulation:2})}return e})();export{s as UtilsDemoComponent};
+//# sourceMappingURL=chunk-CK7G7E4E.js.map

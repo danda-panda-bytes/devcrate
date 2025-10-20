@@ -91,7 +91,7 @@
     </ng-template>
 
     @if (useInfiniteScrolling()) {
-      <cdk-virtual-scroll-viewport class="mat-elevation-z2" [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * 5" [maxBufferPx]="dataSource().rowHeight * 10">
+      <cdk-virtual-scroll-viewport class="mat-elevation-z2" [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * (dataSource().minBufferMultiplier || 5)" [maxBufferPx]="dataSource().rowHeight * (dataSource().maxBufferMultiplier || 10)">
         <!-- Display when dropdown is loading or have no items -->
         @if (!dataSource().loading.value && dataSource().actualDataLength == 0) {
           <mat-list-item

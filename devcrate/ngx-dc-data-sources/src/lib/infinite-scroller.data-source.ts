@@ -34,13 +34,13 @@ export abstract class NgxDcInfiniteScrollDataSource<
   public params: Partial<AllowedParamsT> = {} as any
 
   /** The pages we have queried from the server */
-  private fetchedPages: Set<number> = new Set<number>()
+  public fetchedPages: Set<number> = new Set<number>()
 
   private cachedData: FinalDataItemsT[]
-  private subscription: Subscription
+  public subscription: Subscription
 
   /** The current page the user is on (based on the scroll position on the list pane) */
-  private lastPageAccessed: number
+  public lastPageAccessed: number
 
   protected constructor(httpClient: HttpClient) {
     super(httpClient)

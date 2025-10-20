@@ -5,7 +5,7 @@ a:hover {
 
 // Mat Card
 mat-card.mat-mdc-card {
-  border-color: var(--mat-tab-header-divider-color);
+  border-color: var(--mat-tab-divider-color);
   border-width: 1px;
 
   mat-card-title.mat-card-title {
@@ -13,7 +13,7 @@ mat-card.mat-mdc-card {
   }
 
   mat-card-subtitle.mat-card-subtitle {
-    border-bottom: var(--mat-tab-header-divider-color) solid 1px;
+    border-bottom: var(--mat-tab-divider-color) solid 1px;
     padding: 4px 16px 16px;
   }
 }
@@ -46,7 +46,7 @@ mat-checkbox > .mdc-form-field > .mdc-checkbox > label {
 }
 
 .mat-mdc-icon-button.mat-mdc-button-base {
-  --mdc-icon-button-state-layer-size: 32px;
+  --mat-icon-button-state-layer-size: 32px;
   padding: 4px;
 
   mat-icon {
@@ -120,7 +120,7 @@ mat-form-field {
     position: relative;
 
     .mat-mdc-icon-button.mat-mdc-button-base {
-      --mdc-icon-button-state-layer-size: 32px;
+      --mat-icon-button-state-layer-size: 32px;
       padding: 4px;
     }
   }

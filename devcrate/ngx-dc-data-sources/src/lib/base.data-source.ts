@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {mergeWith, takeUntil} from "rxjs/operators";
 import {CollectionViewer, DataSource} from "@angular/cdk/collections";
 import {DestroyObservable} from "@devcrate/ngx-dc-utils";
+import { cleanObject } from "./utils.data-source";
 
 export class PageableResult<T> {
   results: T[]
@@ -221,6 +222,20 @@ export abstract class NgxDcDataSource<GetDataItemsT = any, FinalDataItemsT = Get
     const results = await this.initializeData()
     this.loading.next(false)
     return results
+  }
+
+  public localUpdateDataItem(updates: Partial<FinalDataItemsT>, matchesId: (item: FinalDataItemsT) => boolean) {
+    updates = cleanObject<FinalDataItemsT>(updates, false, true)
+    if (Object.keys(updates).length === 0) {return updates}
+    
+    this.data$.value.forEach(dataItem => {
+      if (matchesId(dataItem)) {
+        for (const key of Object.keys(updates)) {
+          dataItem[key] = updates[key]
+        }
+      }
+    })
+    return updates
   }
 
 }

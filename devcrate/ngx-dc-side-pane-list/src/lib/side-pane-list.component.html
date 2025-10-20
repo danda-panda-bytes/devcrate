@@ -50,7 +50,7 @@
       </mat-list-item>
     </ng-template>
     @if (useInfiniteScrolling()) {
-      <cdk-virtual-scroll-viewport [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * 5" [maxBufferPx]="dataSource().rowHeight * 10">
+      <cdk-virtual-scroll-viewport [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * 5" [maxBufferPx]="dataSource().rowHeight * 10" #viewport>
         <ng-container *cdkVirtualFor="let item of dataSource(); let i = index">
           <ng-container *ngTemplateOutlet="listItem; context: { $implicit: item, index: i }"></ng-container>
         </ng-container>

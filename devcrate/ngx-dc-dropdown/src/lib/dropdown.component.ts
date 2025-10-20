@@ -1,13 +1,14 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
 import { AsyncPipe, NgClass, NgTemplateOutlet } from "@angular/common";
-import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, inject, input, output, contentChild, signal, model } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, ViewEncapsulation, contentChild, inject, input, model, output } from '@angular/core';
 import { MatRipple } from "@angular/material/core";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListSubheaderCssMatStyler, MatNavList } from "@angular/material/list";
 import { MatProgressBar } from "@angular/material/progress-bar";
-import { NgxDcFilledCountPipe, NgxDcModalService, NgxDcModalServiceToken, NgxDcRolesServiceToken } from "@devcrate/ngx-dc-utils";
+import { NgxDcFilledCountPipe, NgxDcModalService, NgxDcModalServiceToken } from "@devcrate/ngx-dc-utils";
 import { BehaviorSubject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { v4 as uuid } from 'uuid';
 import {
   NgxDcDropdownDataSource
 } from "./dropdown-data.source";
@@ -16,7 +17,6 @@ import {
   NgxDcDropdownItemDirective, NgxDcDropdownLoadingDirective, NgxDcDropdownNoItemsDirective,
   NgxDcDropdownOptionsHeaderDirective
 } from "./dropdown.directives";
-import { v4 as uuid } from 'uuid';
 
 @Component({
     selector: 'ngx-dc-dropdown',
@@ -45,7 +45,7 @@ export class NgxDcDropdownComponent<GetDataItemsT, FinalDataItemsT = GetDataItem
 
   // We should put the InfiniteSidePaneListDataSource here because it extends all the other functionality for the data source
   public dataSource = input.required<NgxDcDropdownDataSource<GetDataItemsT, FinalDataItemsT, RetrievedItemT>>();
-
+  
   public opened = model<boolean>(false);
 
   public readonly allowClickOutside = input<boolean>(true);

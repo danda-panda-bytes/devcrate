@@ -144,6 +144,53 @@ export abstract class NgxDcSidePaneListDataSource<
   public ngClassPaneItem(focusedItem: FinalDataItemsT, item: FinalDataItemsT, index: number) {
     return {}
   }
+
+  public localUpdateRetrievedDataItem(updates: Partial<RetrievedPaneItemT>, matchesId: (item: RetrievedPaneItemT) => boolean) {
+    if (Array.isArray(this.retrievedItem.value)) {
+      this.retrievedItem.value.forEach(lineItem => {
+        if (matchesId(lineItem)) {
+          for (const key of Object.keys(updates)) {
+            lineItem[key] = updates[key]
+          }
+        }
+      })
+    } else {
+      if (matchesId(this.retrievedItem.value)) {
+        for (const key of Object.keys(updates)) {
+          this.retrievedItem.value[key] = updates[key]
+        }
+      }
+    }
+  }
+
+  public localUpdateSelectedDataItem(updates: Partial<FinalDataItemsT>, matchesId: (item: FinalDataItemsT) => boolean) {
+    if (Array.isArray(this.selectedItem.value)) {
+      this.selectedItem.value.forEach(lineItem => {
+        if (matchesId(lineItem)) {
+          for (const key of Object.keys(updates)) {
+            lineItem[key] = updates[key]
+          }
+        }
+      })
+    } else {
+      if (matchesId(this.selectedItem.value)) {
+        for (const key of Object.keys(updates)) {
+          this.selectedItem.value[key] = updates[key]
+        }
+      }
+    }
+  }
+
+  public fullLocalUpdateDataItem(
+    selectedUpdates: Partial<FinalDataItemsT>,
+    selectedMatchesId: (item: FinalDataItemsT) => boolean,
+    retrievedUpdates: Partial<RetrievedPaneItemT>,
+    retrievedMatchesId: (item: RetrievedPaneItemT) => boolean,
+  ) {
+    this.localUpdateDataItem(selectedUpdates, selectedMatchesId)
+    this.localUpdateSelectedDataItem(selectedUpdates, selectedMatchesId)
+    this.localUpdateRetrievedDataItem(retrievedUpdates, retrievedMatchesId)
+  }
 }
 
 /**
@@ -173,13 +220,13 @@ implements DataSource<FinalDataItemsT> {
   public params: Partial<AllowedParamsT> = {} as any
 
   /** The pages we have queried from the server */
-  private fetchedPages: Set<number> = new Set<number>()
+  public fetchedPages: Set<number> = new Set<number>()
 
   private cachedData: FinalDataItemsT[]
   private subscription: Subscription
 
   /** The current page the user is on (based on the scroll position on the list pane) */
-  private lastPageAccessed: number = null
+  public lastPageAccessed: number = null
 
   protected constructor(protected httpClient: HttpClient) {
     super()

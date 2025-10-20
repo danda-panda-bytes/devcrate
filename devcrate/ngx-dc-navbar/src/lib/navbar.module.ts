@@ -51,12 +51,12 @@ export const IMPORTS = [
  *     this.router = router
  *   }
  *
- *   public isAllowed(allowedList: string[]): boolean {
+ *   public isAllowed(info: NgxDcNavbarLinkInfo<AllowedItemT>): boolean {
  *     // This function is called whenever a route is navigated. It looks at the route, and checks if the route
  *     // is defined in your links data object. If it has `allowedRoles` array, defined, then it will call this method
  *     // with that list as the param rolesAllowed.
  *     // Implement your logic to return true or false on whether your user has these roles
- *     return allowedList.includes(userService.user.role)
+ *     return info.allowedList.includes(userService.user.role)
  *   }
  *
  *   public ngOnDestroy() {

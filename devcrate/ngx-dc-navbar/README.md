@@ -137,11 +137,11 @@ export class MyCustomNavbar extends NgxDcNavbarService<string> {
     super();
   }
 
-  public isAllowed(allowedList: string[]): boolean {
+  public isAllowed(info: NgxDcNavbarLinkInfo): boolean {
     // Implement your custom logic here
     // For example, check if user has required roles
     return this.userService.user.roles.some(role => 
-      allowedList.includes(role.name)
+      info.allowedList.includes(role.name)
     );
   }
 }
@@ -182,7 +182,7 @@ export const NAV_LINKS: NgxDcNavbarLinkInfo[] = [
 ];
 ```
 
-The `isAllowed()` method will be called whenever a route is active to determine if the current user has permission to see that link. If you don't override this method, all links will be visible by default.
+The `isAllowed` method will be called whenever a route is active to determine if the current user has permission to see that link. If you don't override this method, all links will be visible by default.
 
 You can also control the collapsed state of the navbar using the `collapsed$` BehaviorSubject:
 

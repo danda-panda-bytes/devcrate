@@ -1,4 +1,4 @@
-import { ScrollingModule } from "@angular/cdk/scrolling";
+import { CdkVirtualScrollViewport, ScrollingModule } from "@angular/cdk/scrolling";
 import { CommonModule } from "@angular/common";
 import { Component, ElementRef, ViewEncapsulation, inject, input, contentChild, viewChild, viewChildren, model } from '@angular/core';
 import { FormsModule } from "@angular/forms";
@@ -112,6 +112,7 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
 
   readonly element = viewChild('scroller', { read: ElementRef });
   readonly matListItems = viewChildren<MatListItem>('matListItem');
+  readonly infiniteScroller = viewChildren<CdkVirtualScrollViewport>("viewport")
 
   public get firstMatItem(): Element {
     return this.matListItems()?.at(0)!?._elementRef?.nativeElement?.parentElement?.firstElementChild
@@ -136,11 +137,18 @@ export class NgxDcSidePaneListComponent<GetDataItemsT, FinalDataItemsT = GetData
   }
 
   public scrollToActiveItem() {
-    this.activeMatItem?._elementRef.nativeElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'start',
-    })
+    if (this.useInfiniteScrolling()) {
+      // Scroll using the infinite since it is virtually there
+      const index = this.dataSource().data$.value.findIndex(item => item === this.dataSource().selectedItem.value)
+      this.infiniteScroller()[0].scrollToIndex(index, 'smooth')
+    } else {
+      // Scroll normal since its not infinite scrolling
+      this.activeMatItem?._elementRef.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'start',
+      })
+    }
   }
 
   public ngOnInit() {
