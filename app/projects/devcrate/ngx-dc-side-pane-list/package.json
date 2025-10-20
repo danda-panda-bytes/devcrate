@@ -2,9 +2,9 @@
   "name": "@devcrate/ngx-dc-side-pane-list",
   "version": "20.0.0",
   "peerDependencies": {
-    "@angular/common": ">=19.0.0",
-    "@angular/core": ">=19.0.0",
-    "@devcrate/ngx-dc-data-sources": ">=19.0.0"
+    "@angular/common": ">=20.0.0",
+    "@angular/core": ">=20.0.0",
+    "@devcrate/ngx-dc-data-sources": ">=20.0.0"
   },
   "lerna": {
     "command": {

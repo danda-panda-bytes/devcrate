@@ -2,9 +2,9 @@
   "name": "@devcrate/ngx-dc-navbar",
   "version": "20.0.0",
   "peerDependencies": {
-    "@angular/common": ">=19.0.0",
-    "@angular/core": ">=19.0.0",
-    "@devcrate/ngx-dc-utils": ">=19.0.0"
+    "@angular/common": ">=20.0.0",
+    "@angular/core": ">=20.0.0",
+    "@devcrate/ngx-dc-utils": ">=20.0.0"
   },
   "lerna": {
     "command": {
