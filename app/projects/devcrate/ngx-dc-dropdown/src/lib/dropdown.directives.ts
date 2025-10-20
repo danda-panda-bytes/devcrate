@@ -12,6 +12,15 @@ export class NgxDcDropdownHeaderDirective {
 }
 
 @Directive({
+  selector: '[ngxDcDropdownOptionsHeader]',
+  standalone: true
+})
+export class NgxDcDropdownOptionsHeaderDirective {
+  templateRef = inject<TemplateRef<any>>(TemplateRef)
+  ViewContainerRef = inject(ViewContainerRef)
+}
+
+@Directive({
   selector: '[ngxDcDropdownItem]',
   standalone: true
 })

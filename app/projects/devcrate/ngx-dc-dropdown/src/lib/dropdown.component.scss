@@ -1,9 +1,13 @@
+@use '@angular/material' as mat;
+
 ngx-dc-dropdown {
   --ngx-dc-dropdown-disabled-text-color: rgba(154, 154, 154, 0.5);
   --ngx-dc-dropdown-scrollbar-color: darkgray transparent;
   --ngx-dc-dropdown-scrollbar-width: thin;
   --ngx-dc-dropdown-scrollbar-gutter: auto;
   --ngx-dc-dropdown-header-bg-color: var(--mat-sys-inverse-on-surface);
+  --ngx-dc-dropdown-line-item-header-padding: 8px 16px;
+
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -22,13 +26,25 @@ ngx-dc-dropdown {
     --mat-list-active-indicator-shape: 0;
   }
 
+  .dc-dropdown-bottom-header-divider {
+    margin: 0;
+  }
+
+  .dc-dropdown-bottom-header {
+    padding: var(--ngx-dc-dropdown-line-item-header-padding) !important;
+    @include mat.list-overrides((
+      list-item-disabled-label-text-color: white,
+      list-item-disabled-label-text-opacity: 1
+    ));
+  }
+
   &.infinite-scrolling {
     .dc-dropdown-items {
       padding: 0;
       position: unset;
     }
 
-    .cdk-virtual-scroll-content-wrapper {
+    cdk-virtual-scroll-viewport {
       position: absolute;
       background-color: var(--ngx-dc-dropdown-header-bg-color);
       z-index: 1;
@@ -38,12 +54,9 @@ ngx-dc-dropdown {
       transition: height 0.35s;
       padding: 0;
       height: 0;
-    }
 
-    .opened {
       .cdk-virtual-scroll-content-wrapper {
-        transition: height 0.35s;
-        height: 340px;
+        height: auto;
       }
     }
   }
@@ -56,8 +69,16 @@ ngx-dc-dropdown {
       max-height: 0;
     }
 
-
     .opened {
+      cdk-virtual-scroll-viewport {
+        transition: height 0.35s;
+        height: 340px;
+
+        .cdk-virtual-scroll-content-wrapper {
+          height: auto;
+        }
+      }
+
       .dc-dropdown-items {
         transition: max-height 0.35s, height 0.35s, padding 0.35s;
         max-height: 340px;
@@ -67,6 +88,14 @@ ngx-dc-dropdown {
   }
 
   .opened {
+    cdk-virtual-scroll-viewport {
+      transition: height 0.35s;
+      height: 340px;
+
+      .cdk-virtual-scroll-content-wrapper {
+        height: auto;
+      }
+    }
     .dropdown-arrow {
       transform: rotate(180deg) !important;
     }
@@ -78,8 +107,8 @@ ngx-dc-dropdown {
     top: -4px;
     overflow: auto;
     width: 100%;
-      background-color: var(--ngx-dc-dropdown-header-bg-color);
-      border-radius: 0 0 4px 4px;
+    background-color: var(--ngx-dc-dropdown-header-bg-color);
+    border-radius: 0 0 4px 4px;
   }
 
 

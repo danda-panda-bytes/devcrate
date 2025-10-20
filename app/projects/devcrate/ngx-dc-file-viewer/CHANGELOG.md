@@ -3,6 +3,138 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 19.1.18 (2025-09-12)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.17 (2025-09-02)
+
+
+### Bug Fixes
+
+* return issue ([5187a73](https://github.com/danda-panda-bytes/devcrate/commit/5187a73257c14cd3f1367d09872e40bc843e2fda))
+
+
+
+
+
+## 19.1.16 (2025-05-14)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.15 (2025-04-17)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.14 (2025-04-10)
+
+
+### Bug Fixes
+
+* scrolling issues ([c5d3097](https://github.com/danda-panda-bytes/devcrate/commit/c5d30977188ad8069ae89035d9f856f572b8aa9b))
+
+
+
+
+
+## 19.1.13 (2025-03-31)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.12 (2025-03-24)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.11 (2025-03-24)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.10 (2025-03-21)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.9 (2025-03-20)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.8 (2025-03-20)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.7 (2025-03-20)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.6 (2025-03-20)
+
+**Note:** Version bump only for package @devcrate/ngx-dc-file-viewer
+
+
+
+
+
+## 19.1.5 (2025-03-20)
+
+
+### Bug Fixes
+
+* improve dropdown to have header ([b3a276c](https://github.com/danda-panda-bytes/devcrate/commit/b3a276cd0712762ba3afda03db71030a547dd935))
+
+
+
+
+
+## 19.1.4 (2025-03-14)
+
+
+### Bug Fixes
+
+* continued fix on styling of dropdown ([4c94c4b](https://github.com/danda-panda-bytes/devcrate/commit/4c94c4b027c8705cd243adc747e3c1230bf566e7))
+
+
+
+
+
 ## 19.1.3 (2025-03-14)
 
 

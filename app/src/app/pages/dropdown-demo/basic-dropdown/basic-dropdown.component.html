@@ -1,3 +1,4 @@
+<h3>Basic Dropdown</h3>
 <ngx-dc-dropdown [dataSource]="dataSource" appearance="rounded-outline">
   <ng-container *ngxDcDropdownHeader="let selectedItem">
     {{ selectedItem?.name }}
@@ -13,4 +14,90 @@
 
 <br/>
 
+
+<h3>Basic Dropdown with infinite scrolling</h3>
+<ngx-dc-dropdown [dataSource]="infiniteDataSource" [useInfiniteScrolling]="true" appearance="rounded-outline">
+  <ng-container *ngxDcDropdownHeader="let selectedItem; let header='header'; let opened = 'opened'; let currentCount = 'currentCount'; let totalCount = 'totalCount'">
+    {{ selectedItem?.name || 'Select Item to continue...' }}
+    @if (opened) {
+      <span class="fill"></span>
+      <span>{{ currentCount }} / {{ totalCount }}</span>
+    }
+  </ng-container>
+  <ng-container *ngxDcDropdownItem="let item">
+    {{ item.name }}
+  </ng-container>
+  <ng-container *ngxDcDropdownNoItems>No Items found</ng-container>
+  <ng-container *ngxDcDropdownLoading>
+      Loading...
+  </ng-container>
+</ngx-dc-dropdown>
+
+<br/>
+
+<h3>Basic Dropdown with bottom header</h3>
+<ngx-dc-dropdown [dataSource]="dataSource" appearance="rounded-outline">
+  <ng-container *ngxDcDropdownOptionsHeader="let selectedItem">
+    <div class="flex align-items-center">
+      <span>Header Item with Dropdown</span>
+      <span class="fill"></span>
+      <mat-form-field>
+        <mat-select>
+          <mat-option value="1">1</mat-option>
+          <mat-option value="2">2</mat-option>
+          <mat-option value="3">3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <ng-container *ngxDcDropdownHeader="let selectedItem">
+    {{ selectedItem?.name }}
+  </ng-container>
+  <ng-container *ngxDcDropdownItem="let item">
+    {{ item.name }}
+  </ng-container>
+  <ng-container *ngxDcDropdownNoItems>No Items found</ng-container>
+  <ng-container *ngxDcDropdownLoading>
+      Loading...
+  </ng-container>
+</ngx-dc-dropdown>
+
+<br/>
+
+<h3>Basic Dropdown with bottom header and infinite scrolling</h3>
+<ngx-dc-dropdown [dataSource]="infiniteDataSource" [useInfiniteScrolling]="true" appearance="rounded-outline">
+  <ng-container *ngxDcDropdownOptionsHeader="let selectedItem">
+    <button mat-icon-button (click)="modalService.showModal(modalWithSelect)">
+      Open Modal
+    </button>
+  </ng-container>
+  <ng-container *ngxDcDropdownHeader="let selectedItem; let header='header'; let currentCount = 'currentCount'; let totalCount = 'totalCount'">
+    {{ selectedItem?.name || 'Select Item to continue...' }}
+    <span class="fill"></span>
+    @if (header) {
+      <span>{{ currentCount }} / {{ totalCount }}</span>
+    }
+  </ng-container>
+  <ng-container *ngxDcDropdownItem="let item">
+    {{ item.name }}
+  </ng-container>
+  <ng-container *ngxDcDropdownNoItems>No Items found</ng-container>
+  <ng-container *ngxDcDropdownLoading>
+      Loading...
+  </ng-container>
+</ngx-dc-dropdown>
+
 {{ dataSource.retrievedItem.value | json }}
+{{ infiniteDataSource.retrievedItem.value | json }}
+
+
+<ng-template #modalWithSelect>
+  <h1>Modal with Select</h1>
+  <mat-form-field>
+    <mat-select>
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>

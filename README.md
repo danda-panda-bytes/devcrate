@@ -7,7 +7,7 @@
 <br/>
 <br/>
 
-Devcrate consists of:
+Devcrate consists of the following:
 
 * [Reusable Angular Components, Directives, Pipes, and Services](https://danda-panda-bytes.github.io/devcrate/)
 * [Node Utilities](https://danda-panda-bytes.github.io/devcrate/#/packages/)

@@ -1,27 +1,51 @@
 <div
   class="dc-dropdown mat-elevation-z2"
-  matRipple
+  [id]="dropdownId"
   data-testid="ngx-dc-dropdown"
   [class.opened]="opened()"
   [class.disabled]="disabled"
-  [ngClass]="dataSource().ngClassTriggerItem(dataSource().selectedItem | async)"
-  (click)="onDropdownClick()"
 >
-  <div mat-subheader class="dc-dropdown-header"
-    [style.height]="'calc(' + (dropdownHeader()?.height() || dataSource().rowHeight || 48) + 'px' + ' - 1.5rem)'"
+  <div
+    matRipple
+    [ngClass]="dataSource().ngClassTriggerItem(dataSource().selectedItem | async)"
+    (click)="onDropdownClick()"
   >
-    <ng-container
-      *ngTemplateOutlet="dropdownHeader()?.templateRef; context: {
-        $implicit: dataSource().selectedItem | async,
-        opened: opened(),
-        filteredCount: (dataSource().filteredData$ | async) | filledCount,
-        currentCount: dataSource().actualDataLength,
-        totalCount: dataSource().count$ | async,
-      }"
-    ></ng-container>
-    <span class="fill"></span>
-    <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+    <div
+      mat-subheader
+      class="dc-dropdown-header"
+      [style.height]="'calc(' + (dropdownHeader()?.height() || dataSource().rowHeight || 48) + 'px' + ' - 1.5rem)'"
+    >
+      <ng-container
+        *ngTemplateOutlet="dropdownHeader()?.templateRef; context: {
+          $implicit: dataSource().selectedItem | async,
+          opened: opened(),
+          filteredCount: (dataSource().filteredData$ | async) | filledCount,
+          currentCount: dataSource().actualDataLength,
+          totalCount: dataSource().count$ | async,
+        }"
+      ></ng-container>
+      <span class="fill"></span>
+      <mat-icon class="dropdown-arrow">expand_more</mat-icon>
+    </div>
   </div>
+  @if (dropdownOptionsHeader()) {
+    <hr class="dc-dropdown-bottom-header-divider" />
+    <div
+      class="dc-dropdown-bottom-header"
+      data-testid="ngx-dc-dropdown-bottom-header"
+      [ngClass]="dataSource().ngClassBottomHeader(dataSource().selectedItem | async)"
+    >
+      <ng-container
+        *ngTemplateOutlet="dropdownOptionsHeader()?.templateRef; context: {
+            $implicit: dataSource().selectedItem | async,
+            opened: opened(),
+            filteredCount: (dataSource().filteredData$ | async) | filledCount,
+            currentCount: dataSource().actualDataLength,
+            totalCount: dataSource().count$ | async,
+          }"
+      ></ng-container>
+    </div>
+  }
   @if (dataSource().loading | async) {
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   }
@@ -67,7 +91,7 @@
     </ng-template>
 
     @if (useInfiniteScrolling()) {
-      <cdk-virtual-scroll-viewport class="mat-elevation-z2" [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * 5" [maxBufferPx]="dataSource().rowHeight * 10">
+      <cdk-virtual-scroll-viewport class="mat-elevation-z2" [itemSize]="dataSource().rowHeight" [minBufferPx]="dataSource().rowHeight * (dataSource().minBufferMultiplier || 5)" [maxBufferPx]="dataSource().rowHeight * (dataSource().maxBufferMultiplier || 10)">
         <!-- Display when dropdown is loading or have no items -->
         @if (!dataSource().loading.value && dataSource().actualDataLength == 0) {
           <mat-list-item

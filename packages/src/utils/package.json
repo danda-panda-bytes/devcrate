@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/utils",
-  "version": "0.4.3",
+  "version": "0.4.9",
   "description": "utils for shared code",
   "main": "index.js",
   "types": "index.d.ts",
