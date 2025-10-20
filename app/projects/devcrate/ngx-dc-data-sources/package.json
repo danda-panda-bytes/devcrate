@@ -1,6 +1,6 @@
 {
   "name": "@devcrate/ngx-dc-data-sources",
-  "version": "20.0.0",
+  "version": "20.0.1",
   "peerDependencies": {
     "@angular/cdk": ">=20.0.0",
     "@angular/common": ">=20.0.0",
