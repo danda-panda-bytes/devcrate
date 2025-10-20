@@ -40,7 +40,7 @@ ngx-dc-navbar {
   --ngx-dc-navbar-topbar-text-color: var(--mat-sys-on-background);
   --ngx-dc-navbar-content-text-color: var(--mat-sys-on-background);
   --ngx-dc-navbar-content-bg-color: var(--mat-sys-background);
-  --ngx-dc-navbar-sidebar-border-color: var(--mat-tab-header-divider-color);
+  --ngx-dc-navbar-sidebar-border-color: var(--mat-tab-divider-color);
   --ngx-dc-navbar-sidebar-border-width: 1px;
   --ngx-dc-navbar-sidebar-background: var(--ngx-dc-navbar-content-bg-color);
   --ngx-dc-navbar-sidebar-active-text-color: var(--mat-sys-on-background);
@@ -67,7 +67,7 @@ ngx-dc-navbar {
     border-color: var(--ngx-dc-navbar-sidebar-border-color);
   }
   mat-list-item.mdc-list-item--disabled {
-    --mdc-list-list-item-disabled-state-layer-color: transparent;
+    --mat-list-list-item-disabled-state-layer-color: transparent;
   }
 
   .global-progress-bar {
@@ -120,9 +120,9 @@ ngx-dc-navbar {
 
 
   .collapse-version-group {
-    --mdc-list-list-item-hover-label-text-color: var(--ngx-dc-navbar-sidebar-text-color);
-    --mdc-list-list-item-label-text-color: var(--ngx-dc-navbar-sidebar-text-color);
-    --mdc-list-list-item-one-line-container-height: 56px;
+    --mat-list-list-item-hover-label-text-color: var(--ngx-dc-navbar-sidebar-text-color);
+    --mat-list-list-item-label-text-color: var(--ngx-dc-navbar-sidebar-text-color);
+    --mat-list-list-item-one-line-container-height: 56px;
 
     padding: 16px;
     border-radius: 0;
